@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, Vibration, View } from 'react-native';
-import { NativeBaseProvider, Box, Button, Icon, Input } from 'native-base';
-import { Entypo } from '@native-base/icons';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
+import React from 'react';
+import { StyleSheet, Vibration, View } from 'react-native';
+import RegistrationForm from '../components/RegistrationForm';
 
 const RegistrationScreen = () => {
   const handlePressButton = () => {
