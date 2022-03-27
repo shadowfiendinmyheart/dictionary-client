@@ -19,7 +19,7 @@ const PasswordInputs = () => {
       isInvalid={errorPassword.length > 0 || errorRepeatPassword.length > 0}
     >
       <FormControl.Label _text={{ bold: true }}>Пароль</FormControl.Label>
-      <Input type="text" placeholder="*****" onChangeText={handlePasswordChange} />
+      <Input type="password" placeholder="*****" onChangeText={handlePasswordChange} />
       <FormControl.ErrorMessage _text={{ fontSize: 'xs' }}>
         {errorPassword.length && errorPassword}
       </FormControl.ErrorMessage>
@@ -27,7 +27,11 @@ const PasswordInputs = () => {
       <FormControl.Label mt={2} _text={{ bold: true }}>
         Повторите пароль
       </FormControl.Label>
-      <Input type="text" placeholder="*****" onChangeText={handleRepeatPasswordChange} />
+      <Input
+        type="password"
+        placeholder="*****"
+        onChangeText={handleRepeatPasswordChange}
+      />
       <FormControl.ErrorMessage _text={{ fontSize: 'xs' }}>
         {errorRepeatPassword.length && errorRepeatPassword}
       </FormControl.ErrorMessage>
