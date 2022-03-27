@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
-import RegistrationScreen from './screens/RegistrationScreen';
-import LoginScreen from './screens/LoginScreen';
-import MainScreen from './screens/MainScreen';
+import Router from './components/Router';
 
 export default function App() {
   useEffect(() => {
@@ -10,8 +9,10 @@ export default function App() {
   }, []);
 
   return (
-    <NativeBaseProvider>
-      <MainScreen />
-    </NativeBaseProvider>
+    <NavigationContainer>
+      <NativeBaseProvider>
+        <Router />
+      </NativeBaseProvider>
+    </NavigationContainer>
   );
 }
