@@ -5,10 +5,14 @@ import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';
 import UsernameInput from './components/UsernameInput';
 import PasswordInput from './components/PasswordInput';
+import i18n, { localizationTokens } from '../../localization/index';
 
 const LoginForm = () => {
   const { loginStore } = useStore();
   const { validate } = loginStore;
+
+  const { AuthButton } = localizationTokens.LoginScreen.LoginForm;
+  const authText = i18n.t(AuthButton);
 
   const onSubmit = () => {
     // TODO: make api request
@@ -26,7 +30,7 @@ const LoginForm = () => {
         colorScheme="cyan"
         isDisabled={!validate}
       >
-        Войти
+        {authText}
       </Button>
     </VStack>
   );

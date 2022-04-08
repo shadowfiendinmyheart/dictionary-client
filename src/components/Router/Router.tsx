@@ -9,7 +9,11 @@ import ROUTES from '../../constants/routes';
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
+  // check await api key
+  // replace this var to store
   const isLogged = false;
+
+  // make isFetch screen for await api key
 
   if (!isLogged) {
     return (
