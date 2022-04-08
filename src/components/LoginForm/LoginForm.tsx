@@ -5,7 +5,7 @@ import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';
 import UsernameInput from './components/UsernameInput';
 import PasswordInput from './components/PasswordInput';
-import i18n, { localizationTokens } from '../../localization/index';
+import i18n, { localizationTokens } from '../../localization';
 
 const LoginForm = () => {
   const { loginStore } = useStore();
