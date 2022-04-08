@@ -9,7 +9,7 @@ import ROUTES from '../../constants/routes';
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
-  const isLogged = true;
+  const isLogged = false;
 
   if (!isLogged) {
     return (
