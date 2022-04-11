@@ -6,6 +6,29 @@ import {
   MIN_PASSWORD_LENGTH,
   MIN_USERNAME_LENGTH,
 } from '../constants/user';
+import i18n, { localizationTokens } from '../localization';
+
+const {
+  UsernameErrorRequired,
+  UsernameErrorShort,
+  UsernameErrorLong,
+  MailErrorRequired,
+  MailErrorInvalid,
+  PasswordErrorRequired,
+  PasswordErrorShort,
+  PasswordErrorRepeat,
+  PasswordErrorMatch,
+} = localizationTokens.RegistrationScreen.registrationForm;
+
+const usernameErrorRequiredText = i18n.t(UsernameErrorRequired);
+const usernameErrorShortText = i18n.t(UsernameErrorShort);
+const usernameErrorLongText = i18n.t(UsernameErrorLong);
+const mailErrorRequired = i18n.t(MailErrorRequired);
+const mailErrorInvalid = i18n.t(MailErrorInvalid);
+const passwordErrorRequired = i18n.t(PasswordErrorRequired);
+const passwordErrorShort = i18n.t(PasswordErrorShort);
+const passwordErrorRepeat = i18n.t(PasswordErrorRepeat);
+const passwordErrorMatch = i18n.t(PasswordErrorMatch);
 
 export class AuthStore implements UserAuthData {
   constructor() {
@@ -40,17 +63,17 @@ export class AuthStore implements UserAuthData {
 
   public handleUsernameChange = (value: string) => {
     if (value === undefined) {
-      this.errorUsername = 'Name is required';
+      this.errorUsername = usernameErrorRequiredText;
       return false;
     }
 
     if (value.length < MIN_USERNAME_LENGTH) {
-      this.errorUsername = 'Name is too short';
+      this.errorUsername = usernameErrorShortText;
       return;
     }
 
     if (value.length > MAX_USERNAME_LENGTH) {
-      this.errorUsername = 'Name is too long';
+      this.errorUsername = usernameErrorLongText;
       return false;
     }
 
@@ -60,12 +83,12 @@ export class AuthStore implements UserAuthData {
 
   public handleMailChange = (value: string) => {
     if (value === undefined) {
-      this.errorMail = 'Mail is required';
+      this.errorMail = mailErrorRequired;
       return false;
     }
 
     if (!validateEmail(value)) {
-      this.errorMail = 'Mail is invalid';
+      this.errorMail = mailErrorInvalid;
       return false;
     }
 
@@ -77,17 +100,17 @@ export class AuthStore implements UserAuthData {
     this.password = value;
 
     if (value === undefined) {
-      this.errorPassword = 'Password is required';
+      this.errorPassword = passwordErrorRequired;
       return false;
     }
 
     if (value.length < MIN_PASSWORD_LENGTH) {
-      this.errorPassword = 'Password is too short';
+      this.errorPassword = passwordErrorShort;
       return false;
     }
 
     if (value !== this.repeatPassword) {
-      this.errorRepeatPassword = 'Passwords do not match';
+      this.errorRepeatPassword = passwordErrorMatch;
     } else {
       this.errorRepeatPassword = '';
     }
@@ -99,12 +122,12 @@ export class AuthStore implements UserAuthData {
     this.repeatPassword = value;
 
     if (value === undefined) {
-      this.errorRepeatPassword = 'Repeat the password, please';
+      this.errorRepeatPassword = passwordErrorRepeat;
       return false;
     }
 
     if (value !== this.password) {
-      this.errorRepeatPassword = 'Passwords do not match';
+      this.errorRepeatPassword = passwordErrorMatch;
       return false;
     }
 

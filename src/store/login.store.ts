@@ -4,6 +4,21 @@ import {
   MIN_PASSWORD_LENGTH,
   MIN_USERNAME_LENGTH,
 } from '../constants/user';
+import i18n, { localizationTokens } from '../localization';
+
+const {
+  UsernameErrorRequired,
+  UsernameErrorShort,
+  UsernameErrorLong,
+  PasswordErrorRequired,
+  PasswordErrorShort,
+} = localizationTokens.LoginScreen.LoginForm;
+
+const usernameErrorRequiredText = i18n.t(UsernameErrorRequired);
+const usernameErrorShortText = i18n.t(UsernameErrorShort);
+const usernameErrorLongText = i18n.t(UsernameErrorLong);
+const passwordErrorRequired = i18n.t(PasswordErrorRequired);
+const passwordErrorShort = i18n.t(PasswordErrorShort);
 
 export class LoginStore {
   constructor() {
@@ -28,17 +43,17 @@ export class LoginStore {
 
   public handleUsernameChange = (value: string) => {
     if (value === undefined) {
-      this.errorUsername = 'Name is required';
+      this.errorUsername = usernameErrorRequiredText;
       return false;
     }
 
     if (value.length < MIN_USERNAME_LENGTH) {
-      this.errorUsername = 'Name is too short';
-      return;
+      this.errorUsername = usernameErrorShortText;
+      return false;
     }
 
     if (value.length > MAX_USERNAME_LENGTH) {
-      this.errorUsername = 'Name is too long';
+      this.errorUsername = usernameErrorLongText;
       return false;
     }
 
@@ -48,12 +63,12 @@ export class LoginStore {
 
   public handlePasswordChange = (value: string) => {
     if (value === undefined) {
-      this.errorPassword = 'Password is required';
+      this.errorPassword = passwordErrorRequired;
       return false;
     }
 
     if (value.length < MIN_PASSWORD_LENGTH) {
-      this.errorPassword = 'Password is too short';
+      this.errorPassword = passwordErrorShort;
       return false;
     }
 

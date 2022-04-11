@@ -9,6 +9,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint --ext .tsx --ext .ts . --fix",
+    "lint:check": "eslint --ext .tsx --ext .ts .",
     "prettier": "prettier --write **/*.ts{,x}"
   },
   "lint-staged": {

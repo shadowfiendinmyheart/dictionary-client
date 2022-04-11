@@ -12,7 +12,7 @@ i18n.translations = {
 // TODO: set init locale with mobx
 // i18n.locale = Localization.locale;
 
-i18n.locale = 'en';
+i18n.locale = 'ru';
 i18n.fallbacks = true;
 
 export default i18n;
