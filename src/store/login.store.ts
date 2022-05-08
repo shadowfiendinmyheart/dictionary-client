@@ -5,6 +5,7 @@ import {
   MIN_USERNAME_LENGTH,
 } from '../constants/user';
 import i18n, { localizationTokens } from '../localization';
+import { UserStore } from './user.store';
 
 const {
   UsernameErrorRequired,
@@ -21,7 +22,9 @@ const passwordErrorRequired = i18n.t(PasswordErrorRequired);
 const passwordErrorShort = i18n.t(PasswordErrorShort);
 
 export class LoginStore {
-  constructor() {
+  private userStore: UserStore;
+
+  constructor(userStore: UserStore) {
     makeObservable(this, {
       username: observable,
       password: observable,
@@ -31,8 +34,12 @@ export class LoginStore {
 
       handleUsernameChange: action.bound,
       handlePasswordChange: action.bound,
+      handleOnLoginSubmit: action.bound,
+
       validate: computed,
     });
+
+    this.userStore = userStore;
   }
 
   username = '';
@@ -75,6 +82,18 @@ export class LoginStore {
     this.errorPassword = '';
     this.password = value;
   };
+
+  public handleOnLoginSubmit() {
+    console.log('is making api request...');
+    try {
+      // ...
+      this.userStore.token = '...';
+      this.userStore.isAuth = true;
+    } catch (error) {
+      // ...
+      this.userStore.isAuth = false;
+    }
+  }
 
   get validate() {
     if (!this.username || !this.password) {

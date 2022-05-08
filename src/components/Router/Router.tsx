@@ -1,20 +1,20 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import i18n, { localizationTokens } from '../../localization';
+import { useStore } from '../../store/root.store';
 import MainScreen from '../../screens/MainScreen';
 import LoginScreen from '../../screens/LoginScreen';
 import RegistrationScreen from '../../screens/RegistrationScreen';
-import { observer } from 'mobx-react';
 import ROUTES from '../../constants/routes';
-import i18n, { localizationTokens } from '../../localization';
+import LoadingScreen from '../../screens/LoadingScreen';
 
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
-  // check await api key
-  // replace this var to store
-  const isLogged = false;
-
-  // make isFetch screen for await api key
+  const { userStore } = useStore();
+  const { isAuth, isFetching } = userStore;
 
   const { LoginScreenTitle, MainScreenTitle, RegistationScreenTitle } =
     localizationTokens.Router.index;
@@ -22,7 +22,19 @@ const Router = () => {
   const registrationTitle = i18n.t(RegistationScreenTitle);
   const mainScreenTitle = i18n.t(MainScreenTitle);
 
-  if (!isLogged) {
+  if (isFetching) {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name={ROUTES.MAIN_SCREEN}
+          component={LoadingScreen}
+          options={{ title: '' }}
+        />
+      </Stack.Navigator>
+    );
+  }
+
+  if (!isAuth) {
     return (
       <Stack.Navigator>
         <Stack.Screen

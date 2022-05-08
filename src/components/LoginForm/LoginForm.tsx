@@ -16,7 +16,7 @@ const LoginForm = () => {
 
   const onSubmit = () => {
     // TODO: make api request
-    validate ? console.log('Submitted!') : console.log('Validation Failed');
+    validate ? console.log('Submitted!!!') : console.log('Validation Failed');
   };
 
   return (

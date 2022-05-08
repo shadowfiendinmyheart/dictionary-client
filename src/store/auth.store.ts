@@ -1,4 +1,6 @@
 import { observable, action, makeObservable, computed } from 'mobx';
+import createUser from '../api/auth/registration.api';
+import { UserStore } from './user.store';
 import { UserAuthData } from '../components/RegistrationForm/types';
 import { validateEmail } from '../components/RegistrationForm/utils';
 import {
@@ -31,12 +33,26 @@ const passwordErrorRepeat = i18n.t(PasswordErrorRepeat);
 const passwordErrorMatch = i18n.t(PasswordErrorMatch);
 
 export class AuthStore implements UserAuthData {
-  constructor() {
+  private userStore: UserStore;
+
+  username = '';
+  mail = '';
+  password = '';
+  repeatPassword = '';
+  loading = false;
+
+  errorUsername = '';
+  errorMail = '';
+  errorPassword = '';
+  errorRepeatPassword = '';
+
+  constructor(userStore: UserStore) {
     makeObservable(this, {
       username: observable,
       mail: observable,
       password: observable,
       repeatPassword: observable,
+      loading: observable,
 
       errorUsername: observable,
       errorMail: observable,
@@ -47,19 +63,12 @@ export class AuthStore implements UserAuthData {
       handleMailChange: action.bound,
       handlePasswordChange: action.bound,
       handleRepeatPasswordChange: action.bound,
+      handleSubmit: action.bound,
       validate: computed,
     });
+
+    this.userStore = userStore;
   }
-
-  username = '';
-  mail = '';
-  password = '';
-  repeatPassword = '';
-
-  errorUsername = '';
-  errorMail = '';
-  errorPassword = '';
-  errorRepeatPassword = '';
 
   public handleUsernameChange = (value: string) => {
     if (value === undefined) {
@@ -134,7 +143,29 @@ export class AuthStore implements UserAuthData {
     this.errorRepeatPassword = '';
   };
 
+  public handleSubmit = async () => {
+    this.loading = true;
+    const token = await createUser({
+      username: this.username,
+      email: this.mail,
+      password: this.password,
+    });
+
+    if (!token) {
+      // show error message for user
+      this.loading = false;
+      return;
+    }
+
+    await this.userStore.setToken(token);
+    this.loading = false;
+  };
+
   get validate() {
+    if (this.loading) {
+      return false;
+    }
+
     if (!this.username || !this.mail || !this.password || !this.repeatPassword) {
       return false;
     }

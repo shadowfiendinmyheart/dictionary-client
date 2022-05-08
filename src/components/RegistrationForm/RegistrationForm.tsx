@@ -11,11 +11,10 @@ import i18n, { localizationTokens } from '../../localization';
 
 const RegistrationForm = () => {
   const { authStore } = useStore();
-  const { validate } = authStore;
+  const { validate, handleSubmit } = authStore;
 
-  const onSubmit = () => {
-    // TODO: make api request
-    validate ? console.log('Submitted!') : console.log('Validation Failed');
+  const onSubmit = async () => {
+    validate ? await handleSubmit() : console.log('Validation Failed');
   };
 
   const { RegistrationButton } = localizationTokens.RegistrationScreen.registrationForm;
@@ -28,7 +27,7 @@ const RegistrationForm = () => {
       <PasswordInputs />
       <Button
         leftIcon={<Icon as={Entypo} name="add-user" />}
-        onPress={onSubmit}
+        onPress={() => void onSubmit}
         mt={5}
         colorScheme="cyan"
         isDisabled={!validate}

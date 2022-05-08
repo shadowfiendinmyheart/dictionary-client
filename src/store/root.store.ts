@@ -1,14 +1,17 @@
 import React from 'react';
 import { AuthStore } from './auth.store';
 import { LoginStore } from './login.store';
+import { UserStore } from './user.store';
 
 class RootStore {
   authStore: AuthStore;
   loginStore: LoginStore;
+  userStore: UserStore;
 
   constructor() {
-    this.authStore = new AuthStore();
-    this.loginStore = new LoginStore();
+    this.userStore = new UserStore();
+    this.authStore = new AuthStore(this.userStore);
+    this.loginStore = new LoginStore(this.userStore);
   }
 }
 
