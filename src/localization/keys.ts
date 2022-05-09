@@ -38,3 +38,11 @@ export enum RegistrationForm {
   PasswordErrorRepeat = 'RegistrationFormPasswordErrorRepeat',
   RegistrationButton = 'RegistrationFormRegistrationButton',
 }
+
+export enum MainScreen {
+  Header = 'MainScreenHeader',
+  AddCardButton = 'MainScreenAddCardButton',
+  LookDictionariesButton = 'MainScreenLookkDictionariesButton',
+  GamesButton = 'MainScreenGamesButton',
+  LogoutButton = 'MainScreenLogoutButton',
+}

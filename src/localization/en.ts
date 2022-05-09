@@ -1,4 +1,4 @@
-import { Router, LoginScreen, LoginForm, RegistrationForm } from './keys';
+import { Router, LoginScreen, LoginForm, RegistrationForm, MainScreen } from './keys';
 
 export const en = {
   [Router.RegistationScreenTitle]: 'Registration',
@@ -32,4 +32,10 @@ export const en = {
   [RegistrationForm.PasswordErrorMatch]: 'Passwords do not match',
   [RegistrationForm.PasswordErrorRepeat]: 'Repeat the password, please',
   [RegistrationForm.RegistrationButton]: 'Create account',
+
+  [MainScreen.Header]: 'Welcome,',
+  [MainScreen.AddCardButton]: 'Add card',
+  [MainScreen.LookDictionariesButton]: 'Dictionaries',
+  [MainScreen.GamesButton]: 'Games',
+  [MainScreen.LogoutButton]: 'Logout',
 };

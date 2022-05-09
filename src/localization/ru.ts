@@ -1,4 +1,4 @@
-import { Router, LoginScreen, LoginForm, RegistrationForm } from './keys';
+import { Router, LoginScreen, LoginForm, RegistrationForm, MainScreen } from './keys';
 
 export const ru = {
   [Router.RegistationScreenTitle]: 'Регистрация',
@@ -32,4 +32,10 @@ export const ru = {
   [RegistrationForm.PasswordErrorMatch]: 'Пароли не совпадают',
   [RegistrationForm.PasswordErrorRepeat]: 'Повторите пароль, пожалуйста',
   [RegistrationForm.RegistrationButton]: 'Создать аккаунт',
+
+  [MainScreen.Header]: 'Доброго времени суток,',
+  [MainScreen.AddCardButton]: 'Добавить карточку',
+  [MainScreen.LookDictionariesButton]: 'Посмотреть словари',
+  [MainScreen.GamesButton]: 'Игры',
+  [MainScreen.LogoutButton]: 'Выйти из аккаунта',
 };
