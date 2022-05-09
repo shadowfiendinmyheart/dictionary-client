@@ -9,14 +9,13 @@ import i18n, { localizationTokens } from '../../localization';
 
 const LoginForm = () => {
   const { loginStore } = useStore();
-  const { validate } = loginStore;
+  const { validate, handleOnLoginSubmit } = loginStore;
 
   const { AuthButton } = localizationTokens.LoginScreen.LoginForm;
   const authText = i18n.t(AuthButton);
 
-  const onSubmit = () => {
-    // TODO: make api request
-    validate ? console.log('Submitted!') : console.log('Validation Failed');
+  const onSubmit = async () => {
+    validate ? await handleOnLoginSubmit() : console.log('Validation Failed');
   };
 
   return (

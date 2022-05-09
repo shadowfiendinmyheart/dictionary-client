@@ -6,8 +6,8 @@ import { useStore } from '../../../store/root.store';
 import i18n, { localizationTokens } from '../../../localization';
 
 const MailInput = () => {
-  const { authStore } = useStore();
-  const { handleMailChange, errorMail } = authStore;
+  const { registrationStore } = useStore();
+  const { handleMailChange, errorMail } = registrationStore;
 
   const { MailLabel, MailPlaceholder } =
     localizationTokens.RegistrationScreen.registrationForm;

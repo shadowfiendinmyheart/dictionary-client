@@ -1,10 +1,12 @@
 import { observable, action, makeObservable, computed } from 'mobx';
+import loginUser from '../api/auth/login.api';
 import {
   MAX_USERNAME_LENGTH,
   MIN_PASSWORD_LENGTH,
   MIN_USERNAME_LENGTH,
 } from '../constants/user';
 import i18n, { localizationTokens } from '../localization';
+import { UserStore } from './user.store';
 
 const {
   UsernameErrorRequired,
@@ -21,7 +23,9 @@ const passwordErrorRequired = i18n.t(PasswordErrorRequired);
 const passwordErrorShort = i18n.t(PasswordErrorShort);
 
 export class LoginStore {
-  constructor() {
+  private userStore: UserStore;
+
+  constructor(userStore: UserStore) {
     makeObservable(this, {
       username: observable,
       password: observable,
@@ -31,8 +35,12 @@ export class LoginStore {
 
       handleUsernameChange: action.bound,
       handlePasswordChange: action.bound,
+      handleOnLoginSubmit: action.bound,
+
       validate: computed,
     });
+
+    this.userStore = userStore;
   }
 
   username = '';
@@ -74,6 +82,27 @@ export class LoginStore {
 
     this.errorPassword = '';
     this.password = value;
+  };
+
+  public handleOnLoginSubmit = async () => {
+    try {
+      const token = await loginUser({
+        username: this.username,
+        password: this.password,
+      });
+
+      if (!token) {
+        console.log('cant login with this params');
+        // show user error
+        return;
+      }
+
+      this.userStore.token = token;
+      this.userStore.isAuth = true;
+    } catch (error) {
+      // show user error
+      this.userStore.isAuth = false;
+    }
   };
 
   get validate() {

@@ -10,12 +10,11 @@ import { useStore } from '../../store/root.store';
 import i18n, { localizationTokens } from '../../localization';
 
 const RegistrationForm = () => {
-  const { authStore } = useStore();
-  const { validate } = authStore;
+  const { registrationStore } = useStore();
+  const { validate, handleSubmit } = registrationStore;
 
-  const onSubmit = () => {
-    // TODO: make api request
-    validate ? console.log('Submitted!') : console.log('Validation Failed');
+  const onSubmit = async () => {
+    validate ? await handleSubmit() : console.log('Validation Failed');
   };
 
   const { RegistrationButton } = localizationTokens.RegistrationScreen.registrationForm;
