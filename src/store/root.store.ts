@@ -1,16 +1,16 @@
 import React from 'react';
-import { AuthStore } from './auth.store';
+import { RegistrationStore } from './registration.store';
 import { LoginStore } from './login.store';
 import { UserStore } from './user.store';
 
 class RootStore {
-  authStore: AuthStore;
+  registrationStore: RegistrationStore;
   loginStore: LoginStore;
   userStore: UserStore;
 
   constructor() {
     this.userStore = new UserStore();
-    this.authStore = new AuthStore(this.userStore);
+    this.registrationStore = new RegistrationStore(this.userStore);
     this.loginStore = new LoginStore(this.userStore);
   }
 }

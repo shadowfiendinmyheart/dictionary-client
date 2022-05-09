@@ -7,8 +7,8 @@ import { useStore } from '../../../store/root.store';
 import i18n, { localizationTokens } from '../../../localization';
 
 const UsernameInput = () => {
-  const { authStore } = useStore();
-  const { handleUsernameChange, errorUsername } = authStore;
+  const { registrationStore } = useStore();
+  const { handleUsernameChange, errorUsername } = registrationStore;
 
   const { UsernameLabel, UsernamePlaceholder } =
     localizationTokens.RegistrationScreen.registrationForm;

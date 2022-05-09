@@ -6,13 +6,13 @@ import { useStore } from '../../../store/root.store';
 import i18n, { localizationTokens } from '../../../localization';
 
 const PasswordInputs = () => {
-  const { authStore } = useStore();
+  const { registrationStore } = useStore();
   const {
     handlePasswordChange,
     handleRepeatPasswordChange,
     errorPassword,
     errorRepeatPassword,
-  } = authStore;
+  } = registrationStore;
 
   const { PasswordLabel, RepeatPasswordLabel } =
     localizationTokens.RegistrationScreen.registrationForm;

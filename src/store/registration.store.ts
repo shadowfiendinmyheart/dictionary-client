@@ -32,7 +32,7 @@ const passwordErrorShort = i18n.t(PasswordErrorShort);
 const passwordErrorRepeat = i18n.t(PasswordErrorRepeat);
 const passwordErrorMatch = i18n.t(PasswordErrorMatch);
 
-export class AuthStore implements UserAuthData {
+export class RegistrationStore implements UserAuthData {
   private userStore: UserStore;
 
   username = '';

@@ -10,8 +10,8 @@ import { useStore } from '../../store/root.store';
 import i18n, { localizationTokens } from '../../localization';
 
 const RegistrationForm = () => {
-  const { authStore } = useStore();
-  const { validate, handleSubmit } = authStore;
+  const { registrationStore } = useStore();
+  const { validate, handleSubmit } = registrationStore;
 
   const onSubmit = async () => {
     validate ? await handleSubmit() : console.log('Validation Failed');
