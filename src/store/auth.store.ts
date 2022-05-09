@@ -1,5 +1,5 @@
 import { observable, action, makeObservable, computed } from 'mobx';
-import createUser from '../api/auth/registration.api';
+import registrationUser from '../api/auth/registration.api';
 import { UserStore } from './user.store';
 import { UserAuthData } from '../components/RegistrationForm/types';
 import { validateEmail } from '../components/RegistrationForm/utils';
@@ -145,7 +145,7 @@ export class AuthStore implements UserAuthData {
 
   public handleSubmit = async () => {
     this.loading = true;
-    const token = await createUser({
+    const token = await registrationUser({
       username: this.username,
       email: this.mail,
       password: this.password,

@@ -15,6 +15,11 @@ export class UserStore {
       token: observable,
       isAuth: observable,
       isFetching: observable,
+
+      setToken: action.bound,
+      setIsAuth: action.bound,
+      initUser: action.bound,
+      logout: action.bound,
     });
   }
 
@@ -25,10 +30,8 @@ export class UserStore {
 
     try {
       await SecureStore.setItemAsync(TOKEN_SECURE_STORE, token);
-      runInAction(() => {
-        this.token = token;
-        this.isAuth = true;
-      });
+      this.token = token;
+      this.isAuth = true;
     } catch (error) {
       console.log('Error while set token', error);
       // show error for user
@@ -36,9 +39,7 @@ export class UserStore {
   }
 
   public setIsAuth = (value: boolean) => {
-    runInAction(() => {
-      this.isAuth = value;
-    });
+    this.isAuth = value;
   };
 
   public initUser = async () => {
@@ -54,5 +55,16 @@ export class UserStore {
     this.token = storedToken;
     this.isAuth = true;
     this.isFetching = false;
+  };
+
+  public logout = async () => {
+    try {
+      await SecureStore.deleteItemAsync(TOKEN_SECURE_STORE);
+      this.token = '';
+      this.isAuth = false;
+    } catch (error) {
+      console.log('Error while delete token', error);
+      // show error for user
+    }
   };
 }

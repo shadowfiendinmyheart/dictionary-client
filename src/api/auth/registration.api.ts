@@ -1,21 +1,16 @@
 import axios from 'axios';
 import { API_URL } from '../../constants/api';
+import { User } from './types';
 
-type CreateUserResponse = {
+type RegistrationUserResponse = {
   token: string;
 };
 
-type CreateUserArgs = {
-  username: string;
-  email: string;
-  password: string;
-};
-
-async function createUser(user: CreateUserArgs): Promise<string | undefined> {
+async function registrationUser(user: User): Promise<string | undefined> {
   const { username, email, password } = user;
 
   try {
-    const { data } = await axios.post<CreateUserResponse>(
+    const { data } = await axios.post<RegistrationUserResponse>(
       `${API_URL}/auth/registration`,
       {
         username,
@@ -34,4 +29,4 @@ async function createUser(user: CreateUserArgs): Promise<string | undefined> {
   }
 }
 
-export default createUser;
+export default registrationUser;

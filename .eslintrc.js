@@ -35,7 +35,8 @@ module.exports = {
             'error',
             'always'
         ],
-        "@typescript-eslint/no-unsafe-assignment": "warn",
+        '@typescript-eslint/no-unsafe-assignment': 'warn',
+        '@typescript-eslint/no-misused-promises': 'warn',
         'no-empty-function': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         'react/display-name': 'off',

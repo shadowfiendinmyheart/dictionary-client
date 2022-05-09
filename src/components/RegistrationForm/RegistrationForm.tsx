@@ -27,7 +27,7 @@ const RegistrationForm = () => {
       <PasswordInputs />
       <Button
         leftIcon={<Icon as={Entypo} name="add-user" />}
-        onPress={() => void onSubmit}
+        onPress={onSubmit}
         mt={5}
         colorScheme="cyan"
         isDisabled={!validate}

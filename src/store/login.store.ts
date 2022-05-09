@@ -1,4 +1,5 @@
 import { observable, action, makeObservable, computed } from 'mobx';
+import loginUser from '../api/auth/login.api';
 import {
   MAX_USERNAME_LENGTH,
   MIN_PASSWORD_LENGTH,
@@ -83,17 +84,26 @@ export class LoginStore {
     this.password = value;
   };
 
-  public handleOnLoginSubmit() {
-    console.log('is making api request...');
+  public handleOnLoginSubmit = async () => {
     try {
-      // ...
-      this.userStore.token = '...';
+      const token = await loginUser({
+        username: this.username,
+        password: this.password,
+      });
+
+      if (!token) {
+        console.log('cant login with this params');
+        // show user error
+        return;
+      }
+
+      this.userStore.token = token;
       this.userStore.isAuth = true;
     } catch (error) {
-      // ...
+      // show user error
       this.userStore.isAuth = false;
     }
-  }
+  };
 
   get validate() {
     if (!this.username || !this.password) {
