@@ -9,6 +9,7 @@ import LoginScreen from '../../screens/LoginScreen';
 import RegistrationScreen from '../../screens/RegistrationScreen';
 import ROUTES from '../../constants/routes';
 import LoadingScreen from '../../screens/LoadingScreen';
+import CardScreen from '../../screens/CardScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,11 +17,12 @@ const Router = () => {
   const { userStore } = useStore();
   const { isAuth, isFetching } = userStore;
 
-  const { LoginScreenTitle, MainScreenTitle, RegistationScreenTitle } =
+  const { LoginScreenTitle, MainScreenTitle, RegistationScreenTitle, CardScreenTitle } =
     localizationTokens.Router.index;
   const loginScreenTitle = i18n.t(LoginScreenTitle);
   const registrationTitle = i18n.t(RegistationScreenTitle);
   const mainScreenTitle = i18n.t(MainScreenTitle);
+  const cardScreenTitle = i18n.t(CardScreenTitle);
 
   if (isFetching) {
     return (
@@ -57,6 +59,11 @@ const Router = () => {
         name={ROUTES.MAIN_SCREEN}
         component={MainScreen}
         options={{ title: mainScreenTitle }}
+      />
+      <Stack.Screen
+        name={ROUTES.CARD_SCREEN}
+        component={CardScreen}
+        options={{ title: cardScreenTitle }}
       />
     </Stack.Navigator>
   );

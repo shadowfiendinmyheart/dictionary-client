@@ -2,6 +2,7 @@ export enum Router {
   LoginScreenTitle = 'RouterLoginScreenTitle',
   RegistationScreenTitle = 'RouterRegistationScreenTitle',
   MainScreenTitle = 'RouterMainScreenTitle',
+  CardScreenTitle = 'RouterCardScreenTitle',
 }
 
 export enum LoginScreen {

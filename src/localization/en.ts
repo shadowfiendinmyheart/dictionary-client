@@ -4,6 +4,7 @@ export const en = {
   [Router.RegistationScreenTitle]: 'Registration',
   [Router.LoginScreenTitle]: 'Authorization',
   [Router.MainScreenTitle]: 'Menu',
+  [Router.CardScreenTitle]: 'Card',
 
   [LoginForm.UsernameLabel]: 'Username',
   [LoginForm.UsernamePlaceholder]: 'Enter your username',

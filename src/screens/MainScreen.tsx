@@ -2,13 +2,23 @@ import React from 'react';
 import { Center, Heading, Button } from 'native-base';
 import { useStore } from '../store/root.store';
 import i18n, { localizationTokens } from '../localization';
+import { NavigationStackProp } from 'react-navigation-stack';
+import ROUTES from '../constants/routes';
 
-const MainScreen: React.FC = () => {
+type Props = {
+  navigation: NavigationStackProp;
+};
+
+const MainScreen: React.FC<Props> = ({ navigation }) => {
   const { userStore } = useStore();
   const { username, logout } = userStore;
 
-  const onClick = async () => {
+  const handleLogotPress = async () => {
     await logout();
+  };
+
+  const handleCardPress = () => {
+    navigation.navigate(ROUTES.CARD_SCREEN);
   };
 
   const { Header, AddCardButton, LookDictionariesButton, GamesButton, LogoutButton } =
@@ -24,7 +34,7 @@ const MainScreen: React.FC = () => {
       <Heading textAlign={'center'}>
         {headerText} {username}
       </Heading>
-      <Button width="80%" mt={12} colorScheme="cyan">
+      <Button onPress={handleCardPress} width="80%" mt={12} colorScheme="cyan">
         {addCardButtonText}
       </Button>
       <Button width="80%" mt={5} colorScheme="cyan">
@@ -33,7 +43,7 @@ const MainScreen: React.FC = () => {
       <Button width="80%" mt={5} colorScheme="cyan">
         {gamesButtonText}
       </Button>
-      <Button onPress={onClick} width="80%" mt={5} colorScheme="cyan">
+      <Button onPress={handleLogotPress} width="80%" mt={5} colorScheme="cyan">
         {logoutButtonText}
       </Button>
     </Center>

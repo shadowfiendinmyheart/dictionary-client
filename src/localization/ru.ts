@@ -4,6 +4,7 @@ export const ru = {
   [Router.RegistationScreenTitle]: 'Регистрация',
   [Router.LoginScreenTitle]: 'Авторизация',
   [Router.MainScreenTitle]: 'Главное меню',
+  [Router.CardScreenTitle]: 'Карточка',
 
   [LoginForm.UsernameLabel]: 'Псевдоним',
   [LoginForm.UsernamePlaceholder]: 'Введите ваш псевдоним',
