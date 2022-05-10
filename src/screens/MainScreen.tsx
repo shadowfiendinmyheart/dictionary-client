@@ -24,7 +24,7 @@ const MainScreen: React.FC = () => {
       <Heading textAlign={'center'}>
         {headerText} {username}
       </Heading>
-      <Button width="80%" mt={5} colorScheme="cyan">
+      <Button width="80%" mt={12} colorScheme="cyan">
         {addCardButtonText}
       </Button>
       <Button width="80%" mt={5} colorScheme="cyan">
