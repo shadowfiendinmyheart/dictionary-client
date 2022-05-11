@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { API_URL } from '../../constants/api';
 import { User } from './types';
 
 type LoginUserResponse = {
@@ -10,7 +9,7 @@ async function loginUser(user: Omit<User, 'email'>): Promise<string | undefined>
   const { username, password } = user;
 
   try {
-    const { data } = await axios.post<LoginUserResponse>(`${API_URL}/auth/login`, {
+    const { data } = await axios.post<LoginUserResponse>('/auth/login', {
       username,
       password,
     });

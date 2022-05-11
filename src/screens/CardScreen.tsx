@@ -11,15 +11,28 @@ import {
   IconButton,
   Icon,
   ScrollView,
+  Select,
+  CheckIcon,
 } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../store/root.store';
+import { Language } from '../api/card/types';
+import LanguagesSelector from '../components/LanguagesSelector/LanguagesSelector';
 
 const CardScreen: React.FC = () => {
   const [translation, setTranslation] = useState('');
+  const [phrase, setPhrase] = useState('');
   const { cardStore } = useStore();
-  const { translations, images, deleteTranslation, addTranslation, checkAddTranslation } =
-    cardStore;
+  const {
+    translations,
+    setTranslations,
+    deleteTranslation,
+    addTranslation,
+    checkAddTranslation,
+    getTranslations,
+    fromLanguage,
+    toLanguage,
+  } = cardStore;
 
   const handleDeleteTranslationPress = (translation: string) => {
     deleteTranslation(translation);
@@ -37,19 +50,49 @@ const CardScreen: React.FC = () => {
     setTranslation('');
   };
 
+  const handlePhraseInputChange = (value: string) => {
+    setPhrase(value);
+  };
+
+  const handleFindTranslationsButtonPress = async () => {
+    if (!phrase || !fromLanguage || !toLanguage) return;
+
+    const translationsResponse = await getTranslations({
+      phrase,
+      from: fromLanguage,
+      to: toLanguage,
+    });
+    if (!translationsResponse) {
+      // show error
+      return;
+    }
+
+    setTranslations(translationsResponse.translation);
+  };
+
   return (
     <ScrollView w="100%">
       <Center>
-        <Input editable={true} width="80%" mt={6} placeholder={'Введите фразу'} />
+        <Input
+          editable={true}
+          width="90%"
+          background={'warmGray.50'}
+          mt={6}
+          placeholder={'Введите фразу'}
+          onChangeText={handlePhraseInputChange}
+          value={phrase}
+        />
+        <LanguagesSelector />
         <Button
-          width="80%"
+          width="90%"
           mt={3}
           size={'10'}
           leftIcon={<Icon as={Entypo} name="magnifying-glass" />}
+          onPress={handleFindTranslationsButtonPress}
         >
           Найти перевод
         </Button>
-        <Box mt={3} width="80%">
+        <Box mt={3} width="90%">
           <VStack space={2}>
             {translations.map((translation) => {
               return (
@@ -66,6 +109,7 @@ const CardScreen: React.FC = () => {
           </VStack>
           <Input
             width="100%"
+            background={'warmGray.50'}
             mt={3}
             placeholder={'Введите перевод фразы'}
             onChangeText={handleTranslationInputChange}
@@ -82,8 +126,9 @@ const CardScreen: React.FC = () => {
           </Button>
         </Box>
         <Button
-          width="80%"
+          width="90%"
           mt={3}
+          mb={6}
           size={'10'}
           leftIcon={<Icon as={Entypo} name="star" />}
         >

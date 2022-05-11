@@ -1,18 +1,9 @@
 import { observable, action, makeObservable } from 'mobx';
+import getTranslations, {
+  getTranslationsRequest,
+} from '../api/card/findTranslations.api';
+import { Language } from '../api/card/types';
 
-const translationsMock = [
-  'кот',
-  'кошка',
-  'кошку',
-  'кошки',
-  'кошкой',
-  'кошке',
-  'котенок',
-  'кат',
-  'котик',
-  'котяра',
-  'категория',
-];
 const imagesMock = [
   'https://upload.wikimedia.org/wikipedia/commons/0/0e/Felis_silvestris_silvestris.jpg',
   'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Zunge_raus.JPG/1200px-Zunge_raus.JPG',
@@ -30,21 +21,28 @@ const imagesMock = [
 ];
 
 export class CardStore {
-  phrase = '';
-  translations: string[] = translationsMock;
+  translations: string[] = [];
   images: string[] = imagesMock;
   isFetching = false;
+  fromLanguage: Language = Language.Russian;
+  toLanguage: Language = Language.English;
 
   constructor() {
     makeObservable(this, {
-      phrase: observable,
       translations: observable,
       images: observable,
       isFetching: observable,
+      fromLanguage: observable,
+      toLanguage: observable,
 
       deleteTranslation: action.bound,
       checkAddTranslation: action.bound,
+      setTranslations: action.bound,
       addTranslation: action.bound,
+      getTranslations: action.bound,
+      setFromLanguage: action.bound,
+      setToLanguage: action.bound,
+      handleShufflePress: action.bound,
     });
   }
 
@@ -69,7 +67,29 @@ export class CardStore {
     return true;
   };
 
+  public setTranslations = (translations: string[]) => {
+    this.translations = translations;
+  };
+
   public addTranslation = (translationToAdd: string) => {
     this.translations = [...this.translations, translationToAdd];
+  };
+
+  public getTranslations = async (request: getTranslationsRequest) => {
+    return await getTranslations(request);
+  };
+
+  public setFromLanguage = (language: Language) => {
+    this.fromLanguage = language;
+  };
+
+  public setToLanguage = (language: Language) => {
+    this.toLanguage = language;
+  };
+
+  public handleShufflePress = () => {
+    const temp = this.fromLanguage;
+    this.setFromLanguage(this.toLanguage);
+    this.setToLanguage(temp);
   };
 }
