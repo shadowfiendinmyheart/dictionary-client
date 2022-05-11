@@ -26,6 +26,7 @@ export class CardStore {
   isFetching = false;
   fromLanguage: Language = Language.Russian;
   toLanguage: Language = Language.English;
+  isAssociationModal = false;
 
   constructor() {
     makeObservable(this, {
@@ -34,6 +35,7 @@ export class CardStore {
       isFetching: observable,
       fromLanguage: observable,
       toLanguage: observable,
+      isAssociationModal: observable,
 
       deleteTranslation: action.bound,
       checkAddTranslation: action.bound,
@@ -43,6 +45,7 @@ export class CardStore {
       setFromLanguage: action.bound,
       setToLanguage: action.bound,
       handleShufflePress: action.bound,
+      setAssociationModal: action.bound,
     });
   }
 
@@ -91,5 +94,9 @@ export class CardStore {
     const temp = this.fromLanguage;
     this.setFromLanguage(this.toLanguage);
     this.setToLanguage(temp);
+  };
+
+  public setAssociationModal = (value: boolean) => {
+    this.isAssociationModal = value;
   };
 }

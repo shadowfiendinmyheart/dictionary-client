@@ -5,12 +5,19 @@ import { Entypo } from '@native-base/icons';
 import { useStore } from '../store/root.store';
 import LanguagesSelector from '../components/LanguagesSelector';
 import TranslationsList from '../components/TranslationsList';
+import AssociationModal from '../components/AssociationModal';
 
 const CardScreen: React.FC = () => {
   const [phrase, setPhrase] = useState('');
   const { cardStore } = useStore();
-  const { translations, setTranslations, getTranslations, fromLanguage, toLanguage } =
-    cardStore;
+  const {
+    translations,
+    setTranslations,
+    getTranslations,
+    fromLanguage,
+    toLanguage,
+    setAssociationModal,
+  } = cardStore;
 
   const handlePhraseInputChange = (value: string) => {
     setPhrase(value);
@@ -63,11 +70,13 @@ const CardScreen: React.FC = () => {
               mb={6}
               size={'10'}
               leftIcon={<Icon as={Entypo} name="star" />}
+              onPress={() => setAssociationModal(true)}
             >
               Создать ассоциации
             </Button>
           </>
         )}
+        <AssociationModal />
       </Center>
     </ScrollView>
   );
