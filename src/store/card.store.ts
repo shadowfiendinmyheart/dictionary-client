@@ -27,6 +27,7 @@ export class CardStore {
   fromLanguage: Language = Language.Russian;
   toLanguage: Language = Language.English;
   isAssociationModal = false;
+  isImagesModal = false;
 
   constructor() {
     makeObservable(this, {
@@ -36,6 +37,7 @@ export class CardStore {
       fromLanguage: observable,
       toLanguage: observable,
       isAssociationModal: observable,
+      isImagesModal: observable,
 
       deleteTranslation: action.bound,
       checkAddTranslation: action.bound,
@@ -46,6 +48,7 @@ export class CardStore {
       setToLanguage: action.bound,
       handleShufflePress: action.bound,
       setAssociationModal: action.bound,
+      setImagesModal: action.bound,
     });
   }
 
@@ -98,5 +101,9 @@ export class CardStore {
 
   public setAssociationModal = (value: boolean) => {
     this.isAssociationModal = value;
+  };
+
+  public setImagesModal = (value: boolean) => {
+    this.isImagesModal = value;
   };
 }

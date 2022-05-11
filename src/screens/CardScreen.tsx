@@ -6,6 +6,7 @@ import { useStore } from '../store/root.store';
 import LanguagesSelector from '../components/LanguagesSelector';
 import TranslationsList from '../components/TranslationsList';
 import AssociationModal from '../components/AssociationModal';
+import ImagesModal from '../components/ImagesModal';
 
 const CardScreen: React.FC = () => {
   const [phrase, setPhrase] = useState('');
@@ -77,6 +78,7 @@ const CardScreen: React.FC = () => {
           </>
         )}
         <AssociationModal />
+        <ImagesModal />
       </Center>
     </ScrollView>
   );

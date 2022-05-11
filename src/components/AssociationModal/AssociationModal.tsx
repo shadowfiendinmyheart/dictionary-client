@@ -7,13 +7,13 @@ import i18n, { localizationTokens } from '../../localization';
 
 const AssociationModal = () => {
   const { cardStore } = useStore();
-  const { isAssociationModal, setAssociationModal } = cardStore;
+  const { isAssociationModal, setImagesModal, setAssociationModal } = cardStore;
 
   return (
     <Modal isOpen={isAssociationModal} onClose={() => setAssociationModal(false)}>
       <Modal.Content maxWidth="400px">
         <Modal.CloseButton />
-        <Modal.Header>Создайте ассоциации</Modal.Header>
+        <Modal.Header>Список ассоциаций</Modal.Header>
         <Modal.Body>
           <Box
             style={{
@@ -28,6 +28,7 @@ const AssociationModal = () => {
           >
             <IconButton
               width={'100%'}
+              onPress={() => setImagesModal(true)}
               icon={
                 <Center>
                   <Icon
@@ -38,7 +39,6 @@ const AssociationModal = () => {
                   />
                 </Center>
               }
-              onPress={() => alert('pressed')}
             />
           </Box>
         </Modal.Body>
