@@ -8,7 +8,7 @@ import i18n, { localizationTokens } from '../../localization';
 const TranslationsList = () => {
   const [translation, setTranslation] = useState('');
   const { cardStore } = useStore();
-  const { translations, deleteTranslation, checkAddTranslation, addTranslation } =
+  const { translationItems, deleteTranslation, checkAddTranslation, addTranslation } =
     cardStore;
 
   const handleDeleteTranslationPress = (translation: string) => {
@@ -23,21 +23,24 @@ const TranslationsList = () => {
     const isValid = checkAddTranslation(translation);
     if (!isValid) return;
 
-    addTranslation(translation);
+    addTranslation({
+      translation: translation,
+      isPicked: false,
+    });
     setTranslation('');
   };
 
   return (
     <Box mt={3} width="90%">
       <VStack space={2}>
-        {translations.map((translation) => (
-          <HStack width="100%" key={translation}>
+        {translationItems.map((item) => (
+          <HStack width="100%" key={item.translation}>
             <IconButton
               size="sm"
               icon={<Icon as={Entypo} name="cross" size="4" color="trueGray.400" />}
-              onPress={() => handleDeleteTranslationPress(translation)}
+              onPress={() => handleDeleteTranslationPress(item.translation)}
             />
-            <Text>{translation}</Text>
+            <Text>{item.translation}</Text>
           </HStack>
         ))}
       </VStack>

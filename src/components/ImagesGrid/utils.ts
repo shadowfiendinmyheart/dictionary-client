@@ -1,12 +1,10 @@
-export function chunkArray<T>(array: T[], chunk_size: number): T[][] {
-  const myArray = [...array];
-  const arrayLength = myArray.length;
-  const tempArray = [];
+export function chunkArray<T>(array: T[], chunkSize: number): T[][] {
+  const finalArray = [];
 
-  for (let index = 0; index < arrayLength; index += chunk_size) {
-    const myChunk = myArray.slice(index, index + chunk_size);
-    tempArray.push(myChunk);
+  for (let index = 0; index < array.length; index += chunkSize) {
+    const chunk = array.slice(index, index + chunkSize);
+    finalArray.push(chunk);
   }
 
-  return tempArray;
+  return finalArray;
 }

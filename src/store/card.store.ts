@@ -1,6 +1,7 @@
 import { observable, action, makeObservable } from 'mobx';
 import getTranslations, {
   getTranslationsRequest,
+  TranslationsResponse,
 } from '../api/card/findTranslations.api';
 import { Language } from '../api/card/types';
 
@@ -20,10 +21,30 @@ const imagesMock = [
   'https://s13.stc.yc.kpcdn.net/share/i/instagram/B44solahwlo/wr-1280.webp',
 ];
 
+type TranslationContextItem = {
+  translation: string;
+  context?: string[];
+  isPicked: boolean;
+};
+
 export class CardStore {
-  translations: string[] = [];
+  translationItems: TranslationContextItem[] = [
+    {
+      translation: 'test1',
+      isPicked: false,
+    },
+    {
+      translation: 'test2',
+      context: ['hello test2 world!'],
+      isPicked: false,
+    },
+    {
+      translation: 'test3',
+      isPicked: true,
+    },
+  ];
   images: string[] = imagesMock;
-  isFetching = false;
+  isTranslationsFetching = false;
   fromLanguage: Language = Language.Russian;
   toLanguage: Language = Language.English;
   isAssociationModal = false;
@@ -31,9 +52,9 @@ export class CardStore {
 
   constructor() {
     makeObservable(this, {
-      translations: observable,
+      translationItems: observable,
       images: observable,
-      isFetching: observable,
+      isTranslationsFetching: observable,
       fromLanguage: observable,
       toLanguage: observable,
       isAssociationModal: observable,
@@ -43,7 +64,7 @@ export class CardStore {
       checkAddTranslation: action.bound,
       setTranslations: action.bound,
       addTranslation: action.bound,
-      getTranslations: action.bound,
+      getTranslationsFromApi: action.bound,
       setFromLanguage: action.bound,
       setToLanguage: action.bound,
       handleShufflePress: action.bound,
@@ -53,16 +74,16 @@ export class CardStore {
   }
 
   public deleteTranslation = (translationToDelete: string) => {
-    this.translations = this.translations.filter(
-      (translation) => translation !== translationToDelete,
+    this.translationItems = this.translationItems.filter(
+      (item) => item.translation !== translationToDelete,
     );
   };
 
   public checkAddTranslation = (translationToAdd: string) => {
     if (!translationToAdd) return false;
 
-    const checkDuplicate = this.translations.find(
-      (translation) => translation.toLowerCase() === translationToAdd.toLowerCase(),
+    const checkDuplicate = this.translationItems.find(
+      (item) => item.translation.toLowerCase() === translationToAdd.toLowerCase(),
     );
     if (checkDuplicate) {
       console.log('duplicate here!');
@@ -73,16 +94,32 @@ export class CardStore {
     return true;
   };
 
-  public setTranslations = (translations: string[]) => {
-    this.translations = translations;
+  public setTranslations = (translations: TranslationContextItem[]) => {
+    this.translationItems = translations;
   };
 
-  public addTranslation = (translationToAdd: string) => {
-    this.translations = [...this.translations, translationToAdd];
+  public addTranslation = (translationToAdd: TranslationContextItem) => {
+    this.translationItems = [...this.translationItems, translationToAdd];
   };
 
-  public getTranslations = async (request: getTranslationsRequest) => {
-    return await getTranslations(request);
+  public getTranslationsFromApi = async (request: getTranslationsRequest) => {
+    this.isTranslationsFetching = true;
+    const response = await getTranslations(request);
+    this.isTranslationsFetching = false;
+
+    if (!response) return;
+
+    const translationItems: TranslationContextItem[] = response.translation.map((t) => {
+      return {
+        translation: t,
+        context: response.examples
+          .filter((example) => example.from.includes(t))
+          .map((filtredTranslations) => filtredTranslations.from),
+        isPicked: false,
+      };
+    });
+
+    return translationItems;
   };
 
   public setFromLanguage = (language: Language) => {
@@ -105,5 +142,9 @@ export class CardStore {
 
   public setImagesModal = (value: boolean) => {
     this.isImagesModal = value;
+  };
+
+  public changeIsPickedItem = (index: number) => {
+    this.translationItems[index].isPicked = !this.translationItems[index].isPicked;
   };
 }

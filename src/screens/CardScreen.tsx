@@ -12,9 +12,10 @@ const CardScreen: React.FC = () => {
   const [phrase, setPhrase] = useState('');
   const { cardStore } = useStore();
   const {
-    translations,
+    translationItems,
     setTranslations,
-    getTranslations,
+    getTranslationsFromApi,
+    isTranslationsFetching,
     fromLanguage,
     toLanguage,
     setAssociationModal,
@@ -27,7 +28,7 @@ const CardScreen: React.FC = () => {
   const handleFindTranslationsButtonPress = async () => {
     if (!phrase || !fromLanguage || !toLanguage) return;
 
-    const translationsResponse = await getTranslations({
+    const translationsResponse = await getTranslationsFromApi({
       phrase,
       from: fromLanguage,
       to: toLanguage,
@@ -37,7 +38,7 @@ const CardScreen: React.FC = () => {
       return;
     }
 
-    setTranslations(translationsResponse.translation);
+    setTranslations(translationsResponse);
   };
 
   return (
@@ -57,12 +58,14 @@ const CardScreen: React.FC = () => {
           width="90%"
           mt={3}
           size={'10'}
+          backgroundColor={isTranslationsFetching ? 'gray.400' : 'cyan.500'}
           leftIcon={<Icon as={Entypo} name="magnifying-glass" />}
           onPress={handleFindTranslationsButtonPress}
+          disabled={isTranslationsFetching}
         >
           Найти перевод
         </Button>
-        {translations.length > 0 && (
+        {translationItems.length > 0 && (
           <>
             <TranslationsList />
             <Button
