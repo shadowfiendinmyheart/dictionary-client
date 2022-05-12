@@ -1,9 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Icon, IconButton, Box, Button, Modal, Center } from 'native-base';
+import { Icon, IconButton, Box, Button, Modal, Center, VStack } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';
 import i18n, { localizationTokens } from '../../localization';
+import AssociationItem from '../AssociationItem';
 
 const AssociationModal = () => {
   const { cardStore } = useStore();
@@ -15,32 +16,52 @@ const AssociationModal = () => {
         <Modal.CloseButton />
         <Modal.Header>Список ассоциаций</Modal.Header>
         <Modal.Body>
-          <Box
-            style={{
-              borderWidth: 4,
-              borderRadius: 4,
-              borderStyle: 'dashed',
-              borderColor: '#e3e3e3',
-            }}
-            width="100%"
-            p="4"
-            height={'100px'}
-          >
-            <IconButton
+          <VStack space={2}>
+            <AssociationItem
+              imageUrl="https://upload.wikimedia.org/wikipedia/commons/0/0e/Felis_silvestris_silvestris.jpg"
+              translations={[
+                'кот',
+                'кошка',
+                'котяра',
+                'кошка',
+                'котяра',
+                'кошка',
+                'котяра',
+                'кошка',
+                'котяра',
+                'кошка',
+                'котяра',
+              ]}
               width={'100%'}
-              onPress={() => setImagesModal(true)}
-              icon={
-                <Center>
-                  <Icon
-                    as={Entypo}
-                    name="circle-with-plus"
-                    size="xl"
-                    color="trueGray.400"
-                  />
-                </Center>
-              }
+              height={'100px'}
             />
-          </Box>
+            <Box
+              style={{
+                borderWidth: 4,
+                borderRadius: 4,
+                borderStyle: 'dashed',
+                borderColor: '#e3e3e3',
+              }}
+              width="100%"
+              p="4"
+              height={'100px'}
+            >
+              <IconButton
+                width={'100%'}
+                onPress={() => setImagesModal(true)}
+                icon={
+                  <Center>
+                    <Icon
+                      as={Entypo}
+                      name="circle-with-plus"
+                      size="xl"
+                      color="trueGray.400"
+                    />
+                  </Center>
+                }
+              />
+            </Box>
+          </VStack>
         </Modal.Body>
         <Modal.Footer>
           <Button
