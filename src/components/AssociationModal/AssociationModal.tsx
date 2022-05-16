@@ -58,7 +58,7 @@ const AssociationModal = () => {
             </Box>
           </VStack>
         </Modal.Body>
-        {associationItems.length > 0 && (
+        {associationItems.length > 0 ? (
           <Modal.Footer>
             <Button
               width="100%"
@@ -69,7 +69,7 @@ const AssociationModal = () => {
               Создать карточку
             </Button>
           </Modal.Footer>
-        )}
+        ) : null}
       </Modal.Content>
     </Modal>
   );

@@ -50,9 +50,9 @@ const ImagesModal = () => {
       cardStore.setAbout(text);
     }
 
-    // if (text?.length === 0) {
-    //   cardStore.setAbout('');
-    // }
+    if (text?.length === 0) {
+      cardStore.setAbout('');
+    }
   };
 
   const handleAddAboutButtonPress = (isOpen?: boolean) => {
@@ -127,7 +127,7 @@ const ImagesModal = () => {
             <ImagesGrid images={imageItems} onImagePress={setPickImageItem} />
           </Box>
         </Modal.Body>
-        {isValidAssociation && (
+        {isValidAssociation ? (
           <Modal.Footer>
             <Button
               width="100%"
@@ -138,7 +138,7 @@ const ImagesModal = () => {
               Создать ассоциацию
             </Button>
           </Modal.Footer>
-        )}
+        ) : null}
       </Modal.Content>
     </Modal>
   );

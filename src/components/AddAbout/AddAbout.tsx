@@ -42,7 +42,7 @@ const AddAbout: React.FC<Props> = ({ onTextareaChange, onButtonPress }) => {
     setTextAreaValue(text);
 
     if (onTextareaChange) {
-      onTextareaChange(textAreaValue);
+      onTextareaChange(text);
     }
   };
 
@@ -51,7 +51,7 @@ const AddAbout: React.FC<Props> = ({ onTextareaChange, onButtonPress }) => {
       <Button onPress={handleButtonPress}>
         {isOpen ? 'Удалить описание' : 'Добавить описание'}
       </Button>
-      {isOpen && (
+      {isOpen ? (
         <TextArea
           value={textAreaValue}
           onChangeText={handleTextAreaChange}
@@ -60,7 +60,7 @@ const AddAbout: React.FC<Props> = ({ onTextareaChange, onButtonPress }) => {
           placeholder="Введите описание"
           w={'100%'}
         />
-      )}
+      ) : null}
     </VStack>
   );
 };

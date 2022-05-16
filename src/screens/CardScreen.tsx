@@ -66,7 +66,7 @@ const CardScreen: React.FC = () => {
         >
           Найти перевод
         </Button>
-        {translationItems.length > 0 && (
+        {translationItems.length > 0 ? (
           <>
             <TranslationsList />
             <Button
@@ -80,7 +80,7 @@ const CardScreen: React.FC = () => {
               Создать ассоциации
             </Button>
           </>
-        )}
+        ) : null}
         <AssociationModal />
         <ImagesModal />
       </Center>

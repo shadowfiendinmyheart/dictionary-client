@@ -38,7 +38,7 @@ const AssociationItem: React.FC<Props> = ({
             );
           })}
         </ScrollView>
-        {about && (
+        {about ? (
           <IconButton
             style={styles.iconButton}
             backgroundColor={'warmGray.50'}
@@ -56,7 +56,7 @@ const AssociationItem: React.FC<Props> = ({
             }
             onPress={() => alert(about)}
           />
-        )}
+        ) : null}
       </ImageBackground>
     </Box>
   );
