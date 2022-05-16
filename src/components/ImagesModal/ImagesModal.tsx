@@ -16,6 +16,7 @@ import { useStore } from '../../store/root.store';
 
 import ImagesGrid from '../ImagesGrid';
 import i18n, { localizationTokens } from '../../localization';
+import AddAbout from '../AddAbout';
 
 const ImagesModal = () => {
   const { cardStore } = useStore();
@@ -40,7 +41,24 @@ const ImagesModal = () => {
     addAssociationItem();
     clearTranslationPicked();
     clearImagePicked();
+    setImagesModal(false);
     cardStore.setAbout('');
+  };
+
+  const handleAddAboutTextAreaChange = (text?: string) => {
+    if (text) {
+      cardStore.setAbout(text);
+    }
+
+    // if (text?.length === 0) {
+    //   cardStore.setAbout('');
+    // }
+  };
+
+  const handleAddAboutButtonPress = (isOpen?: boolean) => {
+    if (isOpen) {
+      cardStore.setAbout('');
+    }
   };
 
   return (
@@ -78,6 +96,14 @@ const ImagesModal = () => {
               );
             })}
           </VStack>
+
+          <Box mt={2}>
+            <AddAbout
+              onButtonPress={handleAddAboutButtonPress}
+              onTextareaChange={handleAddAboutTextAreaChange}
+            />
+          </Box>
+
           <Input
             mt={4}
             // width="90%"

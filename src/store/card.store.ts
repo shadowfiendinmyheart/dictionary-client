@@ -242,7 +242,7 @@ export class CardStore {
       translations: this.translationItems
         .filter((item) => item.isPicked)
         .map((item) => item.translation),
-      about: '',
+      about: this.about,
     };
     this.associationItems = [...this.associationItems, item];
   };

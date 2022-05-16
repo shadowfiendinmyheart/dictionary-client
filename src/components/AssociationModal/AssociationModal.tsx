@@ -23,9 +23,10 @@ const AssociationModal = () => {
                 <AssociationItem
                   imageUrl={item.imageUrl}
                   translations={item.translations}
-                  key={index}
+                  about={item?.about}
                   width={'100%'}
                   height={'100px'}
+                  key={index}
                 />
               );
             })}
