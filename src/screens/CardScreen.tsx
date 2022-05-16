@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { Center, Button, Input, Icon, ScrollView } from 'native-base';
 import { Entypo } from '@native-base/icons';
@@ -19,7 +19,12 @@ const CardScreen: React.FC = () => {
     fromLanguage,
     toLanguage,
     setAssociationModal,
+    updateAvalibleDictionaries,
   } = cardStore;
+
+  useEffect(() => {
+    updateAvalibleDictionaries();
+  }, []);
 
   const handlePhraseInputChange = (value: string) => {
     setPhrase(value);

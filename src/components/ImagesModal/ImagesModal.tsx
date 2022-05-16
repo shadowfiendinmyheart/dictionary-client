@@ -10,6 +10,8 @@ import {
   Modal,
   VStack,
   Text,
+  Select,
+  CheckIcon,
 } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';

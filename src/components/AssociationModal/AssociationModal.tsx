@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Icon, IconButton, Box, Button, Modal, Center, VStack } from 'native-base';
+import {
+  Icon,
+  IconButton,
+  Box,
+  Button,
+  Modal,
+  Center,
+  VStack,
+  CheckIcon,
+  Select,
+} from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';
 import i18n, { localizationTokens } from '../../localization';
 import AssociationItem from '../AssociationItem';
+import SelectDictionary from '../SelectDictionary';
 
 const AssociationModal = () => {
   const { cardStore } = useStore();
-  const { isAssociationModal, setImagesModal, setAssociationModal, associationItems } =
-    cardStore;
+  const {
+    isAssociationModal,
+    setImagesModal,
+    setAssociationModal,
+    associationItems,
+    avalibleDictionaries,
+    setPickedDictionaryByName,
+  } = cardStore;
 
   return (
     <Modal isOpen={isAssociationModal} onClose={() => setAssociationModal(false)}>
@@ -60,14 +77,23 @@ const AssociationModal = () => {
         </Modal.Body>
         {associationItems.length > 0 ? (
           <Modal.Footer>
-            <Button
-              width="100%"
-              size={'10'}
-              leftIcon={<Icon as={Entypo} name="star" />}
-              onPress={() => setAssociationModal(false)}
-            >
-              Создать карточку
-            </Button>
+            <VStack w={'100%'}>
+              <SelectDictionary
+                dictionaries={avalibleDictionaries}
+                onSelectDictionary={setPickedDictionaryByName}
+              />
+              {avalibleDictionaries.length > 0 ? (
+                <Button
+                  width="100%"
+                  size={'10'}
+                  mt={2}
+                  leftIcon={<Icon as={Entypo} name="star" />}
+                  onPress={() => setAssociationModal(false)}
+                >
+                  Создать карточку
+                </Button>
+              ) : null}
+            </VStack>
           </Modal.Footer>
         ) : null}
       </Modal.Content>

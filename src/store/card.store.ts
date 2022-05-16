@@ -4,6 +4,8 @@ import getTranslations, {
   TranslationsResponse,
 } from '../api/card/findTranslations.api';
 import { Language } from '../api/card/types';
+import { DictionaryStore } from './dictionary.store';
+import { Dictionary } from './types';
 
 const imagesMock = [
   {
@@ -79,6 +81,7 @@ export type AssociationItem = {
 };
 
 export class CardStore {
+  private dictionaryStore: DictionaryStore;
   phrase = '';
   translationItems: TranslationContextItem[] = [
     {
@@ -104,8 +107,10 @@ export class CardStore {
   toLanguage: Language = Language.English;
   isAssociationModal = false;
   isImagesModal = false;
+  avalibleDictionaries: Dictionary[] = [];
+  pickedDictionary: Dictionary = this.avalibleDictionaries[0];
 
-  constructor() {
+  constructor(dictionaryStore: DictionaryStore) {
     makeObservable(this, {
       phrase: observable,
       translationItems: observable,
@@ -118,6 +123,8 @@ export class CardStore {
       toLanguage: observable,
       isAssociationModal: observable,
       isImagesModal: observable,
+      avalibleDictionaries: observable,
+      pickedDictionary: observable,
 
       deleteTranslation: action.bound,
       checkAddTranslation: action.bound,
@@ -135,9 +142,13 @@ export class CardStore {
       addAssociationItem: action.bound,
       clearImagePicked: action.bound,
       clearTranslationPicked: action.bound,
+      updateAvalibleDictionaries: action.bound,
+      setPickedDictionaryByName: action.bound,
 
       isValidAssociation: computed,
     });
+
+    this.dictionaryStore = dictionaryStore;
   }
 
   public setPhrase = (phrase: string) => {
@@ -195,10 +206,12 @@ export class CardStore {
 
   public setFromLanguage = (language: Language) => {
     this.fromLanguage = language;
+    this.updateAvalibleDictionaries();
   };
 
   public setToLanguage = (language: Language) => {
     this.toLanguage = language;
+    this.updateAvalibleDictionaries();
   };
 
   public handleShufflePress = () => {
@@ -257,6 +270,22 @@ export class CardStore {
   public clearTranslationPicked = () => {
     for (const translation of this.translationItems) {
       translation.isPicked = false;
+    }
+  };
+
+  public updateAvalibleDictionaries = () => {
+    console.log('this.dictionaryStore.dictionaries', this.dictionaryStore.dictionaries);
+    this.avalibleDictionaries = this.dictionaryStore.dictionaries.filter((dictionary) => {
+      return dictionary.from === this.fromLanguage && dictionary.to === this.toLanguage;
+    });
+  };
+
+  public setPickedDictionaryByName = (dictionaryName: string) => {
+    for (const dictionary of this.avalibleDictionaries) {
+      if (dictionary.name === dictionaryName) {
+        this.pickedDictionary = dictionary;
+        break;
+      }
     }
   };
 
