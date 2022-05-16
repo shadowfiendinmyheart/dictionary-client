@@ -27,10 +27,20 @@ const ImagesModal = () => {
     imageItems,
     setPickImageItem,
     isValidAssociation,
+    addAssociationItem,
+    clearImagePicked,
+    clearTranslationPicked,
   } = cardStore;
 
   const handleStatusChange = (index: number) => {
     changeIsPickTranslationItem(index);
+  };
+
+  const handleCreateAssociationPress = () => {
+    addAssociationItem();
+    clearTranslationPicked();
+    clearImagePicked();
+    cardStore.setAbout('');
   };
 
   return (
@@ -97,7 +107,7 @@ const ImagesModal = () => {
               width="100%"
               size={'10'}
               leftIcon={<Icon as={Entypo} name="star" />}
-              onPress={() => alert('false')}
+              onPress={handleCreateAssociationPress}
             >
               Создать ассоциацию
             </Button>

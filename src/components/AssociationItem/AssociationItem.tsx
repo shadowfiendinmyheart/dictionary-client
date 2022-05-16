@@ -7,11 +7,18 @@ import { ImageBackground, StyleSheet, Text, ScrollView } from 'react-native';
 type Props = {
   imageUrl: string;
   translations: string[];
+  about?: string;
   height: string;
   width: string;
 };
 
-const AssociationItem: React.FC<Props> = ({ imageUrl, translations, height, width }) => {
+const AssociationItem: React.FC<Props> = ({
+  imageUrl,
+  translations,
+  height,
+  width,
+  about,
+}) => {
   return (
     <Box height={height} width={width}>
       <ImageBackground
@@ -22,7 +29,7 @@ const AssociationItem: React.FC<Props> = ({ imageUrl, translations, height, widt
         resizeMode="cover"
         style={styles.image}
       >
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
           {translations.map((translation, index) => {
             return (
               <Text style={styles.text} key={index}>
@@ -31,23 +38,25 @@ const AssociationItem: React.FC<Props> = ({ imageUrl, translations, height, widt
             );
           })}
         </ScrollView>
-        <IconButton
-          style={styles.iconButton}
-          backgroundColor={'warmGray.50'}
-          size="6"
-          paddingTop={1}
-          icon={
-            <Center>
-              <Icon
-                as={Entypo}
-                name="dots-three-vertical"
-                size="4"
-                color="trueGray.400"
-              />
-            </Center>
-          }
-          onPress={() => alert('button press')}
-        />
+        {about && (
+          <IconButton
+            style={styles.iconButton}
+            backgroundColor={'warmGray.50'}
+            size="6"
+            paddingTop={1}
+            icon={
+              <Center>
+                <Icon
+                  as={Entypo}
+                  name="dots-three-vertical"
+                  size="4"
+                  color="trueGray.400"
+                />
+              </Center>
+            }
+            onPress={() => alert(about)}
+          />
+        )}
       </ImageBackground>
     </Box>
   );

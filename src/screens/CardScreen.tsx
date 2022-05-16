@@ -38,6 +38,7 @@ const CardScreen: React.FC = () => {
       return;
     }
 
+    cardStore.setPhrase(phrase);
     setTranslations(translationsResponse);
   };
 

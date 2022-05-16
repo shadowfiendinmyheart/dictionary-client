@@ -8,7 +8,8 @@ import AssociationItem from '../AssociationItem';
 
 const AssociationModal = () => {
   const { cardStore } = useStore();
-  const { isAssociationModal, setImagesModal, setAssociationModal } = cardStore;
+  const { isAssociationModal, setImagesModal, setAssociationModal, associationItems } =
+    cardStore;
 
   return (
     <Modal isOpen={isAssociationModal} onClose={() => setAssociationModal(false)}>
@@ -17,24 +18,17 @@ const AssociationModal = () => {
         <Modal.Header>Список ассоциаций</Modal.Header>
         <Modal.Body>
           <VStack space={2}>
-            <AssociationItem
-              imageUrl="https://upload.wikimedia.org/wikipedia/commons/0/0e/Felis_silvestris_silvestris.jpg"
-              translations={[
-                'кот',
-                'кошка',
-                'котяра',
-                'кошка',
-                'котяра',
-                'кошка',
-                'котяра',
-                'кошка',
-                'котяра',
-                'кошка',
-                'котяра',
-              ]}
-              width={'100%'}
-              height={'100px'}
-            />
+            {associationItems.map((item, index) => {
+              return (
+                <AssociationItem
+                  imageUrl={item.imageUrl}
+                  translations={item.translations}
+                  key={index}
+                  width={'100%'}
+                  height={'100px'}
+                />
+              );
+            })}
             <Box
               style={{
                 borderWidth: 4,
@@ -63,16 +57,18 @@ const AssociationModal = () => {
             </Box>
           </VStack>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            width="100%"
-            size={'10'}
-            leftIcon={<Icon as={Entypo} name="star" />}
-            onPress={() => setAssociationModal(false)}
-          >
-            Создать карточку
-          </Button>
-        </Modal.Footer>
+        {associationItems.length > 0 && (
+          <Modal.Footer>
+            <Button
+              width="100%"
+              size={'10'}
+              leftIcon={<Icon as={Entypo} name="star" />}
+              onPress={() => setAssociationModal(false)}
+            >
+              Создать карточку
+            </Button>
+          </Modal.Footer>
+        )}
       </Modal.Content>
     </Modal>
   );

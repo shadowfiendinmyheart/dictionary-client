@@ -79,6 +79,7 @@ export type AssociationItem = {
 };
 
 export class CardStore {
+  phrase = '';
   translationItems: TranslationContextItem[] = [
     {
       translation: 'test1',
@@ -95,7 +96,9 @@ export class CardStore {
     },
   ];
   imageItems: ImageItem[] = imagesMock;
+  pickedImage = '';
   associationItems: AssociationItem[] = [];
+  about = '';
   isTranslationsFetching = false;
   fromLanguage: Language = Language.Russian;
   toLanguage: Language = Language.English;
@@ -104,9 +107,12 @@ export class CardStore {
 
   constructor() {
     makeObservable(this, {
+      phrase: observable,
       translationItems: observable,
       imageItems: observable,
+      pickedImage: observable,
       associationItems: observable,
+      about: observable,
       isTranslationsFetching: observable,
       fromLanguage: observable,
       toLanguage: observable,
@@ -125,10 +131,18 @@ export class CardStore {
       setImagesModal: action.bound,
       changeIsPickTranslationItem: action.bound,
       setPickImageItem: action.bound,
+      setAbout: action.bound,
+      addAssociationItem: action.bound,
+      clearImagePicked: action.bound,
+      clearTranslationPicked: action.bound,
 
       isValidAssociation: computed,
     });
   }
+
+  public setPhrase = (phrase: string) => {
+    this.phrase = phrase;
+  };
 
   public deleteTranslation = (translationToDelete: string) => {
     this.translationItems = this.translationItems.filter(
@@ -208,6 +222,7 @@ export class CardStore {
   public setPickImageItem = (url: string) => {
     this.imageItems.forEach((image) => {
       if (image.url === url) {
+        this.pickedImage = image.url;
         image.isPicked = !image.isPicked;
         return;
       }
@@ -216,8 +231,33 @@ export class CardStore {
     });
   };
 
-  public addAssociationItem = (item: AssociationItem) => {
+  public setAbout = (about: string) => {
+    this.about = about;
+  };
+
+  public addAssociationItem = () => {
+    const item: AssociationItem = {
+      word: this.phrase,
+      imageUrl: this.pickedImage,
+      translations: this.translationItems
+        .filter((item) => item.isPicked)
+        .map((item) => item.translation),
+      about: '',
+    };
     this.associationItems = [...this.associationItems, item];
+  };
+
+  public clearImagePicked = () => {
+    this.pickedImage = '';
+    for (const image of this.imageItems) {
+      image.isPicked = false;
+    }
+  };
+
+  public clearTranslationPicked = () => {
+    for (const translation of this.translationItems) {
+      translation.isPicked = false;
+    }
   };
 
   get isValidAssociation() {
