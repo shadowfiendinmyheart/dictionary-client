@@ -9,13 +9,13 @@ import i18n, { localizationTokens } from '../../localization';
 
 const LoginForm = () => {
   const { loginStore } = useStore();
-  const { validate, handleOnLoginSubmit } = loginStore;
+  const { validate, handleLoginSubmit } = loginStore;
 
-  const { AuthButton } = localizationTokens.LoginScreen.LoginForm;
+  const { AuthButton } = localizationTokens.LoginScreen.loginForm;
   const authText = i18n.t(AuthButton);
 
-  const onSubmit = async () => {
-    validate ? await handleOnLoginSubmit() : console.log('Validation Failed');
+  const handlePress = async () => {
+    await handleLoginSubmit();
   };
 
   return (
@@ -24,7 +24,7 @@ const LoginForm = () => {
       <PasswordInput />
       <Button
         leftIcon={<Icon as={Entypo} name="user" />}
-        onPress={onSubmit}
+        onPress={handlePress}
         mt={5}
         colorScheme="cyan"
         isDisabled={!validate}

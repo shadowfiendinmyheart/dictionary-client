@@ -9,7 +9,7 @@ const UsernameInput = () => {
   const { loginStore } = useStore();
   const { handleUsernameChange, errorUsername } = loginStore;
 
-  const { UsernameLabel, UsernamePlaceholder } = localizationTokens.LoginScreen.LoginForm;
+  const { UsernameLabel, UsernamePlaceholder } = localizationTokens.LoginScreen.loginForm;
   const usernameLabelText = i18n.t(UsernameLabel);
   const usernamePlaceholderText = i18n.t(UsernamePlaceholder);
 

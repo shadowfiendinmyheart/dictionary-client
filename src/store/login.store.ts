@@ -14,7 +14,7 @@ const {
   UsernameErrorLong,
   PasswordErrorRequired,
   PasswordErrorShort,
-} = localizationTokens.LoginScreen.LoginForm;
+} = localizationTokens.LoginScreen.loginForm;
 
 const usernameErrorRequiredText = i18n.t(UsernameErrorRequired);
 const usernameErrorShortText = i18n.t(UsernameErrorShort);
@@ -35,7 +35,7 @@ export class LoginStore {
 
       handleUsernameChange: action.bound,
       handlePasswordChange: action.bound,
-      handleOnLoginSubmit: action.bound,
+      handleLoginSubmit: action.bound,
 
       validate: computed,
     });
@@ -84,7 +84,7 @@ export class LoginStore {
     this.password = value;
   };
 
-  public handleOnLoginSubmit = async () => {
+  public handleLoginSubmit = async () => {
     try {
       const token = await loginUser({
         username: this.username,

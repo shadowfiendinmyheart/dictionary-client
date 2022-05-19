@@ -2,6 +2,7 @@ export enum Router {
   LoginScreenTitle = 'RouterLoginScreenTitle',
   RegistationScreenTitle = 'RouterRegistationScreenTitle',
   MainScreenTitle = 'RouterMainScreenTitle',
+  CardScreenTitle = 'RouterCardScreenTitle',
 }
 
 export enum LoginScreen {
@@ -45,4 +46,29 @@ export enum MainScreen {
   LookDictionariesButton = 'MainScreenLookkDictionariesButton',
   GamesButton = 'MainScreenGamesButton',
   LogoutButton = 'MainScreenLogoutButton',
+}
+
+export enum CardScreen {
+  PhrasePlaceholder = 'CardScreenPhrasePlaceholder',
+  PhraseButton = 'CardScreenPhraseButton',
+  TranslatePlaceholder = 'CardScreenPhrasePlaceholder',
+  TranslateButton = 'CardScreenTranslateButton',
+  AssociationButton = 'CardScreenAssociationButton',
+}
+
+export enum AssociationModal {
+  Header = 'AssociationModalHeader',
+  CardButton = 'AssociationModalCardButton',
+  DictionaryPlaceholder = 'AssociationModalDictionaryPlaceholder',
+}
+
+export enum ImagesModal {
+  Header = 'ImagesModalHeader',
+  TranslationsLabel = 'ImagesModalTranslationsLabel',
+  AddAboutButton = 'ImagesModalAddAboutButton',
+  DeleteAboutButton = 'ImagesModalDeleteAboutButton',
+  AboutPlaceholder = 'ImagesModalAboutPlaceholder',
+  ImagePlaceholder = 'ImagesModalImagePlaceholder',
+  ImageButton = 'ImagesModalImageButton',
+  AssociationButton = 'ImagesModalAssociationButton',
 }

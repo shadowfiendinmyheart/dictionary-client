@@ -1,9 +1,19 @@
-import { Router, LoginScreen, LoginForm, RegistrationForm, MainScreen } from './keys';
+import {
+  Router,
+  LoginScreen,
+  LoginForm,
+  RegistrationForm,
+  MainScreen,
+  CardScreen,
+  AssociationModal,
+  ImagesModal,
+} from './keys';
 
 export const ru = {
   [Router.RegistationScreenTitle]: 'Регистрация',
   [Router.LoginScreenTitle]: 'Авторизация',
   [Router.MainScreenTitle]: 'Главное меню',
+  [Router.CardScreenTitle]: 'Карточка',
 
   [LoginForm.UsernameLabel]: 'Псевдоним',
   [LoginForm.UsernamePlaceholder]: 'Введите ваш псевдоним',
@@ -38,4 +48,24 @@ export const ru = {
   [MainScreen.LookDictionariesButton]: 'Посмотреть словари',
   [MainScreen.GamesButton]: 'Игры',
   [MainScreen.LogoutButton]: 'Выйти из аккаунта',
+
+  [CardScreen.PhrasePlaceholder]: 'Введите фразу для перевода',
+  [CardScreen.PhraseButton]: 'Найти перевод',
+  [CardScreen.TranslatePlaceholder]: 'Введите перевод фразы',
+  [CardScreen.TranslateButton]: 'Добавить перевод',
+  [CardScreen.AssociationButton]: 'Создать ассоциацию',
+
+  [AssociationModal.Header]: 'Список ассоциаций',
+  [AssociationModal.DictionaryPlaceholder]: 'Выберите словарь',
+  [AssociationModal.CardButton]: 'Создать карточку',
+
+  [ImagesModal.Header]: 'Создание ассоциации',
+  [ImagesModal.TranslationsLabel]:
+    'Выберите переводы, которые хотите включить в ассоциацию',
+  [ImagesModal.AddAboutButton]: 'Добавить описание',
+  [ImagesModal.DeleteAboutButton]: 'Удалить описание',
+  [ImagesModal.AboutPlaceholder]: 'Введите описание',
+  [ImagesModal.ImagePlaceholder]: 'Введите фразу для поиска изображения',
+  [ImagesModal.ImageButton]: 'Найти изображение',
+  [ImagesModal.AssociationButton]: 'Создать ассоциацию',
 };

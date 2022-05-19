@@ -3,7 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 import jwt_decode from 'jwt-decode';
 
 import { TOKEN_SECURE_STORE } from '../constants/store';
-import { token } from './types';
+import { Token } from './types';
 
 export class UserStore {
   username = '';
@@ -54,7 +54,7 @@ export class UserStore {
       return;
     }
 
-    const decoded: token = jwt_decode(storedToken);
+    const decoded: Token = jwt_decode(storedToken);
 
     this.token = storedToken;
     this.username = decoded.username;
