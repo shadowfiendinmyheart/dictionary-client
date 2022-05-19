@@ -3,30 +3,17 @@ import { Language } from '../api/card/types';
 import { Dictionary } from './types';
 
 export class DictionaryStore {
-  dictionaries: Dictionary[] = [
-    {
-      id: 0,
-      name: 'cats',
-      description: 'meow',
-      from: Language.Russian,
-      to: Language.English,
-      private: false,
-      user_id: 0,
-    },
-    {
-      id: 1,
-      name: 'dogs',
-      description: 'bark',
-      from: Language.Russian,
-      to: Language.English,
-      private: false,
-      user_id: 0,
-    },
-  ];
+  dictionaries: Dictionary[] = [];
 
   constructor() {
     makeObservable(this, {
       dictionaries: observable,
+
+      setDictionaries: action.bound,
     });
   }
+
+  public setDictionaries = (dictionaries: Dictionary[]) => {
+    this.dictionaries = dictionaries;
+  };
 }

@@ -44,7 +44,7 @@ const ImagesGrid: React.FC<Props> = ({ images, onImagePress }) => {
                         borderRadius: 2,
                         borderColor: 'blue',
                       }}
-                      alt={'picked-association-image'}
+                      alt={'picked-image'}
                     />
                   ) : (
                     <Image
@@ -53,7 +53,7 @@ const ImagesGrid: React.FC<Props> = ({ images, onImagePress }) => {
                         width: 95,
                         height: 95,
                       }}
-                      alt={'association-image'}
+                      alt={'image'}
                     />
                   )}
                 </TouchableHighlight>

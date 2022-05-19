@@ -5,9 +5,9 @@ import i18n, { localizationTokens } from '../localization';
 import { NavigationStackProp } from 'react-navigation-stack';
 import ROUTES from '../constants/routes';
 
-type Props = {
+interface Props {
   navigation: NavigationStackProp;
-};
+}
 
 const MainScreen: React.FC<Props> = ({ navigation }) => {
   const { userStore } = useStore();

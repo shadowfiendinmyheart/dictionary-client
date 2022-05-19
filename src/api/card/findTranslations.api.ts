@@ -9,13 +9,13 @@ export type TranslationsResponse = {
   examples: Example[];
 };
 
-export type getTranslationsRequest = {
+export type findTranslationsRequest = {
   phrase: string;
   from: Language;
   to: Language;
 };
 
-async function getTranslations(request: getTranslationsRequest) {
+async function findTranslations(request: findTranslationsRequest) {
   const { phrase, from, to } = request;
 
   try {
@@ -31,4 +31,4 @@ async function getTranslations(request: getTranslationsRequest) {
   }
 }
 
-export default getTranslations;
+export default findTranslations;

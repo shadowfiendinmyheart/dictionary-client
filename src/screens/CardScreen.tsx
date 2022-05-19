@@ -7,10 +7,16 @@ import LanguagesSelector from '../components/LanguagesSelector';
 import TranslationsList from '../components/TranslationsList';
 import AssociationModal from '../components/AssociationModal';
 import ImagesModal from '../components/ImagesModal';
+import getPersonalDictionaries from '../api/dictionary/getPersonalDictionaries.api';
+import { NavigationStackProp } from 'react-navigation-stack';
 
-const CardScreen: React.FC = () => {
+interface Props {
+  navigation: NavigationStackProp;
+}
+
+const CardScreen: React.FC<Props> = ({ navigation }) => {
   const [phrase, setPhrase] = useState('');
-  const { cardStore } = useStore();
+  const { cardStore, dictionaryStore } = useStore();
   const {
     translationItems,
     setTranslations,
@@ -22,8 +28,17 @@ const CardScreen: React.FC = () => {
     updateAvalibleDictionaries,
   } = cardStore;
 
+  const { setDictionaries } = dictionaryStore;
+
   useEffect(() => {
-    updateAvalibleDictionaries();
+    void (async () => {
+      const dictionaries = await getPersonalDictionaries();
+      if (dictionaries) {
+        setDictionaries(dictionaries);
+      }
+
+      updateAvalibleDictionaries();
+    })();
   }, []);
 
   const handlePhraseInputChange = (value: string) => {
@@ -86,7 +101,7 @@ const CardScreen: React.FC = () => {
             </Button>
           </>
         ) : null}
-        <AssociationModal />
+        <AssociationModal navigation={navigation} />
         <ImagesModal />
       </Center>
     </ScrollView>

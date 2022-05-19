@@ -4,6 +4,12 @@ export interface Example {
   to: string;
 }
 
+export interface Assoctiation {
+  translate: string[];
+  image: string;
+  description?: string;
+}
+
 export enum Language {
   English = 'english',
   Russian = 'russian',

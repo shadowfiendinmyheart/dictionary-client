@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import {
   Box,
@@ -10,8 +10,6 @@ import {
   Modal,
   VStack,
   Text,
-  Select,
-  CheckIcon,
 } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';
@@ -19,8 +17,12 @@ import { useStore } from '../../store/root.store';
 import ImagesGrid from '../ImagesGrid';
 import i18n, { localizationTokens } from '../../localization';
 import AddAbout from '../AddAbout';
+import findImages from '../../api/card/findImages.api';
+import { ImageItem } from '../../store/card.store';
 
 const ImagesModal = () => {
+  const [imageInputValue, setImageInputValue] = useState('');
+  const [isImageFetch, setImageFetch] = useState(false);
   const { cardStore } = useStore();
   const {
     translationItems,
@@ -33,6 +35,7 @@ const ImagesModal = () => {
     addAssociationItem,
     clearImagePicked,
     clearTranslationPicked,
+    setImageItems,
   } = cardStore;
 
   const handleStatusChange = (index: number) => {
@@ -41,9 +44,12 @@ const ImagesModal = () => {
 
   const handleCreateAssociationPress = () => {
     addAssociationItem();
+
     clearTranslationPicked();
     clearImagePicked();
+    setImageItems([]);
     setImagesModal(false);
+    setImageInputValue('');
     cardStore.setAbout('');
   };
 
@@ -61,6 +67,28 @@ const ImagesModal = () => {
     if (isOpen) {
       cardStore.setAbout('');
     }
+  };
+
+  const handleImageInputChange = (text: string) => {
+    setImageInputValue(text);
+  };
+
+  const handleFindImageButtonPress = async () => {
+    setImageFetch(true);
+    const imagesResponse = await findImages(imageInputValue);
+    if (imagesResponse) {
+      const imageItems: ImageItem[] = imagesResponse
+        .map((image) => {
+          return {
+            url: image,
+            isPicked: false,
+          };
+        })
+        .slice(0, 15);
+      // TODO: make a dynamic pagination
+      setImageItems(imageItems);
+    }
+    setImageFetch(false);
   };
 
   return (
@@ -108,20 +136,19 @@ const ImagesModal = () => {
 
           <Input
             mt={4}
-            // width="90%"
             background={'warmGray.50'}
             placeholder={'Введите фразу для поиска изображения'}
-            // onChangeText={handlePhraseInputChange}
-            // value={phrase}
+            onChangeText={handleImageInputChange}
+            value={imageInputValue}
           />
           <Button
             width="100%"
             mt={2}
             size={'10'}
-            // backgroundColor={isFetching ? 'gray.400' : 'cyan.500'}
+            backgroundColor={isImageFetch ? 'gray.400' : 'cyan.500'}
             leftIcon={<Icon as={Entypo} name="magnifying-glass" />}
-            // onPress={handleFindTranslationsButtonPress}
-            // disabled={isFetching}
+            onPress={handleFindImageButtonPress}
+            disabled={isImageFetch}
           >
             Найти изображение
           </Button>

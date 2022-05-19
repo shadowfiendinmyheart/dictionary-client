@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
 
 import Router from './src/components/Router';
-import { store, useStore } from './src/store/root.store';
+import { useStore } from './src/store/root.store';
 import axios from 'axios';
 import { API_URL } from './src/constants/api';
 import { observer } from 'mobx-react';

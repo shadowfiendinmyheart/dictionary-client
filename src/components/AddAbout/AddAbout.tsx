@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import {
-  Icon,
-  IconButton,
-  Box,
-  Button,
-  Modal,
-  Center,
-  VStack,
-  HStack,
-  TextArea,
-} from 'native-base';
-import { Entypo } from '@native-base/icons';
-import { useStore } from '../../store/root.store';
-import i18n, { localizationTokens } from '../../localization';
-import AssociationItem from '../AssociationItem';
-import { NativeSyntheticEvent, TextInputChangeEventData } from 'react-native';
+import { Button, VStack, TextArea } from 'native-base';
 
 type Props = {
   onTextareaChange?: (text?: string) => void;
