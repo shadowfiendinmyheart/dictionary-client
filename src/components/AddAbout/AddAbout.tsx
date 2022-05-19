@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Button, VStack, TextArea } from 'native-base';
+import i18n, { localizationTokens } from '../../localization';
 
 type Props = {
   onTextareaChange?: (text?: string) => void;
@@ -31,10 +32,16 @@ const AddAbout: React.FC<Props> = ({ onTextareaChange, onButtonPress }) => {
     }
   };
 
+  const { AddAboutButton, DeleteAboutButton, AboutPlaceholder } =
+    localizationTokens.CardScreen.imagesModal;
+  const addAboutButtonText = i18n.t(AddAboutButton);
+  const deleteAboutButtonText = i18n.t(DeleteAboutButton);
+  const aboutPlaceholderText = i18n.t(AboutPlaceholder);
+
   return (
     <VStack>
       <Button onPress={handleButtonPress}>
-        {isOpen ? 'Удалить описание' : 'Добавить описание'}
+        {isOpen ? deleteAboutButtonText : addAboutButtonText}
       </Button>
       {isOpen ? (
         <TextArea
@@ -42,7 +49,7 @@ const AddAbout: React.FC<Props> = ({ onTextareaChange, onButtonPress }) => {
           onChangeText={handleTextAreaChange}
           mt={2}
           h={20}
-          placeholder="Введите описание"
+          placeholder={aboutPlaceholderText}
           w={'100%'}
         />
       ) : null}

@@ -1,4 +1,13 @@
-import { Router, LoginScreen, LoginForm, RegistrationForm, MainScreen } from './keys';
+import {
+  Router,
+  LoginScreen,
+  LoginForm,
+  RegistrationForm,
+  MainScreen,
+  CardScreen,
+  AssociationModal,
+  ImagesModal,
+} from './keys';
 
 export const localizationTokens = {
   Router: {
@@ -7,7 +16,7 @@ export const localizationTokens = {
 
   LoginScreen: {
     index: LoginScreen,
-    LoginForm: LoginForm,
+    loginForm: LoginForm,
   },
 
   RegistrationScreen: {
@@ -16,5 +25,11 @@ export const localizationTokens = {
 
   MainScreen: {
     index: MainScreen,
+  },
+
+  CardScreen: {
+    index: CardScreen,
+    associationModal: AssociationModal,
+    imagesModal: ImagesModal,
   },
 };

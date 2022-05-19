@@ -1,4 +1,13 @@
-import { Router, LoginScreen, LoginForm, RegistrationForm, MainScreen } from './keys';
+import {
+  Router,
+  LoginScreen,
+  LoginForm,
+  RegistrationForm,
+  MainScreen,
+  CardScreen,
+  AssociationModal,
+  ImagesModal,
+} from './keys';
 
 export const en = {
   [Router.RegistationScreenTitle]: 'Registration',
@@ -39,4 +48,23 @@ export const en = {
   [MainScreen.LookDictionariesButton]: 'Dictionaries',
   [MainScreen.GamesButton]: 'Games',
   [MainScreen.LogoutButton]: 'Logout',
+
+  [CardScreen.PhrasePlaceholder]: 'Enter a phrase',
+  [CardScreen.PhraseButton]: 'Find translations',
+  [CardScreen.TranslatePlaceholder]: 'Enter a translation',
+  [CardScreen.TranslateButton]: 'Add translation',
+  [CardScreen.AssociationButton]: 'Create associations',
+
+  [AssociationModal.Header]: 'Association list',
+  [AssociationModal.DictionaryPlaceholder]: 'Pick a dictionary',
+  [AssociationModal.CardButton]: 'Create card',
+
+  [ImagesModal.Header]: 'Creating associations',
+  [ImagesModal.TranslationsLabel]: 'Pick translations to add to the association',
+  [ImagesModal.AddAboutButton]: 'Add about',
+  [ImagesModal.DeleteAboutButton]: 'Delete about',
+  [ImagesModal.AboutPlaceholder]: 'Enter text',
+  [ImagesModal.ImagePlaceholder]: 'Enter text to find images',
+  [ImagesModal.ImageButton]: 'Find images',
+  [ImagesModal.AssociationButton]: 'Create association',
 };

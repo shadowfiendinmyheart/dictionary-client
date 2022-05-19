@@ -9,7 +9,7 @@ const PasswordInput = () => {
   const { loginStore } = useStore();
   const { handlePasswordChange, errorPassword } = loginStore;
 
-  const { PasswordLabel } = localizationTokens.LoginScreen.LoginForm;
+  const { PasswordLabel } = localizationTokens.LoginScreen.loginForm;
   const passwordLabelText = i18n.t(PasswordLabel);
 
   return (

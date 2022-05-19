@@ -56,11 +56,15 @@ const AssociationModal: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(ROUTES.MAIN_SCREEN);
   };
 
+  const { Header, CardButton } = localizationTokens.CardScreen.associationModal;
+  const headerText = i18n.t(Header);
+  const cardButtonText = i18n.t(CardButton);
+
   return (
     <Modal isOpen={isAssociationModal} onClose={() => setAssociationModal(false)}>
       <Modal.Content maxWidth="400px">
         <Modal.CloseButton />
-        <Modal.Header>Список ассоциаций</Modal.Header>
+        <Modal.Header>{headerText}</Modal.Header>
         <Modal.Body>
           <VStack space={2}>
             {associationItems.map((item, index) => {
@@ -119,7 +123,7 @@ const AssociationModal: React.FC<Props> = ({ navigation }) => {
                   disabled={isCardCreating}
                   onPress={handleCreateCardPress}
                 >
-                  Создать карточку
+                  {cardButtonText}
                 </Button>
               ) : null}
             </VStack>

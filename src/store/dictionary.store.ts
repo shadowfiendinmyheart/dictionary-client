@@ -1,5 +1,4 @@
-import { observable, action, makeObservable, computed } from 'mobx';
-import { Language } from '../api/card/types';
+import { observable, action, makeObservable } from 'mobx';
 import { Dictionary } from './types';
 
 export class DictionaryStore {

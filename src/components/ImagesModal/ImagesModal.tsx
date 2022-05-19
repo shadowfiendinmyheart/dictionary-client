@@ -91,15 +91,21 @@ const ImagesModal = () => {
     setImageFetch(false);
   };
 
+  const { Header, TranslationsLabel, ImagePlaceholder, ImageButton, AssociationButton } =
+    localizationTokens.CardScreen.imagesModal;
+  const headerText = i18n.t(Header);
+  const translationsLabeltext = i18n.t(TranslationsLabel);
+  const imagePlaceholderText = i18n.t(ImagePlaceholder);
+  const imageButtonText = i18n.t(ImageButton);
+  const associationButtonText = i18n.t(AssociationButton);
+
   return (
     <Modal isOpen={isImagesModal} size={'xl'} onClose={() => setImagesModal(false)}>
       <Modal.Content>
         <Modal.CloseButton />
-        <Modal.Header>Создание ассоциации</Modal.Header>
+        <Modal.Header>{headerText}</Modal.Header>
         <Modal.Body>
-          <Text fontSize={'md'}>
-            Выберите переводы, которые хотите включить в ассоциацию
-          </Text>
+          <Text fontSize={'md'}>{translationsLabeltext}</Text>
           <VStack mt={2} space={1}>
             {translationItems.map((item, index) => {
               return (
@@ -137,7 +143,7 @@ const ImagesModal = () => {
           <Input
             mt={4}
             background={'warmGray.50'}
-            placeholder={'Введите фразу для поиска изображения'}
+            placeholder={imagePlaceholderText}
             onChangeText={handleImageInputChange}
             value={imageInputValue}
           />
@@ -150,7 +156,7 @@ const ImagesModal = () => {
             onPress={handleFindImageButtonPress}
             disabled={isImageFetch}
           >
-            Найти изображение
+            {imageButtonText}
           </Button>
           <Box mt={2}>
             <ImagesGrid images={imageItems} onImagePress={setPickImageItem} />
@@ -164,7 +170,7 @@ const ImagesModal = () => {
               leftIcon={<Icon as={Entypo} name="star" />}
               onPress={handleCreateAssociationPress}
             >
-              Создать ассоциацию
+              {associationButtonText}
             </Button>
           </Modal.Footer>
         ) : null}

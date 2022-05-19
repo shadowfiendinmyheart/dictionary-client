@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-import { Box, Center, CheckIcon, HStack, Select, Text } from 'native-base';
+import { CheckIcon, Select, Text } from 'native-base';
 import { Dictionary } from '../../store/types';
+import i18n, { localizationTokens } from '../../localization';
 
 type Props = {
   dictionaries: Dictionary[];
@@ -19,12 +20,14 @@ const SelectDictionary: React.FC<Props> = ({ dictionaries, onSelectDictionary })
   if (dictionaries.length === 0) {
     return <Text>К сожалению у вас нет подходящих словарей...</Text>;
   }
+  const { DictionaryPlaceholder } = localizationTokens.CardScreen.associationModal;
+  const dictionaryPlaceholderText = i18n.t(DictionaryPlaceholder);
 
   return (
     <Select
       selectedValue={selectedDictionary}
-      accessibilityLabel="Dictionary"
-      placeholder="Dictionary"
+      accessibilityLabel={dictionaryPlaceholderText}
+      placeholder={dictionaryPlaceholderText}
       _selectedItem={{
         bg: 'cyan.500',
         endIcon: <CheckIcon size="5" />,

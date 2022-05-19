@@ -30,6 +30,10 @@ const TranslationsList = () => {
     setTranslation('');
   };
 
+  const { TranslatePlaceholder, TranslateButton } = localizationTokens.CardScreen.index;
+  const translatePlaceholderText = i18n.t(TranslatePlaceholder);
+  const translateButtonText = i18n.t(TranslateButton);
+
   return (
     <Box mt={3} width="90%">
       <VStack space={2}>
@@ -48,7 +52,7 @@ const TranslationsList = () => {
         width="100%"
         background={'warmGray.50'}
         mt={3}
-        placeholder={'Введите перевод фразы'}
+        placeholder={translatePlaceholderText}
         onChangeText={handleTranslationInputChange}
         value={translation}
       />
@@ -59,7 +63,7 @@ const TranslationsList = () => {
         leftIcon={<Icon as={Entypo} name="add-to-list" />}
         onPress={handleAddTranslationButtonPress}
       >
-        Добавить перевод
+        {translateButtonText}
       </Button>
     </Box>
   );

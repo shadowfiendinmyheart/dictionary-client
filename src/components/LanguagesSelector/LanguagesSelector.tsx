@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import { Icon, HStack, Select, CheckIcon, IconButton } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../../store/root.store';
-import i18n, { localizationTokens } from '../../localization';
 import { Language } from '../../api/card/types';
 
 const selectItmes = [

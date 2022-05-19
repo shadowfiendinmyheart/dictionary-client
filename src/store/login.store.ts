@@ -14,7 +14,7 @@ const {
   UsernameErrorLong,
   PasswordErrorRequired,
   PasswordErrorShort,
-} = localizationTokens.LoginScreen.LoginForm;
+} = localizationTokens.LoginScreen.loginForm;
 
 const usernameErrorRequiredText = i18n.t(UsernameErrorRequired);
 const usernameErrorShortText = i18n.t(UsernameErrorShort);

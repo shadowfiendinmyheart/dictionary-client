@@ -11,7 +11,7 @@ const LoginForm = () => {
   const { loginStore } = useStore();
   const { validate, handleLoginSubmit } = loginStore;
 
-  const { AuthButton } = localizationTokens.LoginScreen.LoginForm;
+  const { AuthButton } = localizationTokens.LoginScreen.loginForm;
   const authText = i18n.t(AuthButton);
 
   const handlePress = async () => {

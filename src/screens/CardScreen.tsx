@@ -9,6 +9,7 @@ import AssociationModal from '../components/AssociationModal';
 import ImagesModal from '../components/ImagesModal';
 import getPersonalDictionaries from '../api/dictionary/getPersonalDictionaries.api';
 import { NavigationStackProp } from 'react-navigation-stack';
+import i18n, { localizationTokens } from '../localization';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -62,6 +63,12 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
     setTranslations(translationsResponse);
   };
 
+  const { PhrasePlaceholder, PhraseButton, AssociationButton } =
+    localizationTokens.CardScreen.index;
+  const phrasePlaceholderText = i18n.t(PhrasePlaceholder);
+  const phraseButtonText = i18n.t(PhraseButton);
+  const associationButtonText = i18n.t(AssociationButton);
+
   return (
     <ScrollView w="100%">
       <Center>
@@ -70,7 +77,7 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
           width="90%"
           background={'warmGray.50'}
           mt={6}
-          placeholder={'Введите фразу'}
+          placeholder={phrasePlaceholderText}
           onChangeText={handlePhraseInputChange}
           value={phrase}
         />
@@ -84,7 +91,7 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
           onPress={handleFindTranslationsButtonPress}
           disabled={isTranslationsFetching}
         >
-          Найти перевод
+          {phraseButtonText}
         </Button>
         {translationItems.length > 0 ? (
           <>
@@ -97,7 +104,7 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
               leftIcon={<Icon as={Entypo} name="star" />}
               onPress={() => setAssociationModal(true)}
             >
-              Создать ассоциации
+              {associationButtonText}
             </Button>
           </>
         ) : null}
