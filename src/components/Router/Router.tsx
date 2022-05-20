@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import i18n, { localizationTokens } from '../../localization';
 import { useStore } from '../../store/root.store';
@@ -10,6 +11,42 @@ import RegistrationScreen from '../../screens/RegistrationScreen';
 import ROUTES from '../../constants/routes';
 import LoadingScreen from '../../screens/LoadingScreen';
 import CardScreen from '../../screens/CardScreen';
+import PersonalDictionariesScreen from '../../screens/PersonalDictionariesScreen';
+import PublicDictionariesScreen from '../../screens/PublicDictionariesScreen';
+import { Icon } from 'native-base';
+import { Entypo } from '@native-base/icons';
+
+const DictionaryNavigator = () => {
+  const Tab = createBottomTabNavigator();
+
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: () => {
+          let iconName;
+          if (route.name === ROUTES.PERSONAL_DICTIONARIES) {
+            iconName = 'home';
+          } else if (ROUTES.PUBLIC_DICTIONARIES) {
+            iconName = 'magnifying-glass';
+          }
+
+          return <Icon as={Entypo} name={iconName} color="trueGray.400" />;
+        },
+      })}
+    >
+      <Tab.Screen
+        name={ROUTES.PERSONAL_DICTIONARIES}
+        component={PersonalDictionariesScreen}
+        options={{ headerShown: false, title: 'Персональные словари' }}
+      />
+      <Tab.Screen
+        name={ROUTES.PUBLIC_DICTIONARIES}
+        component={PublicDictionariesScreen}
+        options={{ headerShown: false, title: 'Публичные словари' }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +101,11 @@ const Router = () => {
         name={ROUTES.CARD_SCREEN}
         component={CardScreen}
         options={{ title: cardScreenTitle }}
+      />
+      <Stack.Screen
+        name={ROUTES.DICTIONARY_NAVIGATOR}
+        component={DictionaryNavigator}
+        options={{ title: 'Словари' }}
       />
     </Stack.Navigator>
   );

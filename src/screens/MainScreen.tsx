@@ -13,12 +13,18 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
   const { userStore } = useStore();
   const { username, logout } = userStore;
 
-  const handleLogotPress = async () => {
+  const handleLogoutPress = async () => {
     await logout();
   };
 
   const handleCardPress = () => {
     navigation.navigate(ROUTES.CARD_SCREEN);
+  };
+
+  const handleDictionariesPress = () => {
+    navigation.navigate(ROUTES.DICTIONARY_NAVIGATOR, {
+      screen: ROUTES.PERSONAL_DICTIONARIES,
+    });
   };
 
   const { Header, AddCardButton, LookDictionariesButton, GamesButton, LogoutButton } =
@@ -37,13 +43,13 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
       <Button onPress={handleCardPress} width="80%" mt={12} colorScheme="cyan">
         {addCardButtonText}
       </Button>
-      <Button width="80%" mt={5} colorScheme="cyan">
+      <Button onPress={handleDictionariesPress} width="80%" mt={5} colorScheme="cyan">
         {lookDictionariesButtonText}
       </Button>
       <Button width="80%" mt={5} colorScheme="cyan">
         {gamesButtonText}
       </Button>
-      <Button onPress={handleLogotPress} width="80%" mt={5} colorScheme="cyan">
+      <Button onPress={handleLogoutPress} width="80%" mt={5} colorScheme="cyan">
         {logoutButtonText}
       </Button>
     </Center>
