@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Image, VStack, HStack } from 'native-base';
-import { chunkArray } from './utils';
+import { chunkArray } from '../../utils/chunkArray';
 import { TouchableHighlight } from 'react-native';
 import { ImageItem } from '../../store/card.store';
 

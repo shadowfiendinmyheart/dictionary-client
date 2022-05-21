@@ -17,12 +17,12 @@ export const en = {
 
   [LoginForm.UsernameLabel]: 'Username',
   [LoginForm.UsernamePlaceholder]: 'Enter your username',
-  [LoginForm.PasswordErrorRequired]: 'Name is required',
-  [LoginForm.PasswordErrorShort]: 'Name is too short',
-  [LoginForm.UsernameErrorLong]: 'Name is too long',
-  [LoginForm.PasswordLabel]: 'Password',
   [LoginForm.PasswordErrorRequired]: 'Password is required',
+  [LoginForm.UsernameErrorShort]: 'Username is too short',
+  [LoginForm.UsernameErrorLong]: 'Username is too long',
+  [LoginForm.PasswordLabel]: 'Password',
   [LoginForm.PasswordErrorShort]: 'Password is too short',
+  [LoginForm.UsernameErrorLong]: 'Password is too long',
   [LoginForm.AuthButton]: 'Join',
   [LoginScreen.RegistrationButton]: 'Create account',
 

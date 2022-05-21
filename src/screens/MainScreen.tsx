@@ -23,7 +23,7 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleDictionariesPress = () => {
     navigation.navigate(ROUTES.DICTIONARY_NAVIGATOR, {
-      screen: ROUTES.PERSONAL_DICTIONARIES,
+      screen: ROUTES.PERSONAL_DICTIONARIES_SCREEN,
     });
   };
 

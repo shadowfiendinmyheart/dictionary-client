@@ -15,6 +15,7 @@ import PersonalDictionariesScreen from '../../screens/PersonalDictionariesScreen
 import PublicDictionariesScreen from '../../screens/PublicDictionariesScreen';
 import { Icon } from 'native-base';
 import { Entypo } from '@native-base/icons';
+import DictionaryScreen from '../../screens/DictionaryScreen';
 
 const DictionaryNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -24,9 +25,9 @@ const DictionaryNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: () => {
           let iconName;
-          if (route.name === ROUTES.PERSONAL_DICTIONARIES) {
+          if (route.name === ROUTES.PERSONAL_DICTIONARIES_SCREEN) {
             iconName = 'home';
-          } else if (ROUTES.PUBLIC_DICTIONARIES) {
+          } else if (ROUTES.PUBLIC_DICTIONARIES_SCREEN) {
             iconName = 'magnifying-glass';
           }
 
@@ -35,12 +36,12 @@ const DictionaryNavigator = () => {
       })}
     >
       <Tab.Screen
-        name={ROUTES.PERSONAL_DICTIONARIES}
+        name={ROUTES.PERSONAL_DICTIONARIES_SCREEN}
         component={PersonalDictionariesScreen}
         options={{ headerShown: false, title: 'Персональные словари' }}
       />
       <Tab.Screen
-        name={ROUTES.PUBLIC_DICTIONARIES}
+        name={ROUTES.PUBLIC_DICTIONARIES_SCREEN}
         component={PublicDictionariesScreen}
         options={{ headerShown: false, title: 'Публичные словари' }}
       />
@@ -106,6 +107,11 @@ const Router = () => {
         name={ROUTES.DICTIONARY_NAVIGATOR}
         component={DictionaryNavigator}
         options={{ title: 'Словари' }}
+      />
+      <Stack.Screen
+        name={ROUTES.DICTIONARY_SCREEN}
+        component={DictionaryScreen}
+        options={{ title: 'Cловарь' }}
       />
     </Stack.Navigator>
   );
