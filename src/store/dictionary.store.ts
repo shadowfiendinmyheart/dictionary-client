@@ -1,15 +1,17 @@
 import { observable, action, makeObservable } from 'mobx';
 import { Assoctiation } from '../api/card/types';
 import { Dictionary } from './types';
+import { UserStore } from './user.store';
 
 export class DictionaryStore {
+  private userStore: UserStore;
   dictionaries: Dictionary[] = [];
   publicDictionaries: Dictionary[] = [];
   isAssociationsModal = false;
   cardAssociations: Assoctiation[] = [];
   isCreateDictionaryModal = false;
 
-  constructor() {
+  constructor(userStore: UserStore) {
     makeObservable(this, {
       dictionaries: observable,
       publicDictionaries: observable,
@@ -22,6 +24,8 @@ export class DictionaryStore {
       setAssociationsModal: action.bound,
       setCardAssociations: action.bound,
     });
+
+    this.userStore = userStore;
   }
 
   public setDictionaries = (dictionaries: Dictionary[]) => {
@@ -29,7 +33,10 @@ export class DictionaryStore {
   };
 
   public setPublicDictionaries = (dictionaries: Dictionary[]) => {
-    this.publicDictionaries = dictionaries;
+    const enemyDictionaries = dictionaries.filter(
+      (dictionary) => dictionary.user_id != this.userStore.id,
+    );
+    this.publicDictionaries = enemyDictionaries;
   };
 
   public setAssociationsModal = (value: boolean) => {

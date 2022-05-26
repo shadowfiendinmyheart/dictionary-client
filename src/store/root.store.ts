@@ -18,7 +18,7 @@ class RootStore {
     this.userStore = new UserStore();
     this.registrationStore = new RegistrationStore(this.userStore);
     this.loginStore = new LoginStore(this.userStore);
-    this.dictionaryStore = new DictionaryStore();
+    this.dictionaryStore = new DictionaryStore(this.userStore);
     this.cardStore = new CardStore(this.dictionaryStore);
     this.createDictionaryStore = new CreateDictionaryStore(this.dictionaryStore);
   }

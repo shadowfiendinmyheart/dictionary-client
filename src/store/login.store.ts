@@ -98,7 +98,7 @@ export class LoginStore {
       }
 
       await this.userStore.setToken(token);
-      this.userStore.username = this.username;
+      await this.userStore.initUser();
     } catch (error) {
       // show user error
       this.userStore.isAuth = false;

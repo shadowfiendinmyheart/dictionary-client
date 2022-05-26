@@ -49,10 +49,6 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     return <SkeletonDictionariesList />;
   }
 
-  if (dictionaries.length === 0) {
-    return <Center flex={1}>На данный момент у вас нет словарей :(</Center>;
-  }
-
   const handleDictionaryPress = (dictionaryId: number) => {
     navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId });
   };
@@ -60,6 +56,18 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   const handleCreateDictionaryPress = () => {
     setCreateDictionaryModal(true);
   };
+
+  if (dictionaries.length === 0) {
+    return (
+      <Center flex={1}>
+        <Text>На данный момент у вас нет словарей :(</Text>
+        <Button onPress={handleCreateDictionaryPress} w={'70%'} mt={5}>
+          Добавить новый словарь
+        </Button>
+        <CreateDictionaryModal />
+      </Center>
+    );
+  }
 
   return (
     <ScrollView>

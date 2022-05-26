@@ -8,6 +8,7 @@ import getPublicDictionaries from '../api/dictionary/getPublicDictionaries';
 import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
 import DictionaryItem from '../components/DictionaryItem';
 import { TouchableHighlight } from 'react-native';
+import ROUTES from '../constants/routes';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -29,6 +30,10 @@ const PublicDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     })();
   }, []);
 
+  const handleDictionaryPress = (dictionaryId: number) => {
+    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId });
+  };
+
   if (isDictionariesFetching) {
     return <SkeletonDictionariesList />;
   }
@@ -42,8 +47,13 @@ const PublicDictionariesScreen: React.FC<Props> = ({ navigation }) => {
       <Center mt={3} mb={3}>
         {publicDictionaries.map((dictionary) => {
           return (
-            <TouchableHighlight onPress={() => console.log('press')} key={dictionary.id}>
-              <DictionaryItem {...dictionary} />
+            <TouchableHighlight
+              style={{ width: '90%' }}
+              underlayColor={'white'}
+              onPress={() => handleDictionaryPress(dictionary.id)}
+              key={dictionary.id}
+            >
+              <DictionaryItem mt={2} {...dictionary} />
             </TouchableHighlight>
           );
         })}

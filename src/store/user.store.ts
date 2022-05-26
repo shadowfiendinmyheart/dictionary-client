@@ -10,6 +10,7 @@ export class UserStore {
   token = '';
   isAuth = false;
   isFetching = false;
+  id = 0;
 
   constructor() {
     makeObservable(this, {
@@ -17,6 +18,7 @@ export class UserStore {
       token: observable,
       isAuth: observable,
       isFetching: observable,
+      id: observable,
 
       setToken: action.bound,
       setIsAuth: action.bound,
@@ -57,6 +59,7 @@ export class UserStore {
     const decoded: Token = jwt_decode(storedToken);
 
     this.token = storedToken;
+    this.id = Number(decoded.id);
     this.username = decoded.username;
     this.isAuth = true;
     this.isFetching = false;

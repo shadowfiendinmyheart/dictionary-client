@@ -109,6 +109,7 @@ export class CreateDictionaryStore {
         ...this.dictionaryStore.dictionaries,
         { ...response },
       ]);
+      this.isPrivate = true;
     }
   };
 
