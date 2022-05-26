@@ -3,6 +3,10 @@ export enum Router {
   RegistationScreenTitle = 'RouterRegistationScreenTitle',
   MainScreenTitle = 'RouterMainScreenTitle',
   CardScreenTitle = 'RouterCardScreenTitle',
+  DictionariesScreenTitle = 'RouterDictionariesScreenTitle',
+  DictionaryScreenTitle = 'RouterDictionaryScreenTitle',
+  PublicDictionariesTitle = 'RouterPublicDictionariesTitle',
+  PersonalDictionariesTitle = 'RouterPersonalDictionariesTitle',
 }
 
 export enum LoginScreen {
@@ -71,4 +75,28 @@ export enum ImagesModal {
   ImagePlaceholder = 'ImagesModalImagePlaceholder',
   ImageButton = 'ImagesModalImageButton',
   AssociationButton = 'ImagesModalAssociationButton',
+}
+
+export enum PersonalDictionariesScreen {
+  CreateDictionaryButton = 'PersonalDictionariesScreenCreateDictionaryButton',
+  DictionariesNotFoundText = 'PersonalDictionariesScreenDictionariesNotFoundText',
+}
+
+export enum CreateDictionaryModal {
+  Header = 'CreateDictionaryModalHeader',
+  NameLabel = 'CreateDictionaryModalNameLabel',
+  NamePlaceholder = 'CreateDictionaryModalNamePlaceholder',
+  NameErrorRequired = 'CreateDictionaryModalNameErrorRequired',
+  NameErrorShort = 'CreateDictionaryModalNameErrorShort',
+  NameErrorLong = 'CreateDictionaryModalNameErrorLong',
+  DescriptionLabel = 'CreateDictionaryModalDescriptionLabel',
+  DescriptionPlaceholder = 'CreateDictionaryModalDescriptionPlaceholder',
+  DescriptionErrorRequired = 'CreateDictionaryModalDescriptionErrorRequired',
+  DescriptionErrorLong = 'CreateDictionaryModalDescriptionErrorLong',
+  PrivateCheckboxLabel = 'CreateDictionaryModalPrivateCheckboxLabel',
+  CreateButton = 'CreateDictionaryModalCreateButton',
+}
+
+export enum ShowAssociationsModal {
+  Header = 'ShowAssociationsModalHeader',
 }

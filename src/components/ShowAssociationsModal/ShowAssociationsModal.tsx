@@ -10,6 +10,9 @@ interface Props {
   associations: Assoctiation[];
 }
 
+const { Header } = localizationTokens.DictionaryScreen.showAssociationsModal;
+const headerText = i18n.t(Header);
+
 const ShowAssociationsModal: React.FC<Props> = ({ associations }) => {
   const { dictionaryStore } = useStore();
   const { isAssociationsModal, setAssociationsModal, setCardAssociations } =
@@ -25,7 +28,7 @@ const ShowAssociationsModal: React.FC<Props> = ({ associations }) => {
     <Modal isOpen={isAssociationsModal} onClose={() => setAssociationsModal(false)}>
       <Modal.Content maxWidth="400px">
         <Modal.CloseButton />
-        <Modal.Header>Ассоциации</Modal.Header>
+        <Modal.Header>{headerText}</Modal.Header>
         <Modal.Body>
           <VStack space={2}>
             {associations.map((item, index) => {

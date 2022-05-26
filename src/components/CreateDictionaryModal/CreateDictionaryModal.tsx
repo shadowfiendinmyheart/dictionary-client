@@ -8,6 +8,12 @@ import NameInput from './components/NameInput';
 import DescriptionInput from './components/DescriptionInput';
 import LanguagesSelector from '../LanguagesSelector';
 
+const { Header, PrivateCheckboxLabel, CreateButton } =
+  localizationTokens.PersonalDictionariesScreen.createDictionaryModal;
+const headerText = i18n.t(Header);
+const privateCheckboxLabelText = i18n.t(PrivateCheckboxLabel);
+const createButtonText = i18n.t(CreateButton);
+
 const CreateDictionaryModal: React.FC = () => {
   const [isDictionaryCreating, setDictionaryCreating] = useState(false);
   const { dictionaryStore, createDictionaryStore } = useStore();
@@ -47,7 +53,7 @@ const CreateDictionaryModal: React.FC = () => {
     >
       <Modal.Content width="300px">
         <Modal.CloseButton />
-        <Modal.Header>Новый словарь</Modal.Header>
+        <Modal.Header>{headerText}</Modal.Header>
         <Modal.Body>
           <VStack space={3}>
             <NameInput />
@@ -64,7 +70,7 @@ const CreateDictionaryModal: React.FC = () => {
               onTouchStart={handlePrivateCheckboxPress}
               value={''}
             >
-              Приватный словарь
+              {privateCheckboxLabelText}
             </Checkbox>
           </VStack>
         </Modal.Body>
@@ -78,7 +84,7 @@ const CreateDictionaryModal: React.FC = () => {
               disabled={isDictionaryCreating}
               onPress={handleCreateDictionaryButton}
             >
-              Создать
+              {createButtonText}
             </Button>
           </Modal.Footer>
         ) : null}

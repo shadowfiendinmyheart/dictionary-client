@@ -17,6 +17,25 @@ import { Icon } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import DictionaryScreen from '../../screens/DictionaryScreen';
 
+const {
+  LoginScreenTitle,
+  MainScreenTitle,
+  RegistationScreenTitle,
+  CardScreenTitle,
+  DictionariesScreenTitle,
+  DictionaryScreenTitle,
+  PersonalDictionariesTitle,
+  PublicDictionariesTitle,
+} = localizationTokens.Router.index;
+const loginScreenTitle = i18n.t(LoginScreenTitle);
+const registrationTitle = i18n.t(RegistationScreenTitle);
+const mainScreenTitle = i18n.t(MainScreenTitle);
+const cardScreenTitle = i18n.t(CardScreenTitle);
+const dictionariesScreenTitle = i18n.t(DictionariesScreenTitle);
+const dictionaryScreenTitle = i18n.t(DictionaryScreenTitle);
+const publicDictionariesTabTitle = i18n.t(PublicDictionariesTitle);
+const personalDictionariesTabTitle = i18n.t(PersonalDictionariesTitle);
+
 const DictionaryNavigator = () => {
   const Tab = createBottomTabNavigator();
 
@@ -38,12 +57,12 @@ const DictionaryNavigator = () => {
       <Tab.Screen
         name={ROUTES.PERSONAL_DICTIONARIES_SCREEN}
         component={PersonalDictionariesScreen}
-        options={{ headerShown: false, title: 'Персональные словари' }}
+        options={{ headerShown: false, title: personalDictionariesTabTitle }}
       />
       <Tab.Screen
         name={ROUTES.PUBLIC_DICTIONARIES_SCREEN}
         component={PublicDictionariesScreen}
-        options={{ headerShown: false, title: 'Публичные словари' }}
+        options={{ headerShown: false, title: publicDictionariesTabTitle }}
       />
     </Tab.Navigator>
   );
@@ -54,13 +73,6 @@ const Stack = createNativeStackNavigator();
 const Router = () => {
   const { userStore } = useStore();
   const { isAuth, isFetching } = userStore;
-
-  const { LoginScreenTitle, MainScreenTitle, RegistationScreenTitle, CardScreenTitle } =
-    localizationTokens.Router.index;
-  const loginScreenTitle = i18n.t(LoginScreenTitle);
-  const registrationTitle = i18n.t(RegistationScreenTitle);
-  const mainScreenTitle = i18n.t(MainScreenTitle);
-  const cardScreenTitle = i18n.t(CardScreenTitle);
 
   if (isFetching) {
     return (
@@ -106,12 +118,12 @@ const Router = () => {
       <Stack.Screen
         name={ROUTES.DICTIONARY_NAVIGATOR}
         component={DictionaryNavigator}
-        options={{ title: 'Словари' }}
+        options={{ title: dictionariesScreenTitle }}
       />
       <Stack.Screen
         name={ROUTES.DICTIONARY_SCREEN}
         component={DictionaryScreen}
-        options={{ title: 'Cловарь' }}
+        options={{ title: dictionaryScreenTitle }}
       />
     </Stack.Navigator>
   );

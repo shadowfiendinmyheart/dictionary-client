@@ -1,4 +1,9 @@
 import {
+  MAX_DICTIONARY_DESCRIPTION_LENGTH,
+  MAX_DICTIONARY_NAME_LENGTH,
+  MIN_DICTIONARY_NAME_LENGTH,
+} from '../constants/dictionary';
+import {
   Router,
   LoginScreen,
   LoginForm,
@@ -7,6 +12,9 @@ import {
   CardScreen,
   AssociationModal,
   ImagesModal,
+  PersonalDictionariesScreen,
+  CreateDictionaryModal,
+  ShowAssociationsModal,
 } from './keys';
 
 export const ru = {
@@ -14,6 +22,10 @@ export const ru = {
   [Router.LoginScreenTitle]: 'Авторизация',
   [Router.MainScreenTitle]: 'Главное меню',
   [Router.CardScreenTitle]: 'Карточка',
+  [Router.DictionariesScreenTitle]: 'Словари',
+  [Router.DictionaryScreenTitle]: 'Словарь',
+  [Router.PublicDictionariesTitle]: 'Публичные словари',
+  [Router.PersonalDictionariesTitle]: 'Персональные словари',
 
   [LoginForm.UsernameLabel]: 'Псевдоним',
   [LoginForm.UsernamePlaceholder]: 'Введите ваш псевдоним',
@@ -68,4 +80,22 @@ export const ru = {
   [ImagesModal.ImagePlaceholder]: 'Введите фразу для поиска изображения',
   [ImagesModal.ImageButton]: 'Найти изображение',
   [ImagesModal.AssociationButton]: 'Создать ассоциацию',
+
+  [PersonalDictionariesScreen.CreateDictionaryButton]: 'Создать новый словарь',
+  [PersonalDictionariesScreen.DictionariesNotFoundText]: 'Словари не найдены :(',
+
+  [CreateDictionaryModal.Header]: 'Новый словарь',
+  [CreateDictionaryModal.NameLabel]: 'Введите название словаря',
+  [CreateDictionaryModal.NamePlaceholder]: 'Название словаря',
+  [CreateDictionaryModal.NameErrorRequired]: 'Это поле не может быть пустым',
+  [CreateDictionaryModal.NameErrorShort]: `Название словаря должно быть больше ${MIN_DICTIONARY_NAME_LENGTH}`,
+  [CreateDictionaryModal.NameErrorLong]: `Название словаря должно быть меньше ${MAX_DICTIONARY_NAME_LENGTH}`,
+  [CreateDictionaryModal.DescriptionLabel]: 'Введите описание словаря',
+  [CreateDictionaryModal.DescriptionPlaceholder]: 'Описание словаря',
+  [CreateDictionaryModal.DescriptionErrorRequired]: 'Это поле не может быть пустым',
+  [CreateDictionaryModal.DescriptionErrorLong]: `Описание словаря должно быть меньше ${MAX_DICTIONARY_DESCRIPTION_LENGTH}`,
+  [CreateDictionaryModal.PrivateCheckboxLabel]: 'Приватный словарь',
+  [CreateDictionaryModal.CreateButton]: 'Создать',
+
+  [ShowAssociationsModal.Header]: 'Ассоциации',
 };

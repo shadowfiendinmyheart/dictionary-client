@@ -6,8 +6,21 @@ import {
   MAX_DICTIONARY_NAME_LENGTH,
   MIN_DICTIONARY_NAME_LENGTH,
 } from '../constants/dictionary';
+import i18n, { localizationTokens } from '../localization';
 import { DictionaryStore } from './dictionary.store';
-import { Dictionary } from './types';
+
+const {
+  NameErrorRequired,
+  NameErrorLong,
+  NameErrorShort,
+  DescriptionErrorRequired,
+  DescriptionErrorLong,
+} = localizationTokens.PersonalDictionariesScreen.createDictionaryModal;
+const nameErrorRequiredText = i18n.t(NameErrorRequired);
+const nameErrorLongText = i18n.t(NameErrorLong);
+const nameErrorShortText = i18n.t(NameErrorShort);
+const descriptionErrorRequiredText = i18n.t(DescriptionErrorRequired);
+const descriptionErrorLongText = i18n.t(DescriptionErrorLong);
 
 export class CreateDictionaryStore {
   private dictionaryStore: DictionaryStore;
@@ -44,17 +57,17 @@ export class CreateDictionaryStore {
 
   public handleNameChange = (value: string) => {
     if (value === undefined) {
-      this.errorName = 'Это поле не может быть пустым';
+      this.errorName = nameErrorRequiredText;
       return false;
     }
 
     if (value.length < MIN_DICTIONARY_NAME_LENGTH) {
-      this.errorName = `Название словаря должно быть больше ${MIN_DICTIONARY_NAME_LENGTH}`;
+      this.errorName = nameErrorShortText;
       return false;
     }
 
     if (value.length > MAX_DICTIONARY_NAME_LENGTH) {
-      this.errorName = `Название словаря должно быть меньше ${MAX_DICTIONARY_NAME_LENGTH}`;
+      this.errorName = nameErrorLongText;
       return false;
     }
 
@@ -64,12 +77,12 @@ export class CreateDictionaryStore {
 
   public handleDescriptionChange = (value: string) => {
     if (value === undefined) {
-      this.errorDescription = 'Это поле не может быть пустым';
+      this.errorDescription = descriptionErrorRequiredText;
       return false;
     }
 
     if (value.length > MAX_DICTIONARY_DESCRIPTION_LENGTH) {
-      this.errorDescription = `Описание словаря должно быть меньше ${MAX_DICTIONARY_DESCRIPTION_LENGTH}`;
+      this.errorDescription = descriptionErrorLongText;
       return false;
     }
 

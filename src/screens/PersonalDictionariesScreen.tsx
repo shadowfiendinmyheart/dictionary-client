@@ -24,6 +24,11 @@ interface Props {
   navigation: NavigationStackProp;
 }
 
+const { CreateDictionaryButton, DictionariesNotFoundText } =
+  localizationTokens.PersonalDictionariesScreen.index;
+const createDictionaryButtonText = i18n.t(CreateDictionaryButton);
+const dictionariesNotFoundText = i18n.t(DictionariesNotFoundText);
+
 const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   const [isDictionariesFetching, setDictionariesFetching] = useState(false);
   const { dictionaryStore } = useStore();
@@ -60,9 +65,9 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   if (dictionaries.length === 0) {
     return (
       <Center flex={1}>
-        <Text>На данный момент у вас нет словарей :(</Text>
+        <Text>{dictionariesNotFoundText}</Text>
         <Button onPress={handleCreateDictionaryPress} w={'70%'} mt={5}>
-          Добавить новый словарь
+          {createDictionaryButtonText}
         </Button>
         <CreateDictionaryModal />
       </Center>
@@ -73,7 +78,7 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     <ScrollView>
       <Center mt={3} mb={3}>
         <Button onPress={handleCreateDictionaryPress} w={'90%'} mb={3}>
-          Добавить новый словарь
+          {createDictionaryButtonText}
         </Button>
         {dictionaries.map((dictionary) => {
           return (
