@@ -1,7 +1,8 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { observer } from 'mobx-react';
 import { Image, VStack, HStack } from 'native-base';
-import { chunkArray } from './utils';
+import { chunkArray } from '../../utils/chunkArray';
 import { TouchableHighlight } from 'react-native';
 import { ImageItem } from '../../store/card.store';
 
@@ -37,22 +38,13 @@ const ImagesGrid: React.FC<Props> = ({ images, onImagePress }) => {
                   {item.isPicked ? (
                     <Image
                       source={{ uri: item.url }}
-                      style={{
-                        width: 95,
-                        height: 95,
-                        borderWidth: 2,
-                        borderRadius: 2,
-                        borderColor: 'blue',
-                      }}
+                      style={styles.pickedImage}
                       alt={'picked-image'}
                     />
                   ) : (
                     <Image
                       source={{ uri: item.url }}
-                      style={{
-                        width: 95,
-                        height: 95,
-                      }}
+                      style={styles.image}
                       alt={'image'}
                     />
                   )}
@@ -65,5 +57,19 @@ const ImagesGrid: React.FC<Props> = ({ images, onImagePress }) => {
     </VStack>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: 95,
+    height: 95,
+  },
+  pickedImage: {
+    width: 95,
+    height: 95,
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: 'blue',
+  },
+});
 
 export default observer(ImagesGrid);

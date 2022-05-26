@@ -25,6 +25,12 @@ const passwordErrorShort = i18n.t(PasswordErrorShort);
 export class LoginStore {
   private userStore: UserStore;
 
+  username = '';
+  password = '';
+
+  errorUsername = '';
+  errorPassword = '';
+
   constructor(userStore: UserStore) {
     makeObservable(this, {
       username: observable,
@@ -42,12 +48,6 @@ export class LoginStore {
 
     this.userStore = userStore;
   }
-
-  username = '';
-  password = '';
-
-  errorUsername = '';
-  errorPassword = '';
 
   public handleUsernameChange = (value: string) => {
     if (value === undefined) {
@@ -98,7 +98,7 @@ export class LoginStore {
       }
 
       await this.userStore.setToken(token);
-      this.userStore.username = this.username;
+      await this.userStore.initUser();
     } catch (error) {
       // show user error
       this.userStore.isAuth = false;

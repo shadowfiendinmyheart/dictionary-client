@@ -1,4 +1,9 @@
 import {
+  MAX_DICTIONARY_DESCRIPTION_LENGTH,
+  MAX_DICTIONARY_NAME_LENGTH,
+  MIN_DICTIONARY_NAME_LENGTH,
+} from '../constants/dictionary';
+import {
   Router,
   LoginScreen,
   LoginForm,
@@ -7,6 +12,9 @@ import {
   CardScreen,
   AssociationModal,
   ImagesModal,
+  PersonalDictionariesScreen,
+  CreateDictionaryModal,
+  ShowAssociationsModal,
 } from './keys';
 
 export const en = {
@@ -14,15 +22,19 @@ export const en = {
   [Router.LoginScreenTitle]: 'Authorization',
   [Router.MainScreenTitle]: 'Menu',
   [Router.CardScreenTitle]: 'Card',
+  [Router.DictionariesScreenTitle]: 'Dictionaries',
+  [Router.DictionaryScreenTitle]: 'Dictionary',
+  [Router.PublicDictionariesTitle]: 'Public dictionaries',
+  [Router.PersonalDictionariesTitle]: 'Personal dictionaries',
 
   [LoginForm.UsernameLabel]: 'Username',
   [LoginForm.UsernamePlaceholder]: 'Enter your username',
-  [LoginForm.PasswordErrorRequired]: 'Name is required',
-  [LoginForm.PasswordErrorShort]: 'Name is too short',
-  [LoginForm.UsernameErrorLong]: 'Name is too long',
-  [LoginForm.PasswordLabel]: 'Password',
   [LoginForm.PasswordErrorRequired]: 'Password is required',
+  [LoginForm.UsernameErrorShort]: 'Username is too short',
+  [LoginForm.UsernameErrorLong]: 'Username is too long',
+  [LoginForm.PasswordLabel]: 'Password',
   [LoginForm.PasswordErrorShort]: 'Password is too short',
+  [LoginForm.UsernameErrorLong]: 'Password is too long',
   [LoginForm.AuthButton]: 'Join',
   [LoginScreen.RegistrationButton]: 'Create account',
 
@@ -67,4 +79,22 @@ export const en = {
   [ImagesModal.ImagePlaceholder]: 'Enter text to find images',
   [ImagesModal.ImageButton]: 'Find images',
   [ImagesModal.AssociationButton]: 'Create association',
+
+  [PersonalDictionariesScreen.CreateDictionaryButton]: 'Create new dictionary',
+  [PersonalDictionariesScreen.DictionariesNotFoundText]: 'Dictionaries was not found :(',
+
+  [CreateDictionaryModal.Header]: 'New dictionary',
+  [CreateDictionaryModal.NameLabel]: 'Enter dictionary name',
+  [CreateDictionaryModal.NamePlaceholder]: 'Dictionary name',
+  [CreateDictionaryModal.NameErrorRequired]: 'This field is required',
+  [CreateDictionaryModal.NameErrorShort]: `Dictionary name should be larger than ${MIN_DICTIONARY_NAME_LENGTH}`,
+  [CreateDictionaryModal.NameErrorLong]: `Dictionary name should be smaller than ${MAX_DICTIONARY_NAME_LENGTH}`,
+  [CreateDictionaryModal.DescriptionLabel]: 'Enter dictionary description',
+  [CreateDictionaryModal.DescriptionPlaceholder]: 'Dictionary description',
+  [CreateDictionaryModal.DescriptionErrorRequired]: 'This field is required',
+  [CreateDictionaryModal.DescriptionErrorLong]: `Dictionary description should be smaller ${MAX_DICTIONARY_DESCRIPTION_LENGTH}`,
+  [CreateDictionaryModal.PrivateCheckboxLabel]: 'Private dictionary',
+  [CreateDictionaryModal.CreateButton]: 'Create',
+
+  [ShowAssociationsModal.Header]: 'Associations',
 };

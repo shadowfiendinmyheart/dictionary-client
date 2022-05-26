@@ -19,3 +19,11 @@ export enum Language {
   French = 'french',
   Japanese = 'japanese',
 }
+
+export interface Card {
+  phrase: string;
+  description: string;
+  associations: Assoctiation[];
+  id: number;
+  counter: number;
+}

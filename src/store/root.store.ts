@@ -4,6 +4,7 @@ import { LoginStore } from './login.store';
 import { UserStore } from './user.store';
 import { CardStore } from './card.store';
 import { DictionaryStore } from './dictionary.store';
+import { CreateDictionaryStore } from './createDictionary.store';
 
 class RootStore {
   registrationStore: RegistrationStore;
@@ -11,13 +12,15 @@ class RootStore {
   userStore: UserStore;
   cardStore: CardStore;
   dictionaryStore: DictionaryStore;
+  createDictionaryStore: CreateDictionaryStore;
 
   constructor() {
     this.userStore = new UserStore();
     this.registrationStore = new RegistrationStore(this.userStore);
     this.loginStore = new LoginStore(this.userStore);
-    this.dictionaryStore = new DictionaryStore();
+    this.dictionaryStore = new DictionaryStore(this.userStore);
     this.cardStore = new CardStore(this.dictionaryStore);
+    this.createDictionaryStore = new CreateDictionaryStore(this.dictionaryStore);
   }
 }
 

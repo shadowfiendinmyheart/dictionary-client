@@ -7,6 +7,9 @@ import {
   CardScreen,
   AssociationModal,
   ImagesModal,
+  PersonalDictionariesScreen,
+  CreateDictionaryModal,
+  ShowAssociationsModal,
 } from './keys';
 
 export const localizationTokens = {
@@ -31,5 +34,14 @@ export const localizationTokens = {
     index: CardScreen,
     associationModal: AssociationModal,
     imagesModal: ImagesModal,
+  },
+
+  PersonalDictionariesScreen: {
+    index: PersonalDictionariesScreen,
+    createDictionaryModal: CreateDictionaryModal,
+  },
+
+  DictionaryScreen: {
+    showAssociationsModal: ShowAssociationsModal,
   },
 };

@@ -158,7 +158,7 @@ export class RegistrationStore implements UserAuthData {
     }
 
     await this.userStore.setToken(token);
-    this.userStore.username = this.username;
+    await this.userStore.initUser();
     this.loading = false;
   };
 
