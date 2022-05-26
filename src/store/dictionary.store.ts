@@ -7,6 +7,7 @@ export class DictionaryStore {
   publicDictionaries: Dictionary[] = [];
   isAssociationsModal = false;
   cardAssociations: Assoctiation[] = [];
+  isCreateDictionaryModal = false;
 
   constructor() {
     makeObservable(this, {
@@ -14,8 +15,10 @@ export class DictionaryStore {
       publicDictionaries: observable,
       isAssociationsModal: observable,
       cardAssociations: observable,
+      isCreateDictionaryModal: observable,
 
       setDictionaries: action.bound,
+      setPublicDictionaries: action.bound,
       setAssociationsModal: action.bound,
       setCardAssociations: action.bound,
     });
@@ -35,5 +38,9 @@ export class DictionaryStore {
 
   public setCardAssociations = (associations: Assoctiation[]) => {
     this.cardAssociations = associations;
+  };
+
+  public setCreateDictionaryModal = (value: boolean) => {
+    this.isCreateDictionaryModal = value;
   };
 }

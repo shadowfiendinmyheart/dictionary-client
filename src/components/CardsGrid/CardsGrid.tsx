@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { observer } from 'mobx-react';
-import { VStack, HStack, Box, Center, Text, Image } from 'native-base';
+import { VStack, HStack, Box, Text } from 'native-base';
 import { chunkArray } from '../../utils/chunkArray';
 import { ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
 import { Card } from '../../api/card/types';

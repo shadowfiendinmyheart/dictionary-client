@@ -1,16 +1,14 @@
 import React from 'react';
-import { Box, VStack, Text, HStack } from 'native-base';
+import { Box, VStack, Text, HStack, IBoxProps } from 'native-base';
 import { Dictionary } from '../../store/types';
 
-const PersonalDictionariesScreen: React.FC<Dictionary> = ({
-  name,
-  user_id,
-  description,
-  from,
-  to,
-}) => {
+type Props = Dictionary & IBoxProps;
+
+const PersonalDictionariesScreen: React.FC<Props> = (props) => {
+  const { name, user_id, description, from, to } = props;
+
   return (
-    <Box p={2} borderRadius="md" background={'trueGray.200'}>
+    <Box {...props} p={2} borderRadius="md" background={'trueGray.200'}>
       <VStack>
         <HStack alignItems={'baseline'} space={2}>
           <Text fontSize={'2xl'}>{name}</Text>

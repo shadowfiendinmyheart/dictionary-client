@@ -18,6 +18,7 @@ import getPersonalDictionaries from '../api/dictionary/getPersonalDictionaries.a
 import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
 import DictionaryItem from '../components/DictionaryItem';
 import { TouchableHighlight } from 'react-native';
+import CreateDictionaryModal from '../components/CreateDictionaryModal';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -26,7 +27,12 @@ interface Props {
 const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   const [isDictionariesFetching, setDictionariesFetching] = useState(false);
   const { dictionaryStore } = useStore();
-  const { dictionaries, setDictionaries } = dictionaryStore;
+  const {
+    dictionaries,
+    setDictionaries,
+    isCreateDictionaryModal,
+    setCreateDictionaryModal,
+  } = dictionaryStore;
 
   useEffect(() => {
     void (async () => {
@@ -51,10 +57,14 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId });
   };
 
+  const handleCreateDictionaryPress = () => {
+    setCreateDictionaryModal(true);
+  };
+
   return (
     <ScrollView>
       <Center mt={3} mb={3}>
-        <Button onPress={() => console.log('add dictionary press')} w={'90%'} mb={3}>
+        <Button onPress={handleCreateDictionaryPress} w={'90%'} mb={3}>
           Добавить новый словарь
         </Button>
         {dictionaries.map((dictionary) => {
@@ -65,11 +75,12 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
               onPress={() => handleDictionaryPress(dictionary.id)}
               key={dictionary.id}
             >
-              <DictionaryItem {...dictionary} />
+              <DictionaryItem mt={2} {...dictionary} />
             </TouchableHighlight>
           );
         })}
       </Center>
+      <CreateDictionaryModal />
     </ScrollView>
   );
 };

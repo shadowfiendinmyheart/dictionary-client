@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import { Center, Button, Input, Icon, ScrollView } from 'native-base';
+import { Center, Button, Input, Icon, ScrollView, Box } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { useStore } from '../store/root.store';
 import LanguagesSelector from '../components/LanguagesSelector';
@@ -27,6 +27,9 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
     toLanguage,
     setAssociationModal,
     updateAvalibleDictionaries,
+    setFromLanguage,
+    setToLanguage,
+    handleShufflePress,
   } = cardStore;
 
   const { setDictionaries } = dictionaryStore;
@@ -81,7 +84,15 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
           onChangeText={handlePhraseInputChange}
           value={phrase}
         />
-        <LanguagesSelector />
+        <Box w="90%">
+          <LanguagesSelector
+            fromLanguage={fromLanguage}
+            setFromLanguage={setFromLanguage}
+            toLanguage={toLanguage}
+            setToLanguage={setToLanguage}
+            handleShufflePress={handleShufflePress}
+          />
+        </Box>
         <Button
           width="90%"
           mt={3}

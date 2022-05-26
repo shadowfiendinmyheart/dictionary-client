@@ -2,7 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Icon, HStack, Select, CheckIcon, IconButton } from 'native-base';
 import { Entypo } from '@native-base/icons';
-import { useStore } from '../../store/root.store';
 import { Language } from '../../api/card/types';
 
 const selectItmes = [
@@ -36,13 +35,23 @@ const selectItmes = [
   },
 ];
 
-const LanguagesSelector = () => {
-  const { cardStore } = useStore();
-  const { fromLanguage, setFromLanguage, toLanguage, setToLanguage, handleShufflePress } =
-    cardStore;
+interface Props {
+  fromLanguage: Language;
+  setFromLanguage: (language: Language) => void;
+  toLanguage: Language;
+  setToLanguage: (language: Language) => void;
+  handleShufflePress: () => void;
+}
 
+const LanguagesSelector: React.FC<Props> = ({
+  fromLanguage,
+  setFromLanguage,
+  toLanguage,
+  setToLanguage,
+  handleShufflePress,
+}) => {
   return (
-    <HStack justifyContent={'space-between'} alignItems={'center'} w="90%">
+    <HStack justifyContent={'space-between'} alignItems={'center'} w="100%">
       <Select
         selectedValue={fromLanguage}
         minWidth="25%"
