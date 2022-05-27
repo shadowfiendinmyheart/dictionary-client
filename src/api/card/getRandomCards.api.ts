@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Assoctiation } from './types';
+import { Card } from './types';
 
 export enum RandomCardMode {
   MORE,
@@ -8,11 +8,6 @@ export enum RandomCardMode {
   MORE_OR_EQUAL,
   LESS_OR_EQUAL,
 }
-
-export type getRandomCardsResponse = {
-  id: number;
-  counter: number;
-};
 
 export type getRandomCardsRequest = {
   dictionaryId: number;
@@ -25,16 +20,13 @@ async function getRandomCards(request: getRandomCardsRequest) {
   const { dictionaryId, counter, mode, size } = request;
 
   try {
-    const { data } = await axios.get<getRandomCardsResponse>(
-      `/card/dictionary/random/${dictionaryId}`,
-      {
-        params: {
-          counter,
-          mode,
-          size,
-        },
+    const { data } = await axios.get<Card[]>(`/card/dictionary/random/${dictionaryId}`, {
+      params: {
+        counter,
+        mode,
+        size,
       },
-    );
+    });
 
     return data;
   } catch (error) {
