@@ -75,26 +75,30 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
-      <Center mt={3} mb={3}>
+    <>
+      <Center mt={3}>
         <Button onPress={handleCreateDictionaryPress} w={'90%'} mb={3}>
           {createDictionaryButtonText}
         </Button>
-        {dictionaries.map((dictionary) => {
-          return (
-            <TouchableHighlight
-              style={{ width: '90%' }}
-              underlayColor={'white'}
-              onPress={() => handleDictionaryPress(dictionary.id)}
-              key={dictionary.id}
-            >
-              <DictionaryItem mt={2} {...dictionary} />
-            </TouchableHighlight>
-          );
-        })}
       </Center>
+      <ScrollView>
+        <Center mb={3}>
+          {dictionaries.map((dictionary) => {
+            return (
+              <TouchableHighlight
+                style={{ width: '90%' }}
+                underlayColor={'trueGray.50'}
+                onPress={() => handleDictionaryPress(dictionary.id)}
+                key={dictionary.id}
+              >
+                <DictionaryItem mt={2} {...dictionary} />
+              </TouchableHighlight>
+            );
+          })}
+        </Center>
+      </ScrollView>
       <CreateDictionaryModal />
-    </ScrollView>
+    </>
   );
 };
 

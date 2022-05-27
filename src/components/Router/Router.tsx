@@ -16,6 +16,7 @@ import PublicDictionariesScreen from '../../screens/PublicDictionariesScreen';
 import { Icon } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import DictionaryScreen from '../../screens/DictionaryScreen';
+import PhraseTranslationGameScreen from '../../screens/PhraseTranslationGameScreen';
 
 const {
   LoginScreenTitle,
@@ -124,6 +125,11 @@ const Router = () => {
         name={ROUTES.DICTIONARY_SCREEN}
         component={DictionaryScreen}
         options={{ title: dictionaryScreenTitle }}
+      />
+      <Stack.Screen
+        name={ROUTES.PHRASE_TRANSLATION_GAME_SCREEN}
+        component={PhraseTranslationGameScreen}
+        options={{ title: 'Игра "фраза-перевод"' }}
       />
     </Stack.Navigator>
   );

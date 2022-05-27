@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { Center, ScrollView } from 'native-base';
 import { useStore } from '../store/root.store';
-import i18n, { localizationTokens } from '../localization';
 import { NavigationStackProp } from 'react-navigation-stack';
 import getPublicDictionaries from '../api/dictionary/getPublicDictionaries';
 import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
@@ -49,7 +48,7 @@ const PublicDictionariesScreen: React.FC<Props> = ({ navigation }) => {
           return (
             <TouchableHighlight
               style={{ width: '90%' }}
-              underlayColor={'white'}
+              underlayColor={'trueGray.50'}
               onPress={() => handleDictionaryPress(dictionary.id)}
               key={dictionary.id}
             >

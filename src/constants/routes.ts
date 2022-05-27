@@ -7,6 +7,7 @@ enum ROUTES {
   PERSONAL_DICTIONARIES_SCREEN = 'personalDictionaries',
   PUBLIC_DICTIONARIES_SCREEN = 'publicDictionaries',
   DICTIONARY_SCREEN = 'dictionary',
+  PHRASE_TRANSLATION_GAME_SCREEN = 'phraseTranslationGameScreen',
 }
 
 export default ROUTES;

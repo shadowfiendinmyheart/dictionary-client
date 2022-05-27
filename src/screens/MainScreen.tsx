@@ -27,6 +27,10 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
     });
   };
 
+  const handleGamePress = () => {
+    navigation.navigate(ROUTES.PHRASE_TRANSLATION_GAME_SCREEN);
+  };
+
   const { Header, AddCardButton, LookDictionariesButton, GamesButton, LogoutButton } =
     localizationTokens.MainScreen.index;
   const headerText = i18n.t(Header);
@@ -46,7 +50,7 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
       <Button onPress={handleDictionariesPress} width="80%" mt={5} colorScheme="cyan">
         {lookDictionariesButtonText}
       </Button>
-      <Button width="80%" mt={5} colorScheme="cyan">
+      <Button onPress={handleGamePress} width="80%" mt={5} colorScheme="cyan">
         {gamesButtonText}
       </Button>
       <Button onPress={handleLogoutPress} width="80%" mt={5} colorScheme="cyan">

@@ -22,7 +22,7 @@ const ShowAssociationsModal: React.FC<Props> = ({ associations }) => {
     return () => {
       setCardAssociations([]);
     };
-  });
+  }, []);
 
   return (
     <Modal isOpen={isAssociationsModal} onClose={() => setAssociationsModal(false)}>
