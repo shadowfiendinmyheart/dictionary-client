@@ -8,24 +8,16 @@ import { Assoctiation } from '../../api/card/types';
 
 interface Props {
   associations: Assoctiation[];
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const { Header } = localizationTokens.DictionaryScreen.showAssociationsModal;
 const headerText = i18n.t(Header);
 
-const ShowAssociationsModal: React.FC<Props> = ({ associations }) => {
-  const { dictionaryStore } = useStore();
-  const { isAssociationsModal, setAssociationsModal, setCardAssociations } =
-    dictionaryStore;
-
-  useEffect(() => {
-    return () => {
-      setCardAssociations([]);
-    };
-  });
-
+const ShowAssociationsModal: React.FC<Props> = ({ associations, isOpen, onClose }) => {
   return (
-    <Modal isOpen={isAssociationsModal} onClose={() => setAssociationsModal(false)}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <Modal.Content maxWidth="400px">
         <Modal.CloseButton />
         <Modal.Header>{headerText}</Modal.Header>

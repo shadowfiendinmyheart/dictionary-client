@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { Box, IconButton, Icon, Center } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { ImageBackground, StyleSheet, Text, ScrollView } from 'react-native';
@@ -7,9 +6,9 @@ import { ImageBackground, StyleSheet, Text, ScrollView } from 'react-native';
 type Props = {
   imageUrl: string;
   translations: string[];
+  height: string | number;
+  width: string | number;
   about?: string;
-  height: string;
-  width: string;
 };
 
 const AssociationItem: React.FC<Props> = ({
@@ -83,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(AssociationItem);
+export default AssociationItem;

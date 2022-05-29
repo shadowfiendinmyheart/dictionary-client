@@ -19,6 +19,8 @@ import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
 import DictionaryItem from '../components/DictionaryItem';
 import { TouchableHighlight } from 'react-native';
 import CreateDictionaryModal from '../components/CreateDictionaryModal';
+import DictionariesList from '../components/DictionariesList';
+import { Dictionary } from '../store/types';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -50,12 +52,8 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     })();
   }, []);
 
-  if (isDictionariesFetching) {
-    return <SkeletonDictionariesList />;
-  }
-
-  const handleDictionaryPress = (dictionaryId: number) => {
-    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId });
+  const handleDictionaryPress = (dictionary: Dictionary) => {
+    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId: dictionary.id });
   };
 
   const handleCreateDictionaryPress = () => {
@@ -75,26 +73,19 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
-      <Center mt={3} mb={3}>
+    <>
+      <Center mt={3}>
         <Button onPress={handleCreateDictionaryPress} w={'90%'} mb={3}>
           {createDictionaryButtonText}
         </Button>
-        {dictionaries.map((dictionary) => {
-          return (
-            <TouchableHighlight
-              style={{ width: '90%' }}
-              underlayColor={'white'}
-              onPress={() => handleDictionaryPress(dictionary.id)}
-              key={dictionary.id}
-            >
-              <DictionaryItem mt={2} {...dictionary} />
-            </TouchableHighlight>
-          );
-        })}
       </Center>
+      <DictionariesList
+        dictionaries={dictionaries}
+        onDictionaryPress={handleDictionaryPress}
+        isLoading={isDictionariesFetching}
+      />
       <CreateDictionaryModal />
-    </ScrollView>
+    </>
   );
 };
 

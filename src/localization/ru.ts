@@ -15,6 +15,9 @@ import {
   PersonalDictionariesScreen,
   CreateDictionaryModal,
   ShowAssociationsModal,
+  PhraseTranslationGameScreen,
+  TranslationPhraseGameScreen,
+  EndGameScreen,
 } from './keys';
 
 export const ru = {
@@ -26,6 +29,8 @@ export const ru = {
   [Router.DictionaryScreenTitle]: 'Словарь',
   [Router.PublicDictionariesTitle]: 'Публичные словари',
   [Router.PersonalDictionariesTitle]: 'Персональные словари',
+  [Router.PhraseTranslationGameTitle]: 'Игра "фраза-перевод"',
+  [Router.TranslationPhraseGameTitle]: 'Игра "перевод-фраза"',
 
   [LoginForm.UsernameLabel]: 'Псевдоним',
   [LoginForm.UsernamePlaceholder]: 'Введите ваш псевдоним',
@@ -58,7 +63,8 @@ export const ru = {
   [MainScreen.Header]: 'Доброго времени суток,',
   [MainScreen.AddCardButton]: 'Добавить карточку',
   [MainScreen.LookDictionariesButton]: 'Посмотреть словари',
-  [MainScreen.GamesButton]: 'Игры',
+  [MainScreen.PhraseTranslationGameButton]: 'Игра "Фраза-Перевод"',
+  [MainScreen.TranslationPhraseGameButton]: 'Игра "Перевод-Фраза"',
   [MainScreen.LogoutButton]: 'Выйти из аккаунта',
 
   [CardScreen.PhrasePlaceholder]: 'Введите фразу для перевода',
@@ -98,4 +104,16 @@ export const ru = {
   [CreateDictionaryModal.CreateButton]: 'Создать',
 
   [ShowAssociationsModal.Header]: 'Ассоциации',
+
+  [PhraseTranslationGameScreen.DictionaryHeader]: 'Выберите словарь для игры',
+  [PhraseTranslationGameScreen.AnswerPlaceholder]: 'Введите перевод фразы',
+  [PhraseTranslationGameScreen.EnterButton]: 'Принять',
+
+  [TranslationPhraseGameScreen.DictionaryHeader]: 'Выберите словарь для игры',
+  [TranslationPhraseGameScreen.AnswerPlaceholder]: 'Введите фразу',
+  [TranslationPhraseGameScreen.EnterButton]: 'Принять',
+
+  [EndGameScreen.Header]: 'Итоги игры',
+  [EndGameScreen.GameResultText]: 'Правильных ответов %{rightCounter} из %{allCounter}',
+  [EndGameScreen.UserAnswerText]: 'Ваш ответ:',
 };

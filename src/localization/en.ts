@@ -15,6 +15,9 @@ import {
   PersonalDictionariesScreen,
   CreateDictionaryModal,
   ShowAssociationsModal,
+  PhraseTranslationGameScreen,
+  TranslationPhraseGameScreen,
+  EndGameScreen,
 } from './keys';
 
 export const en = {
@@ -26,6 +29,8 @@ export const en = {
   [Router.DictionaryScreenTitle]: 'Dictionary',
   [Router.PublicDictionariesTitle]: 'Public dictionaries',
   [Router.PersonalDictionariesTitle]: 'Personal dictionaries',
+  [Router.PhraseTranslationGameTitle]: 'Phrase-Translation game',
+  [Router.TranslationPhraseGameTitle]: 'Translation-Phrase game',
 
   [LoginForm.UsernameLabel]: 'Username',
   [LoginForm.UsernamePlaceholder]: 'Enter your username',
@@ -58,7 +63,8 @@ export const en = {
   [MainScreen.Header]: 'Welcome,',
   [MainScreen.AddCardButton]: 'Add card',
   [MainScreen.LookDictionariesButton]: 'Dictionaries',
-  [MainScreen.GamesButton]: 'Games',
+  [MainScreen.PhraseTranslationGameButton]: 'Phrase-Translation game',
+  [MainScreen.TranslationPhraseGameButton]: 'Translation-Phrase game',
   [MainScreen.LogoutButton]: 'Logout',
 
   [CardScreen.PhrasePlaceholder]: 'Enter a phrase',
@@ -97,4 +103,16 @@ export const en = {
   [CreateDictionaryModal.CreateButton]: 'Create',
 
   [ShowAssociationsModal.Header]: 'Associations',
+
+  [PhraseTranslationGameScreen.DictionaryHeader]: 'Select a dictionary for the game',
+  [PhraseTranslationGameScreen.AnswerPlaceholder]: 'Enter a translation',
+  [PhraseTranslationGameScreen.EnterButton]: 'Enter',
+
+  [TranslationPhraseGameScreen.DictionaryHeader]: 'Select a dictionary for the game',
+  [TranslationPhraseGameScreen.AnswerPlaceholder]: 'Enter a translation',
+  [TranslationPhraseGameScreen.EnterButton]: 'Enter',
+
+  [EndGameScreen.Header]: 'Game results',
+  [EndGameScreen.GameResultText]: 'Correct answers %{rightCounter} out of %{allCounter}',
+  [EndGameScreen.UserAnswerText]: 'Your answer:',
 };

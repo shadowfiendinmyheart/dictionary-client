@@ -7,6 +7,8 @@ export enum Router {
   DictionaryScreenTitle = 'RouterDictionaryScreenTitle',
   PublicDictionariesTitle = 'RouterPublicDictionariesTitle',
   PersonalDictionariesTitle = 'RouterPersonalDictionariesTitle',
+  PhraseTranslationGameTitle = 'RouterPhraseTranslationGameTitle',
+  TranslationPhraseGameTitle = 'RouterTranslationPhraseGameTitle',
 }
 
 export enum LoginScreen {
@@ -48,7 +50,8 @@ export enum MainScreen {
   Header = 'MainScreenHeader',
   AddCardButton = 'MainScreenAddCardButton',
   LookDictionariesButton = 'MainScreenLookkDictionariesButton',
-  GamesButton = 'MainScreenGamesButton',
+  PhraseTranslationGameButton = 'MainScreenPhraseTranslationGameButton',
+  TranslationPhraseGameButton = 'MainScreenTranslationPhraseGameButton',
   LogoutButton = 'MainScreenLogoutButton',
 }
 
@@ -99,4 +102,22 @@ export enum CreateDictionaryModal {
 
 export enum ShowAssociationsModal {
   Header = 'ShowAssociationsModalHeader',
+}
+
+export enum PhraseTranslationGameScreen {
+  DictionaryHeader = 'PhraseTranslationGameDictionaryHeader',
+  AnswerPlaceholder = 'PhraseTranslationGameAnswerPlaceholder',
+  EnterButton = 'PhraseTranslationGameEnterButton',
+}
+
+export enum TranslationPhraseGameScreen {
+  DictionaryHeader = 'TranslationPhraseGameDictionaryHeader',
+  AnswerPlaceholder = 'TranslationPhraseGameAnswerPlaceholder',
+  EnterButton = 'TranslationPhraseGameEnterButton',
+}
+
+export enum EndGameScreen {
+  Header = 'EndGameScreenHeader',
+  GameResultText = 'EndGameScreenGameResultText',
+  UserAnswerText = 'EndGameScreenUserAnswerText',
 }
