@@ -7,7 +7,7 @@ export interface GameCard extends Card {
   answer: string;
 }
 
-export class PhraseTranslationGameStore {
+export class GameStore {
   pickedDictionary: Dictionary | null = null;
   gameCards: GameCard[] = [];
   gameCounter = 0;

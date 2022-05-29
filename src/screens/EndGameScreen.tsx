@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import { Heading, VStack, Text, HStack } from 'native-base';
-import { GameCard } from '../store/phraseTranslationGame.store';
+import { GameCard } from '../store/game.store';
 import Card from '../components/Card';
 import { Assoctiation, Card as CardInterface } from '../api/card/types';
 import { ScrollView } from 'react-native';

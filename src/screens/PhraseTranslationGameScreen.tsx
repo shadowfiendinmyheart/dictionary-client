@@ -27,7 +27,7 @@ const PhraseTranslationGameScreen: React.FC = () => {
   const [dictionaries, setDictionaries] = useState<Dictionary[]>();
   const [isDictionariesFetching, setDictionariesFetching] = useState(false);
 
-  const { phraseTranslationGameStore } = useStore();
+  const { gameStore } = useStore();
   const {
     pickedDictionary,
     setPickedDictionary,
@@ -43,7 +43,7 @@ const PhraseTranslationGameScreen: React.FC = () => {
     decrementAssociationCounter,
     isGameEnd,
     setGameEnd,
-  } = phraseTranslationGameStore;
+  } = gameStore;
 
   useEffect(() => {
     setGameCards([]);
