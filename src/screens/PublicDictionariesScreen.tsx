@@ -8,6 +8,8 @@ import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
 import DictionaryItem from '../components/DictionaryItem';
 import { TouchableHighlight } from 'react-native';
 import ROUTES from '../constants/routes';
+import DictionariesList from '../components/DictionariesList';
+import { Dictionary } from '../store/types';
 
 interface Props {
   navigation: NavigationStackProp;
@@ -29,35 +31,16 @@ const PublicDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     })();
   }, []);
 
-  const handleDictionaryPress = (dictionaryId: number) => {
-    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId });
+  const handleDictionaryPress = (dictionary: Dictionary) => {
+    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId: dictionary.id });
   };
 
-  if (isDictionariesFetching) {
-    return <SkeletonDictionariesList />;
-  }
-
-  if (publicDictionaries.length === 0) {
-    return <Center flex={1}>На данный момент у вас нет словарей :(</Center>;
-  }
-
   return (
-    <ScrollView>
-      <Center mt={3} mb={3}>
-        {publicDictionaries.map((dictionary) => {
-          return (
-            <TouchableHighlight
-              style={{ width: '90%' }}
-              underlayColor={'trueGray.50'}
-              onPress={() => handleDictionaryPress(dictionary.id)}
-              key={dictionary.id}
-            >
-              <DictionaryItem mt={2} {...dictionary} />
-            </TouchableHighlight>
-          );
-        })}
-      </Center>
-    </ScrollView>
+    <DictionariesList
+      dictionaries={publicDictionaries}
+      onDictionaryPress={handleDictionaryPress}
+      isLoading={isDictionariesFetching}
+    />
   );
 };
 

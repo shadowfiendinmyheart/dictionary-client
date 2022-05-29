@@ -60,6 +60,7 @@ const PhraseTranslationGameScreen: React.FC = () => {
 
     return () => {
       setPickedDictionary(null);
+      setGameEnd(false);
     };
   }, []);
 
@@ -113,10 +114,6 @@ const PhraseTranslationGameScreen: React.FC = () => {
 
   if (isDictionariesFetching || !dictionaries) {
     return <SkeletonDictionariesList />;
-  }
-
-  if (dictionaries.length === 0) {
-    return <Center flex={1}>На данный момент у вас нет словарей :(</Center>;
   }
 
   if (!pickedDictionary) {
