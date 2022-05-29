@@ -101,3 +101,21 @@ export enum CreateDictionaryModal {
 export enum ShowAssociationsModal {
   Header = 'ShowAssociationsModalHeader',
 }
+
+export enum PhraseTranslationGameScreen {
+  DictionaryHeader = 'PhraseTranslationGameDictionaryHeader',
+  AnswerPlaceholder = 'PhraseTranslationGameAnswerPlaceholder',
+  EnterButton = 'PhraseTranslationGameEnterButton',
+}
+
+export enum TranslationPhraseGameScreen {
+  DictionaryHeader = 'TranslationPhraseGameDictionaryHeader',
+  AnswerPlaceholder = 'TranslationPhraseGameAnswerPlaceholder',
+  EnterButton = 'TranslationPhraseGameEnterButton',
+}
+
+export enum EndGameScreen {
+  Header = 'EndGameScreenHeader',
+  GameResultText = 'EndGameScreenGameResultText',
+  UserAnswerText = 'EndGameScreenUserAnswerText',
+}

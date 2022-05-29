@@ -15,6 +15,9 @@ import {
   PersonalDictionariesScreen,
   CreateDictionaryModal,
   ShowAssociationsModal,
+  PhraseTranslationGameScreen,
+  TranslationPhraseGameScreen,
+  EndGameScreen,
 } from './keys';
 
 export const en = {
@@ -98,4 +101,16 @@ export const en = {
   [CreateDictionaryModal.CreateButton]: 'Create',
 
   [ShowAssociationsModal.Header]: 'Associations',
+
+  [PhraseTranslationGameScreen.DictionaryHeader]: 'Select a dictionary for the game',
+  [PhraseTranslationGameScreen.AnswerPlaceholder]: 'Enter a translation',
+  [PhraseTranslationGameScreen.EnterButton]: 'Enter',
+
+  [TranslationPhraseGameScreen.DictionaryHeader]: 'Select a dictionary for the game',
+  [TranslationPhraseGameScreen.AnswerPlaceholder]: 'Enter a translation',
+  [TranslationPhraseGameScreen.EnterButton]: 'Enter',
+
+  [EndGameScreen.Header]: 'Game results',
+  [EndGameScreen.GameResultText]: 'Correct answers %{rightCounter} out of %{allCounter}',
+  [EndGameScreen.UserAnswerText]: 'Your answer:',
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import { Box, IconButton, Icon, Center } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { ImageBackground, StyleSheet, Text, ScrollView } from 'react-native';
@@ -83,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(AssociationItem);
+export default AssociationItem;

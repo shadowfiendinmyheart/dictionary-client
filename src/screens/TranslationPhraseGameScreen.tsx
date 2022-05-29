@@ -5,7 +5,6 @@ import {
   Center,
   Input,
   Text,
-  Image,
   HStack,
   IconButton,
   Icon,
@@ -22,6 +21,13 @@ import LoadingScreen from './LoadingScreen';
 import increaseCardCounter from '../api/card/increaseCardCounter.api';
 import EndGameScreen from './EndGameScreen';
 import AssociationItem from '../components/AssociationItem';
+import i18n, { localizationTokens } from '../localization';
+
+const { DictionaryHeader, AnswerPlaceholder, EnterButton } =
+  localizationTokens.TranslatePhraseGameScreen.index;
+const dictionaryHeaderText = i18n.t(DictionaryHeader);
+const answerPlaceholderText = i18n.t(AnswerPlaceholder);
+const enterButtonText = i18n.t(EnterButton);
 
 const TranslationPhraseGameScreen: React.FC = () => {
   const [answerInput, setAnswerInput] = useState('');
@@ -111,7 +117,7 @@ const TranslationPhraseGameScreen: React.FC = () => {
     return (
       <>
         <Center mt={3}>
-          <Text>Выберите словарь для игры</Text>
+          <Text>{dictionaryHeaderText}</Text>
         </Center>
         <DictionariesList
           dictionaries={dictionaries}
@@ -172,12 +178,12 @@ const TranslationPhraseGameScreen: React.FC = () => {
           />
         </HStack>
         <Input
-          placeholder="Введите перевод"
+          placeholder={answerPlaceholderText}
           value={answerInput}
           onChangeText={handleInputChange}
         />
         <Button disabled={answerInput.length === 0} onPress={handleEnterPress}>
-          Принять
+          {enterButtonText}
         </Button>
       </VStack>
     </Center>

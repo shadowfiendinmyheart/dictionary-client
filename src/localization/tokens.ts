@@ -10,6 +10,9 @@ import {
   PersonalDictionariesScreen,
   CreateDictionaryModal,
   ShowAssociationsModal,
+  PhraseTranslationGameScreen,
+  TranslationPhraseGameScreen,
+  EndGameScreen,
 } from './keys';
 
 export const localizationTokens = {
@@ -43,5 +46,17 @@ export const localizationTokens = {
 
   DictionaryScreen: {
     showAssociationsModal: ShowAssociationsModal,
+  },
+
+  PhraseTranslationGameScreen: {
+    index: PhraseTranslationGameScreen,
+  },
+
+  TranslatePhraseGameScreen: {
+    index: TranslationPhraseGameScreen,
+  },
+
+  EndGameScreen: {
+    index: EndGameScreen,
   },
 };

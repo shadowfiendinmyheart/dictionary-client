@@ -6,10 +6,15 @@ import Card from '../components/Card';
 import { Assoctiation, Card as CardInterface } from '../api/card/types';
 import { ScrollView } from 'react-native';
 import ShowAssociationsModal from '../components/ShowAssociationsModal';
+import i18n, { localizationTokens } from '../localization';
 
 interface Props {
   gameCards: GameCard[];
 }
+
+const { Header, GameResultText, UserAnswerText } = localizationTokens.EndGameScreen.index;
+const headerText = i18n.t(Header);
+const userAnswerText = i18n.t(UserAnswerText);
 
 const EndGameScreen: React.FC<Props> = ({ gameCards }) => {
   const [isAssociationsModal, setAssociationsModal] = useState(false);
@@ -36,9 +41,12 @@ const EndGameScreen: React.FC<Props> = ({ gameCards }) => {
   return (
     <>
       <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-        <Heading mt={3}>Итоги игры</Heading>
+        <Heading mt={3}>{headerText}</Heading>
         <Text>
-          Правильных ответов {rightAnswersCounter} из {gameCards.length}
+          {i18n.t(GameResultText, {
+            rightCounter: rightAnswersCounter,
+            allCounter: gameCards.length,
+          })}
         </Text>
         <VStack mt={5} space={3}>
           {gameCards.map((gameCard) => {
@@ -46,7 +54,7 @@ const EndGameScreen: React.FC<Props> = ({ gameCards }) => {
               <HStack w={'90%'} justifyContent={'space-evenly'} key={gameCard.id}>
                 <Card card={{ ...gameCard }} onCardPress={handleCardPress} />
                 <VStack space={2} justifyContent={'center'}>
-                  <Text>Ваш ответ:</Text>
+                  <Text>{userAnswerText}</Text>
                   <Text color={gameCard.isAnswered ? 'success.500' : 'error.500'}>
                     {gameCard.answer}
                   </Text>
