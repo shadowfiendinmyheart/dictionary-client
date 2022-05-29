@@ -28,6 +28,8 @@ const {
   DictionaryScreenTitle,
   PersonalDictionariesTitle,
   PublicDictionariesTitle,
+  PhraseTranslationGameTitle,
+  TranslationPhraseGameTitle,
 } = localizationTokens.Router.index;
 const loginScreenTitle = i18n.t(LoginScreenTitle);
 const registrationTitle = i18n.t(RegistationScreenTitle);
@@ -37,6 +39,8 @@ const dictionariesScreenTitle = i18n.t(DictionariesScreenTitle);
 const dictionaryScreenTitle = i18n.t(DictionaryScreenTitle);
 const publicDictionariesTabTitle = i18n.t(PublicDictionariesTitle);
 const personalDictionariesTabTitle = i18n.t(PersonalDictionariesTitle);
+const phraseTranslationGameTitle = i18n.t(PhraseTranslationGameTitle);
+const translationPhraseGameTitle = i18n.t(TranslationPhraseGameTitle);
 
 const DictionaryNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -130,12 +134,12 @@ const Router = () => {
       <Stack.Screen
         name={ROUTES.PHRASE_TRANSLATION_GAME_SCREEN}
         component={PhraseTranslationGameScreen}
-        options={{ title: 'Игра "фраза-перевод"' }}
+        options={{ title: phraseTranslationGameTitle }}
       />
       <Stack.Screen
         name={ROUTES.TRANSLATION_PHRASE_GAME_SCREEN}
         component={TranslationPhraseGameScreen}
-        options={{ title: 'Игра "перевод-фраза"' }}
+        options={{ title: translationPhraseGameTitle }}
       />
     </Stack.Navigator>
   );

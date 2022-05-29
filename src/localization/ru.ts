@@ -29,6 +29,8 @@ export const ru = {
   [Router.DictionaryScreenTitle]: 'Словарь',
   [Router.PublicDictionariesTitle]: 'Публичные словари',
   [Router.PersonalDictionariesTitle]: 'Персональные словари',
+  [Router.PhraseTranslationGameTitle]: 'Игра "фраза-перевод"',
+  [Router.TranslationPhraseGameTitle]: 'Игра "перевод-фраза"',
 
   [LoginForm.UsernameLabel]: 'Псевдоним',
   [LoginForm.UsernamePlaceholder]: 'Введите ваш псевдоним',

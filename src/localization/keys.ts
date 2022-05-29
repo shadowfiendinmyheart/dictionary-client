@@ -7,6 +7,8 @@ export enum Router {
   DictionaryScreenTitle = 'RouterDictionaryScreenTitle',
   PublicDictionariesTitle = 'RouterPublicDictionariesTitle',
   PersonalDictionariesTitle = 'RouterPersonalDictionariesTitle',
+  PhraseTranslationGameTitle = 'RouterPhraseTranslationGameTitle',
+  TranslationPhraseGameTitle = 'RouterTranslationPhraseGameTitle',
 }
 
 export enum LoginScreen {

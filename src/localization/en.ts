@@ -29,6 +29,8 @@ export const en = {
   [Router.DictionaryScreenTitle]: 'Dictionary',
   [Router.PublicDictionariesTitle]: 'Public dictionaries',
   [Router.PersonalDictionariesTitle]: 'Personal dictionaries',
+  [Router.PhraseTranslationGameTitle]: 'Phrase-Translation game',
+  [Router.TranslationPhraseGameTitle]: 'Translation-Phrase game',
 
   [LoginForm.UsernameLabel]: 'Username',
   [LoginForm.UsernamePlaceholder]: 'Enter your username',
