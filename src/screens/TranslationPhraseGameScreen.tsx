@@ -21,6 +21,7 @@ import { COUNTER_LIMITER, NUMBER_OF_GAME_CARDS } from '../constants/game';
 import LoadingScreen from './LoadingScreen';
 import increaseCardCounter from '../api/card/increaseCardCounter.api';
 import EndGameScreen from './EndGameScreen';
+import AssociationItem from '../components/AssociationItem';
 
 const TranslationPhraseGameScreen: React.FC = () => {
   const [answerInput, setAnswerInput] = useState('');
@@ -77,21 +78,14 @@ const TranslationPhraseGameScreen: React.FC = () => {
     }
   };
 
-  const handleRepcikDictionaryPress = () => {
-    setPickedDictionary(null);
-  };
-
   const handleInputChange = (value: string) => {
     setAnswerInput(value);
   };
 
   const handleEnterPress = async () => {
-    const isRightAnswer = gameCards[gameCounter].associations.find((assciation) => {
-      return assciation.translate.find(
-        (translate) =>
-          translate.toLowerCase().trim() === answerInput.toLowerCase().trim(),
-      );
-    });
+    const isRightAnswer =
+      gameCards[gameCounter].phrase.toLowerCase().trim() ===
+      answerInput.toLowerCase().trim();
 
     if (isRightAnswer) {
       await increaseCardCounter(gameCards[gameCounter].id);
@@ -135,7 +129,6 @@ const TranslationPhraseGameScreen: React.FC = () => {
   return (
     <Center flex={1}>
       <VStack height="70%" space={3} w="90%">
-        <Text textAlign={'center'}>{gameCards[gameCounter].phrase}</Text>
         <HStack justifyContent="space-around" alignItems="center">
           <IconButton
             backgroundColor={'warmGray.50'}
@@ -153,14 +146,12 @@ const TranslationPhraseGameScreen: React.FC = () => {
               </Center>
             }
           />
-          <Image
-            style={{ width: 200, height: 200 }}
-            source={{
-              uri: gameCards[gameCounter].associations[associationCounter].image,
-            }}
-            alt={
-              gameCards[gameCounter].associations[associationCounter].description ||
-              'association image'
+          <AssociationItem
+            height={200}
+            width={200}
+            imageUrl={gameCards[gameCounter].associations[associationCounter].image}
+            translations={
+              gameCards[gameCounter].associations[associationCounter].translate
             }
           />
           <IconButton

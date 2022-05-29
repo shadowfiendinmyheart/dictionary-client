@@ -7,9 +7,9 @@ import { ImageBackground, StyleSheet, Text, ScrollView } from 'react-native';
 type Props = {
   imageUrl: string;
   translations: string[];
+  height: string | number;
+  width: string | number;
   about?: string;
-  height: string;
-  width: string;
 };
 
 const AssociationItem: React.FC<Props> = ({

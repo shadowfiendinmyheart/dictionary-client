@@ -10,6 +10,7 @@ import {
   IconButton,
   Icon,
   VStack,
+  Heading,
 } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import { Dictionary } from '../store/types';
@@ -77,10 +78,6 @@ const PhraseTranslationGameScreen: React.FC = () => {
     }
   };
 
-  const handleRepcikDictionaryPress = () => {
-    setPickedDictionary(null);
-  };
-
   const handleInputChange = (value: string) => {
     setAnswerInput(value);
   };
@@ -135,7 +132,7 @@ const PhraseTranslationGameScreen: React.FC = () => {
   return (
     <Center flex={1}>
       <VStack height="70%" space={3} w="90%">
-        <Text textAlign={'center'}>{gameCards[gameCounter].phrase}</Text>
+        <Heading textAlign={'center'}>{gameCards[gameCounter].phrase}</Heading>
         <HStack justifyContent="space-around" alignItems="center">
           <IconButton
             backgroundColor={'warmGray.50'}
