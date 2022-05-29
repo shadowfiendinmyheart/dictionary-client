@@ -58,7 +58,8 @@ export const ru = {
   [MainScreen.Header]: 'Доброго времени суток,',
   [MainScreen.AddCardButton]: 'Добавить карточку',
   [MainScreen.LookDictionariesButton]: 'Посмотреть словари',
-  [MainScreen.GamesButton]: 'Игры',
+  [MainScreen.PhraseTranslationGameButton]: 'Игра "Фраза-Перевод"',
+  [MainScreen.TranslationPhraseGameButton]: 'Игра "Перевод-Фраза"',
   [MainScreen.LogoutButton]: 'Выйти из аккаунта',
 
   [CardScreen.PhrasePlaceholder]: 'Введите фразу для перевода',

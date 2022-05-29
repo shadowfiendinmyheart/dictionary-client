@@ -27,16 +27,27 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
     });
   };
 
-  const handleGamePress = () => {
+  const handlePhraseTranslationGamePress = () => {
     navigation.navigate(ROUTES.PHRASE_TRANSLATION_GAME_SCREEN);
   };
 
-  const { Header, AddCardButton, LookDictionariesButton, GamesButton, LogoutButton } =
-    localizationTokens.MainScreen.index;
+  const handleTranslationPhraseGamePress = () => {
+    navigation.navigate(ROUTES.TRANSLATION_PHRASE_GAME_SCREEN);
+  };
+
+  const {
+    Header,
+    AddCardButton,
+    LookDictionariesButton,
+    PhraseTranslationGameButton,
+    TranslationPhraseGameButton,
+    LogoutButton,
+  } = localizationTokens.MainScreen.index;
   const headerText = i18n.t(Header);
   const addCardButtonText = i18n.t(AddCardButton);
   const lookDictionariesButtonText = i18n.t(LookDictionariesButton);
-  const gamesButtonText = i18n.t(GamesButton);
+  const phraseTranslationGameButtonText = i18n.t(PhraseTranslationGameButton);
+  const translationPhraseGameButtonText = i18n.t(TranslationPhraseGameButton);
   const logoutButtonText = i18n.t(LogoutButton);
 
   return (
@@ -50,8 +61,21 @@ const MainScreen: React.FC<Props> = ({ navigation }) => {
       <Button onPress={handleDictionariesPress} width="80%" mt={5} colorScheme="cyan">
         {lookDictionariesButtonText}
       </Button>
-      <Button onPress={handleGamePress} width="80%" mt={5} colorScheme="cyan">
-        {gamesButtonText}
+      <Button
+        onPress={handlePhraseTranslationGamePress}
+        width="80%"
+        mt={5}
+        colorScheme="cyan"
+      >
+        {phraseTranslationGameButtonText}
+      </Button>
+      <Button
+        onPress={handleTranslationPhraseGamePress}
+        width="80%"
+        mt={5}
+        colorScheme="cyan"
+      >
+        {translationPhraseGameButtonText}
       </Button>
       <Button onPress={handleLogoutPress} width="80%" mt={5} colorScheme="cyan">
         {logoutButtonText}

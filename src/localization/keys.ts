@@ -48,7 +48,8 @@ export enum MainScreen {
   Header = 'MainScreenHeader',
   AddCardButton = 'MainScreenAddCardButton',
   LookDictionariesButton = 'MainScreenLookkDictionariesButton',
-  GamesButton = 'MainScreenGamesButton',
+  PhraseTranslationGameButton = 'MainScreenPhraseTranslationGameButton',
+  TranslationPhraseGameButton = 'MainScreenTranslationPhraseGameButton',
   LogoutButton = 'MainScreenLogoutButton',
 }
 

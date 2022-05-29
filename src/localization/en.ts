@@ -58,7 +58,8 @@ export const en = {
   [MainScreen.Header]: 'Welcome,',
   [MainScreen.AddCardButton]: 'Add card',
   [MainScreen.LookDictionariesButton]: 'Dictionaries',
-  [MainScreen.GamesButton]: 'Games',
+  [MainScreen.PhraseTranslationGameButton]: 'Phrase-Translation game',
+  [MainScreen.TranslationPhraseGameButton]: 'Translation-Phrase game',
   [MainScreen.LogoutButton]: 'Logout',
 
   [CardScreen.PhrasePlaceholder]: 'Enter a phrase',
