@@ -48,11 +48,20 @@ const DictionaryScreen: React.FC<Props> = ({ route, navigation }) => {
     setAssociationsModal(true);
   };
 
+  const handleAssociationModalClose = () => {
+    setCardAssociations([]);
+    setAssociationsModal(false);
+  };
+
   return (
     <Box mt={4}>
       <CardsGrid cards={cards} onCardPress={handleCardPress} />
       {isAssociationsModal ? (
-        <ShowAssociationsModal associations={cardAssociations} />
+        <ShowAssociationsModal
+          associations={cardAssociations}
+          isOpen={isAssociationsModal}
+          onClose={handleAssociationModalClose}
+        />
       ) : null}
     </Box>
   );

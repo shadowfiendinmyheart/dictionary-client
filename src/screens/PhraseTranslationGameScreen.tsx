@@ -12,7 +12,6 @@ import {
   VStack,
 } from 'native-base';
 import { Entypo } from '@native-base/icons';
-import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
 import { Dictionary } from '../store/types';
 import getPersonalDictionaries from '../api/dictionary/getPersonalDictionaries.api';
 import DictionariesList from '../components/DictionariesList';
@@ -87,18 +86,20 @@ const PhraseTranslationGameScreen: React.FC = () => {
   };
 
   const handleEnterPress = async () => {
-    if (
-      gameCards[gameCounter].associations.find((assciation) => {
-        return assciation.translate.find(
-          (translate) => translate.toLowerCase() === answerInput.toLowerCase(),
-        );
-      })
-    ) {
+    const isRightAnswer = gameCards[gameCounter].associations.find((assciation) => {
+      return assciation.translate.find(
+        (translate) =>
+          translate.toLowerCase().trim() === answerInput.toLowerCase().trim(),
+      );
+    });
+
+    if (isRightAnswer) {
       await increaseCardCounter(gameCards[gameCounter].id);
       updateGameCard(gameCounter, true, answerInput);
+    } else {
+      updateGameCard(gameCounter, false, answerInput);
     }
 
-    updateGameCard(gameCounter, false, answerInput);
     setAssociationCounter(0);
     const isNextCardExist = incrementGameCounter();
     setAnswerInput('');
@@ -109,14 +110,10 @@ const PhraseTranslationGameScreen: React.FC = () => {
   };
 
   if (isGameEnd) {
-    return <EndGameScreen />;
+    return <EndGameScreen gameCards={gameCards} />;
   }
 
-  if (isDictionariesFetching || !dictionaries) {
-    return <SkeletonDictionariesList />;
-  }
-
-  if (!pickedDictionary) {
+  if (!pickedDictionary && dictionaries) {
     return (
       <>
         <Center mt={3}>
@@ -125,6 +122,7 @@ const PhraseTranslationGameScreen: React.FC = () => {
         <DictionariesList
           dictionaries={dictionaries}
           onDictionaryPress={handleDictionaryPress}
+          isLoading={isDictionariesFetching}
         />
       </>
     );
@@ -187,7 +185,9 @@ const PhraseTranslationGameScreen: React.FC = () => {
           value={answerInput}
           onChangeText={handleInputChange}
         />
-        <Button onPress={handleEnterPress}>Принять</Button>
+        <Button disabled={answerInput.length === 0} onPress={handleEnterPress}>
+          Принять
+        </Button>
       </VStack>
     </Center>
   );

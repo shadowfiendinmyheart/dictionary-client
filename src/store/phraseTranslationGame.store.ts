@@ -2,7 +2,7 @@ import { observable, action, makeObservable } from 'mobx';
 import { Card } from '../api/card/types';
 import { Dictionary } from './types';
 
-interface GameCard extends Card {
+export interface GameCard extends Card {
   isAnswered: boolean;
   answer: string;
 }
@@ -23,6 +23,7 @@ export class PhraseTranslationGameStore {
       isGameEnd: observable,
 
       setGameCards: action.bound,
+      updateGameCard: action.bound,
       setGameCounter: action.bound,
       incrementGameCounter: action.bound,
       setPickedDictionary: action.bound,
@@ -30,7 +31,6 @@ export class PhraseTranslationGameStore {
       incrementAssociationCounter: action.bound,
       decrementAssociationCounter: action.bound,
       setGameEnd: action.bound,
-      updateGameCard: action.bound,
     });
   }
 
