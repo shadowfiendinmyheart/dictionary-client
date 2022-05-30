@@ -20,6 +20,10 @@ export enum Language {
   Japanese = 'japanese',
 }
 
+export type LanguageInterface = {
+  [key in Language]: string;
+};
+
 export interface Card {
   phrase: string;
   description: string;

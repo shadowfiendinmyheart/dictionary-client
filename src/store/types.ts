@@ -14,4 +14,5 @@ export interface Dictionary {
   to: Language;
   private: boolean;
   user_id: number;
+  user: { username: string };
 }
