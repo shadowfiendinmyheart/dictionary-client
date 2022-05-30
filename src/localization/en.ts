@@ -59,6 +59,8 @@ export const en = {
   [RegistrationForm.PasswordErrorMatch]: 'Passwords do not match',
   [RegistrationForm.PasswordErrorRepeat]: 'Repeat the password, please',
   [RegistrationForm.RegistrationButton]: 'Create account',
+  [Router.AddPublicDictionaryErrorAlert]: 'An error has occurred',
+  [Router.AddPublicDictionarySuccessfulAlert]: 'Dictionary added successfully!',
 
   [MainScreen.Header]: 'Welcome,',
   [MainScreen.AddCardButton]: 'Add card',

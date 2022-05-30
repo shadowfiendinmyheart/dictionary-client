@@ -53,7 +53,7 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   }, []);
 
   const handleDictionaryPress = (dictionary: Dictionary) => {
-    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionaryId: dictionary.id });
+    navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionary: dictionary });
   };
 
   const handleCreateDictionaryPress = () => {

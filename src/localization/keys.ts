@@ -9,6 +9,8 @@ export enum Router {
   PersonalDictionariesTitle = 'RouterPersonalDictionariesTitle',
   PhraseTranslationGameTitle = 'RouterPhraseTranslationGameTitle',
   TranslationPhraseGameTitle = 'RouterTranslationPhraseGameTitle',
+  AddPublicDictionaryErrorAlert = 'RouterAddPublicDictionaryErrorAlert',
+  AddPublicDictionarySuccessfulAlert = 'RouterAddPublicDictionarySuccessfulAlert',
 }
 
 export enum LoginScreen {

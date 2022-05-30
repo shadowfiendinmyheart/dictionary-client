@@ -13,11 +13,12 @@ import LoadingScreen from '../../screens/LoadingScreen';
 import CardScreen from '../../screens/CardScreen';
 import PersonalDictionariesScreen from '../../screens/PersonalDictionariesScreen';
 import PublicDictionariesScreen from '../../screens/PublicDictionariesScreen';
-import { Icon } from 'native-base';
+import { Button, Icon } from 'native-base';
 import { Entypo } from '@native-base/icons';
 import DictionaryScreen from '../../screens/DictionaryScreen';
 import PhraseTranslationGameScreen from '../../screens/PhraseTranslationGameScreen';
 import TranslationPhraseGameScreen from '../../screens/TranslationPhraseGameScreen';
+import addPublicDictionary from '../../api/dictionary/addPublicDictionary.api';
 
 const {
   LoginScreenTitle,
@@ -30,6 +31,8 @@ const {
   PublicDictionariesTitle,
   PhraseTranslationGameTitle,
   TranslationPhraseGameTitle,
+  AddPublicDictionaryErrorAlert,
+  AddPublicDictionarySuccessfulAlert,
 } = localizationTokens.Router.index;
 const loginScreenTitle = i18n.t(LoginScreenTitle);
 const registrationTitle = i18n.t(RegistationScreenTitle);
@@ -41,6 +44,8 @@ const publicDictionariesTabTitle = i18n.t(PublicDictionariesTitle);
 const personalDictionariesTabTitle = i18n.t(PersonalDictionariesTitle);
 const phraseTranslationGameTitle = i18n.t(PhraseTranslationGameTitle);
 const translationPhraseGameTitle = i18n.t(TranslationPhraseGameTitle);
+const addPublicDictionaryErrorAlertText = i18n.t(AddPublicDictionaryErrorAlert);
+const addPublicDictionarySuccessfulAlertText = i18n.t(AddPublicDictionarySuccessfulAlert);
 
 const DictionaryNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -77,8 +82,27 @@ const DictionaryNavigator = () => {
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
-  const { userStore } = useStore();
+  const { userStore, dictionaryStore } = useStore();
   const { isAuth, isFetching } = userStore;
+  const { addDictionary, isPosibleToAddDictionary, currentDictionary } = dictionaryStore;
+
+  const handleAddDictionaryPress = async () => {
+    if (!currentDictionary) {
+      alert(addPublicDictionaryErrorAlertText);
+      return;
+    }
+
+    try {
+      const dictionary = await addPublicDictionary(currentDictionary.id);
+      if (dictionary) {
+        addDictionary(dictionary);
+        alert(addPublicDictionarySuccessfulAlertText);
+      }
+    } catch (error) {
+      // show user error
+      alert(addPublicDictionaryErrorAlertText);
+    }
+  };
 
   if (isFetching) {
     return (
@@ -129,7 +153,14 @@ const Router = () => {
       <Stack.Screen
         name={ROUTES.DICTIONARY_SCREEN}
         component={DictionaryScreen}
-        options={{ title: dictionaryScreenTitle }}
+        options={{
+          title: dictionaryScreenTitle,
+          headerRight: () => {
+            if (!isPosibleToAddDictionary) return;
+
+            return <Button onPress={handleAddDictionaryPress}>+</Button>;
+          },
+        }}
       />
       <Stack.Screen
         name={ROUTES.PHRASE_TRANSLATION_GAME_SCREEN}
