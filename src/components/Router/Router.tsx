@@ -20,6 +20,7 @@ import PhraseTranslationGameScreen from '../../screens/PhraseTranslationGameScre
 import TranslationPhraseGameScreen from '../../screens/TranslationPhraseGameScreen';
 import addPublicDictionary from '../../api/dictionary/addPublicDictionary.api';
 import CardEditScreen from '../../screens/CardEditScreen';
+import DictionaryEditScreen from '../../screens/DictionaryEditScreen';
 
 const {
   LoginScreenTitle,
@@ -167,6 +168,11 @@ const Router = () => {
             return <Button onPress={handleAddDictionaryPress}>+</Button>;
           },
         }}
+      />
+      <Stack.Screen
+        name={ROUTES.DICTIONARY_EDIT_SCREEN}
+        component={DictionaryEditScreen}
+        options={{ title: 'Редактирование словаря' }}
       />
       <Stack.Screen
         name={ROUTES.PHRASE_TRANSLATION_GAME_SCREEN}

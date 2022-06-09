@@ -6,9 +6,6 @@ import i18n, { localizationTokens } from '../localization';
 import { NavigationStackProp } from 'react-navigation-stack';
 import ROUTES from '../constants/routes';
 import getPersonalDictionaries from '../api/dictionary/getPersonalDictionaries.api';
-import SkeletonDictionariesList from '../components/SkeletonDictionariesList';
-import DictionaryItem from '../components/DictionaryItem';
-import { TouchableHighlight } from 'react-native';
 import CreateDictionaryModal from '../components/CreateDictionaryModal';
 import DictionariesList from '../components/DictionariesList';
 import { Dictionary } from '../store/types';
@@ -42,6 +39,10 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(ROUTES.DICTIONARY_SCREEN, { dictionary: dictionary });
   };
 
+  const handleLongPress = (dictionary: Dictionary) => {
+    navigation.navigate(ROUTES.DICTIONARY_EDIT_SCREEN, { dictionary: dictionary });
+  };
+
   const handleCreateDictionaryPress = () => {
     setCreateDictionaryModal(true);
   };
@@ -68,6 +69,7 @@ const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
       <DictionariesList
         dictionaries={dictionaries}
         onDictionaryPress={handleDictionaryPress}
+        onLongPress={handleLongPress}
         isLoading={isDictionariesFetching}
       />
       <CreateDictionaryModal />
