@@ -19,6 +19,7 @@ import DictionaryScreen from '../../screens/DictionaryScreen';
 import PhraseTranslationGameScreen from '../../screens/PhraseTranslationGameScreen';
 import TranslationPhraseGameScreen from '../../screens/TranslationPhraseGameScreen';
 import addPublicDictionary from '../../api/dictionary/addPublicDictionary.api';
+import CardEditScreen from '../../screens/CardEditScreen';
 
 const {
   LoginScreenTitle,
@@ -144,6 +145,11 @@ const Router = () => {
         name={ROUTES.CARD_SCREEN}
         component={CardScreen}
         options={{ title: cardScreenTitle }}
+      />
+      <Stack.Screen
+        name={ROUTES.CARD_EDIT_SCREEN}
+        component={CardEditScreen}
+        options={{ title: 'Редактирование карточки' }}
       />
       <Stack.Screen
         name={ROUTES.DICTIONARY_NAVIGATOR}

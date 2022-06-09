@@ -10,13 +10,14 @@ import CardsGrid from '../components/CardsGrid';
 import LoadingScreen from './LoadingScreen';
 import ShowAssociationsModal from '../components/ShowAssociationsModal';
 import { Dictionary } from '../store/types';
+import ROUTES from '../constants/routes';
 
 interface Props {
   route: { params: { dictionary: Dictionary } };
   navigation: NavigationStackProp;
 }
 
-const DictionaryScreen: React.FC<Props> = ({ route }) => {
+const DictionaryScreen: React.FC<Props> = ({ route, navigation }) => {
   const [isFetchingCards, setFetchingCards] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
   const { dictionaryStore } = useStore();
@@ -26,6 +27,7 @@ const DictionaryScreen: React.FC<Props> = ({ route }) => {
     cardAssociations,
     setCardAssociations,
     setCurrentDictionary,
+    dictionaries,
   } = dictionaryStore;
 
   const dictionaryId = route.params.dictionary.id;
@@ -51,6 +53,12 @@ const DictionaryScreen: React.FC<Props> = ({ route }) => {
     setAssociationsModal(true);
   };
 
+  const handleLongCardPress = (card: Card) => {
+    if (!dictionaries.find((dictionary) => dictionary.id === card.id)) return;
+
+    navigation.navigate(ROUTES.CARD_EDIT_SCREEN, { card: card });
+  };
+
   const handleAssociationModalClose = () => {
     setCardAssociations([]);
     setAssociationsModal(false);
@@ -66,6 +74,7 @@ const DictionaryScreen: React.FC<Props> = ({ route }) => {
         cards={cards}
         onCardPress={handleCardPress}
         onAudioPress={handleAudioPress}
+        onLongPress={handleLongCardPress}
       />
       {isAssociationsModal ? (
         <ShowAssociationsModal

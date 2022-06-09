@@ -10,11 +10,24 @@ type Props = {
   card: Card;
   onCardPress: (card: Card) => void;
   onAudioPress?: (text: string) => void;
+  onLongPress?: (card: Card) => void;
 };
 
-const CardsGrid: React.FC<Props> = ({ card, onCardPress, onAudioPress }) => {
+const CardsGrid: React.FC<Props> = ({ card, onCardPress, onAudioPress, onLongPress }) => {
+  const handleCardPress = () => onCardPress(card);
+
+  const handleLongPress = () => {
+    if (!onLongPress) return;
+
+    onLongPress(card);
+  };
+
   return (
-    <TouchableHighlight onPress={() => onCardPress(card)} underlayColor={'white'}>
+    <TouchableHighlight
+      onLongPress={handleLongPress}
+      onPress={handleCardPress}
+      underlayColor={'white'}
+    >
       <Box rounded="lg">
         <ImageBackground
           source={{ uri: card.associations[0].image }}

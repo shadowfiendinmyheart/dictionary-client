@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import {
-  Box,
-  Center,
-  Divider,
-  ScrollView,
-  VStack,
-  Text,
-  HStack,
-  Button,
-} from 'native-base';
+import { Center, Text, Button } from 'native-base';
 import { useStore } from '../store/root.store';
 import i18n, { localizationTokens } from '../localization';
 import { NavigationStackProp } from 'react-navigation-stack';

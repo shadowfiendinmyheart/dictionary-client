@@ -9,12 +9,14 @@ type Props = {
   cards: CardInterface[];
   onCardPress?: (card: CardInterface) => void;
   onAudioPress?: (text: string) => void;
+  onLongPress?: (card: CardInterface) => void;
   numberOfColumns?: number;
 };
 
 const CardsGrid: React.FC<Props> = ({
   cards,
   onCardPress,
+  onLongPress,
   onAudioPress,
   numberOfColumns = 2,
 }) => {
@@ -38,6 +40,7 @@ const CardsGrid: React.FC<Props> = ({
                 <Card
                   card={card}
                   onCardPress={handleCardPress}
+                  onLongPress={onLongPress}
                   onAudioPress={onAudioPress}
                   key={card.id}
                 />
