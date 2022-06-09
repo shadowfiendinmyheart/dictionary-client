@@ -215,7 +215,10 @@ export class CardStore {
 
   public updateAvalibleDictionaries = () => {
     this.avalibleDictionaries = this.dictionaryStore.dictionaries.filter((dictionary) => {
-      return dictionary.from === this.fromLanguage && dictionary.to === this.toLanguage;
+      return (
+        dictionary.fromLanguage.name === this.fromLanguage &&
+        dictionary.toLanguage.name === this.toLanguage
+      );
     });
   };
 

@@ -1,15 +1,6 @@
 import axios from 'axios';
+import { Dictionary } from '../../store/types';
 import { Language } from '../card/types';
-
-export type createDictionaryResponse = {
-  id: number;
-  name: string;
-  description: string;
-  from: Language;
-  to: Language;
-  private: boolean;
-  user_id: number;
-};
 
 export type createDictionaryRequest = {
   name: string;
@@ -23,7 +14,7 @@ async function createDictionary(request: createDictionaryRequest) {
   const { name, description, from, to, privateDictionary } = request;
 
   try {
-    const { data } = await axios.post<createDictionaryResponse>('/dictionary', {
+    const { data } = await axios.post<Dictionary>('/dictionary', {
       name,
       description,
       from,

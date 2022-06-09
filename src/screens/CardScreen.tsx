@@ -43,6 +43,10 @@ const CardScreen: React.FC<Props> = ({ navigation }) => {
 
       updateAvalibleDictionaries();
     })();
+
+    return () => {
+      setTranslations([]);
+    };
   }, []);
 
   const handlePhraseInputChange = (value: string) => {

@@ -8,10 +8,16 @@ import Card from '../Card/Card';
 type Props = {
   cards: CardInterface[];
   onCardPress?: (card: CardInterface) => void;
+  onAudioPress?: (text: string) => void;
   numberOfColumns?: number;
 };
 
-const CardsGrid: React.FC<Props> = ({ cards, onCardPress, numberOfColumns = 2 }) => {
+const CardsGrid: React.FC<Props> = ({
+  cards,
+  onCardPress,
+  onAudioPress,
+  numberOfColumns = 2,
+}) => {
   const cardsGrid = chunkArray(cards, numberOfColumns);
 
   const handleCardPress = (card: CardInterface) => {
@@ -28,7 +34,14 @@ const CardsGrid: React.FC<Props> = ({ cards, onCardPress, numberOfColumns = 2 })
         return (
           <HStack justifyContent={'space-evenly'} key={rowIndex}>
             {row.map((card) => {
-              return <Card card={card} onCardPress={handleCardPress} key={card.id} />;
+              return (
+                <Card
+                  card={card}
+                  onCardPress={handleCardPress}
+                  onAudioPress={onAudioPress}
+                  key={card.id}
+                />
+              );
             })}
           </HStack>
         );

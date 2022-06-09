@@ -15,16 +15,16 @@ export const LanguageFlag: LanguageInterface = {
   japanese: '🇯🇵',
 };
 
-const PersonalDictionariesScreen: React.FC<Props> = (props) => {
-  const { name, description, from, to, user } = props;
+const DictionaryItem: React.FC<Props> = (props) => {
+  const { name, description, fromLanguage, toLanguage, user } = props;
 
   return (
     <Box {...props} p={2} borderRadius="md" background={'trueGray.200'}>
       <VStack>
         <HStack>
-          <Text fontSize={'xs'}>{LanguageFlag[from]}</Text>
+          <Text fontSize={'xs'}>{LanguageFlag[fromLanguage.name]}</Text>
           <Text fontSize={'xs'}>{'→'}</Text>
-          <Text fontSize={'xs'}>{LanguageFlag[to]}</Text>
+          <Text fontSize={'xs'}>{LanguageFlag[toLanguage.name]}</Text>
         </HStack>
         <HStack alignItems={'baseline'} space={2}>
           <Text fontSize={'2xl'}>{name}</Text>
@@ -38,4 +38,4 @@ const PersonalDictionariesScreen: React.FC<Props> = (props) => {
   );
 };
 
-export default PersonalDictionariesScreen;
+export default DictionaryItem;

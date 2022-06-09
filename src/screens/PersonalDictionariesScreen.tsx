@@ -34,12 +34,7 @@ const dictionariesNotFoundText = i18n.t(DictionariesNotFoundText);
 const PersonalDictionariesScreen: React.FC<Props> = ({ navigation }) => {
   const [isDictionariesFetching, setDictionariesFetching] = useState(false);
   const { dictionaryStore } = useStore();
-  const {
-    dictionaries,
-    setDictionaries,
-    isCreateDictionaryModal,
-    setCreateDictionaryModal,
-  } = dictionaryStore;
+  const { dictionaries, setDictionaries, setCreateDictionaryModal } = dictionaryStore;
 
   useEffect(() => {
     void (async () => {

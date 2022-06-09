@@ -1,16 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { observer } from 'mobx-react';
-import { Box, Text } from 'native-base';
+import { Box, Center, Icon, IconButton, Text } from 'native-base';
+import { Entypo } from '@native-base/icons';
 import { ImageBackground, TouchableHighlight, ScrollView } from 'react-native';
 import { Card } from '../../api/card/types';
 
 type Props = {
   card: Card;
   onCardPress: (card: Card) => void;
+  onAudioPress?: (text: string) => void;
 };
 
-const CardsGrid: React.FC<Props> = ({ card, onCardPress }) => {
+const CardsGrid: React.FC<Props> = ({ card, onCardPress, onAudioPress }) => {
   return (
     <TouchableHighlight onPress={() => onCardPress(card)} underlayColor={'white'}>
       <Box rounded="lg">
@@ -30,6 +32,24 @@ const CardsGrid: React.FC<Props> = ({ card, onCardPress }) => {
               {card.phrase}
             </Text>
           </ScrollView>
+          {onAudioPress ? (
+            <IconButton
+              style={styles.iconButton}
+              size="8"
+              paddingTop={1}
+              icon={
+                <Center>
+                  <Icon
+                    as={Entypo}
+                    name="controller-play"
+                    size="6"
+                    color="trueGray.400"
+                  />
+                </Center>
+              }
+              onPress={() => onAudioPress(card.phrase)}
+            />
+          ) : null}
         </ImageBackground>
       </Box>
     </TouchableHighlight>
@@ -50,6 +70,11 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
+  },
+  iconButton: {
+    position: 'absolute',
+    right: 4,
+    top: 4,
   },
 });
 

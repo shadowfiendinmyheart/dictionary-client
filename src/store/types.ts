@@ -10,8 +10,14 @@ export interface Dictionary {
   id: number;
   name: string;
   description: string;
-  from: Language;
-  to: Language;
+  fromLanguage: {
+    id: number;
+    name: Language;
+  };
+  toLanguage: {
+    id: number;
+    name: Language;
+  };
   private: boolean;
   user_id: number;
   user: { username: string };

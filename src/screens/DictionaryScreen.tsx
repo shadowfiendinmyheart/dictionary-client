@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from 'native-base';
-import { observer } from 'mobx-react';
-import { useStore } from '../store/root.store';
 import { NavigationStackProp } from 'react-navigation-stack';
+import * as Speech from 'expo-speech';
+import { observer } from 'mobx-react';
+import { Box } from 'native-base';
+import { useStore } from '../store/root.store';
 import getCardsByDictionaryId from '../api/card/getCardsByDictionaryId.api';
 import { Card } from '../api/card/types';
 import CardsGrid from '../components/CardsGrid';
@@ -55,9 +56,17 @@ const DictionaryScreen: React.FC<Props> = ({ route }) => {
     setAssociationsModal(false);
   };
 
+  const handleAudioPress = (text: string) => {
+    Speech.speak(text);
+  };
+
   return (
     <Box mt={4}>
-      <CardsGrid cards={cards} onCardPress={handleCardPress} />
+      <CardsGrid
+        cards={cards}
+        onCardPress={handleCardPress}
+        onAudioPress={handleAudioPress}
+      />
       {isAssociationsModal ? (
         <ShowAssociationsModal
           associations={cardAssociations}
